@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "http://localhost/real-back/public/api",
+        "secure": false
+    }
+}

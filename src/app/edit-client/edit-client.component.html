@@ -1,0 +1,64 @@
+<div class="page">
+  <!-- Main Navbar-->
+  <app-header></app-header>
+  <div class="page-content d-flex align-items-stretch">
+    <!-- Side Navbar -->
+    <app-left-nav></app-left-nav>
+      <div class="content-inner">
+      <!-- Breadcrumb-->
+          <div class="breadcrumb-holder container-fluid">
+              <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="">Client</a></li>
+                  <li class="breadcrumb-item active">Edit Client</li>
+              </ul>
+          </div>
+          <section class="forms"> 
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-body">
+                                  <div class="row d-flex align-items-center">
+                                      <div class="col-sm-9">
+                                          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                                          <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                                              <div class="form-group-material">
+                                                  <input type="text" formControlName="name" value="{{client.name}}" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material">
+                                                  <label for="Name" class="label-material">Client Name</label>
+                                                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                      <div *ngIf="f.name.errors.required">Name is required</div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group-material">
+                                                  <input type="text" formControlName="email" value="{{client.email}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                                  <label for="email" class="label-material">Client Email</label>
+                                                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                      <div *ngIf="f.email.errors.required">Email is required</div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group-material">
+                                                <input type="text" formControlName="description" value="{{client.description}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                                <label for="description" class="label-material">Client Description</label>
+                                                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.description.errors.required">Description is required</div>
+                                                </div>
+                                              </div>
+                                              <div class="form-group-material">
+                                                <input [disabled]="loading" type="submit" name="submit" value="Update" class="btn btn-secondary btn-block">
+                                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                              </div>
+                                          </form>    
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
+                  </div>   
+              </div>    
+          </section>
+<!-- Page Footer-->
+<app-footer></app-footer>
+</div>
+</div>
+</div>

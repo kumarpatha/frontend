@@ -1,0 +1,52 @@
+﻿
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+      <div class="form-holder has-shadow">
+        <div class="row">
+          
+          <!-- Form Panel    -->
+          <div class="col-lg-6 bg-white">
+            <div class="form d-flex align-items-center">
+              <div class="content">
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <input type="text" formControlName="username" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <label for="username" class="label-material">User Name</label>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" formControlName="password" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <label for="password" class="label-material">Password</label>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                  </div>
+                  <input type="submit" [disabled]="loading" class="btn btn-secondary btn-block" value="Login">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    <p class="text-center"><a routerLink="/forget-password" class="forgot-pass text-center">Forgot Password?</a></p>
+                </form>
+              
+              </div>
+            </div>
+          </div>
+          <!-- Logo & Information Panel-->
+          <div class="col-lg-6">
+            <div class="info d-flex align-items-center">
+              <div class="content">
+                <div class="logo">
+                  <h1>Resourcer</h1>
+                </div>
+                <p>Fill Your details to login.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyrights text-center">
+      <p class="small">CopyRights - <a href="#" class="external">Digits AS</a>, Norway <br> Org. number 925 386 022</p>
+    </div>
+  </div>

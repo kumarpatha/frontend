@@ -1,0 +1,19 @@
+ <!-- Side Navbar -->
+ <nav class="side-navbar">
+  <span class="heading" *ngIf="currentUser.role == 0">Users</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 0">
+    <li class="active"><a routerLink="/users">Userlist</a></li>
+    <li><a routerLink="/user-register">Add user</a></li>
+  </ul>
+  <span class="heading" *ngIf="currentUser.role == 0">Client</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 0">
+    <li><a routerLink="/clients">Clientlist</a></li>
+    <li><a routerLink="/add-client">Add Client</a></li>
+  </ul>
+
+  <span class="heading" *ngIf="currentUser.role == 1">Customer</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 1">
+    <li><a routerLink="/customers">Customer list</a></li>
+    <li><a routerLink="/add-customer">Add Customer</a></li>
+  </ul>
+</nav>

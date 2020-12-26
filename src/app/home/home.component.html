@@ -1,0 +1,68 @@
+﻿<!-- <div class="card mt-4">
+    <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
+    <div class="card-body">
+        <h6>Users from secure api end point</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+    </div>
+</div> -->
+
+<div class="page">
+    <!-- Main Navbar-->
+    <app-header></app-header>
+    <div class="page-content d-flex align-items-stretch">
+      <!-- Side Navbar -->
+      <app-left-nav></app-left-nav>
+        <div class="content-inner">
+        <!-- Breadcrumb-->
+            <div class="breadcrumb-holder container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="">Users</a></li>
+                    <li class="breadcrumb-item active">Users List</li>
+                </ul>
+            </div>
+        <!-- Forms Section-->
+        <section class="forms">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Client</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users; index as i">
+                            <th scope="row">{{i + 1}}</th>
+                                <td>{{user.name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.client.name}}</td>
+                                <!-- <td>{{user.language}}</td> -->
+                                <td>
+                                    <a routerLink="/edit-user/{{user.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
+                                    <a (click)="deleteUser(user.id)" class="mr-1 btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page Footer-->
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
