@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    //apiUrl: 'http://localhost/real-back/public/api'
-    apiUrl: 'http://proponation.com/resourcer/backend/public/api'
+    apiUrl: 'http://localhost/resources/public/api'
+    //apiUrl: 'http://proponation.com/resourcer/backend/public/api'
 };
 
 /*

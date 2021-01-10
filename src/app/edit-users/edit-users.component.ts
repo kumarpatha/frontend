@@ -18,6 +18,7 @@ export class EditUsersComponent implements OnInit {
 
   userForm: FormGroup;
     loading = false;
+    loadingData = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -41,9 +42,10 @@ export class EditUsersComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
+        this.loadingData = true;
         this.userService.getclients().pipe(first()).subscribe(data => {
             this.loading = false;
-            console.log(data);
+            this.loadingData = false;
             this.clients = data.clients;
         });
         this.userForm = this.formBuilder.group({
@@ -52,11 +54,9 @@ export class EditUsersComponent implements OnInit {
           client: ['', Validators.required],
           //language: ['', Validators.required]
         });
-        console.log(this.route.snapshot.paramMap.get('id'));
         this.editId = this.route.snapshot.paramMap.get('id');
         this.userService.getuserinfo(this.editId).pipe(first()).subscribe(data => {
             this.loading = false;
-            console.log(data);
             this.user = data.user;
             this.userForm.setValue({
               fullname: this.user.name,
@@ -66,7 +66,6 @@ export class EditUsersComponent implements OnInit {
           });
         });
         
-
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
@@ -83,11 +82,13 @@ export class EditUsersComponent implements OnInit {
         }
 
         this.loading = true;
+        this.loadingData = true;
         this.userService.editUser(this.userForm.value,this.editId)
             .pipe(first())
             .subscribe(
                 data => {
                     this.loading = false;
+                    this.loadingData = false;
                     if(data.status == '1') {
                       Swal.fire('', data.message, 'success');
                     } 
@@ -96,6 +97,7 @@ export class EditUsersComponent implements OnInit {
                 error => {
                     this.error = error;
                     this.loading = false;
+                    this.loadingData = false;
                 });
     }
 

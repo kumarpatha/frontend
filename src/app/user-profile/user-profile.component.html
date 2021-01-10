@@ -1,47 +1,70 @@
+<div class="gooey align-items-center" *ngIf="loadingData">
+  <span class="dot"></span>
+  <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div> 
+</div>
 <div class="page">
-  <!-- Main Navbar-->
-  <app-header></app-header>
-  <div class="page-content d-flex align-items-stretch">
-    <!-- Side Navbar -->
-    <app-left-nav></app-left-nav>
-      <div class="content-inner">
-      <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-              <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item"><a href="">User</a></li>
-                  <li class="breadcrumb-item active">Profile</li>
-              </ul>
-          </div>
-          <section class="forms"> 
-              <div class="container-fluid">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="card">
-                              <div class="card-body">
-                                  <div class="row d-flex align-items-center">
-                                      <div class="col-sm-6">
-                                          Name : {{currentUser.name}} 
-                                          <br/>
-                                          Email : {{currentUser.email}}
-                                          <br/>
-                                          Role : <span *ngIf="currentUser.role == 0">Super Admin</span> <span *ngIf="currentUser.role == 1">Admin</span> 
-                                          <br/>
-                                          
+    <!-- Main Navbar-->
+    <app-header></app-header>
+    <div class="page-content d-flex align-items-stretch">
+      <!-- Side Navbar -->
+      <app-left-nav></app-left-nav>
+        <div class="content-inner">
+        <!-- Breadcrumb-->
+            <div class="breadcrumb-holder container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="">User</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ul>
+            </div>
+            <section class="forms"> 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row d-flex align-items-center">
+                                      <div class="col-sm-12">
+                                          <table class="table table-borderless">
+                                              <tbody>
+                                                <tr>
+                                                  <td><b>Name :</b></td>
+                                                  <td>{{currentUser.name}} </td>
+                                                </tr>
+                                                <tr>
+                                                  <td><b>Email :</b></td>
+                                                  <td> {{currentUser.email}} </td>
+                                                </tr>
+                                                <tr>
+                                                  <td><b>Role :</b></td>
+                                                  <td> <span *ngIf="currentUser.role == 0">Super Admin</span> <span *ngIf="currentUser.role == 1">Admin</span> 
+                                                  </td>
+                                                </tr>
+                                                <tr *ngIf="currentUser.role == 1">
+                                                  <td><b>Client Name :</b></td>
+                                                  <td>{{currentUser.client_name}}</td>
+                                                </tr>
+                                              </tbody>
+                                          </table>                                          
                                       </div>
-                                      <div class="col-sm-6 right">
-                                        <a routerLink="/change-password" class="nav-link logout"> <span
-                                          class="d-none d-sm-inline"></span>Change Password</a>  
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div> 
-                  </div>   
-              </div>    
-          </section>
-<!-- Page Footer-->
-<app-footer></app-footer>
+                                        <div class="col-sm-12 text-center">
+                                          <a routerLink="/change-password" class="btn btn-secondary"> <span
+                                            class="d-none d-sm-inline"></span>Change Password</a>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>   
+                </div>    
+            </section>
+  <!-- Page Footer-->
+  <app-footer></app-footer>
+  </div>
+  </div>
 </div>
-</div>
-</div>
+  

@@ -19,6 +19,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetForm: FormGroup;
   loading = false;
+  loadingData = false;
   submitted = false;
   returnUrl: string;
   error = '';
@@ -57,11 +58,13 @@ onSubmit() {
   }
 
   this.loading = true;
+  this.loadingData = true;
   this.authenticationService.resetPassword(this.resetForm.value, this.token)
       .pipe(first())
       .subscribe(
           data => {
               this.loading = false;
+              this.loadingData = false;
               if(data.status == '1') {
                 Swal.fire('', data.message, 'success');
               }
@@ -69,6 +72,7 @@ onSubmit() {
           error => {
               this.error = error;
               this.loading = false;
+              this.loadingData = false;
           });
 }
 

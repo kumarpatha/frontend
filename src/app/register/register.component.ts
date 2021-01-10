@@ -11,6 +11,7 @@ declare var $: any;
 export class RegisterComponent {
     userForm: FormGroup;
     loading = false;
+    loadingData = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -32,8 +33,10 @@ export class RegisterComponent {
 
     ngOnInit() {
         this.loading = true;
+        this.loadingData = true;
         this.userService.getclients().pipe(first()).subscribe(data => {
             this.loading = false;
+            this.loadingData = false;
             console.log(data);
             this.clients = data.clients;
         });
@@ -62,11 +65,13 @@ export class RegisterComponent {
         }
 
         this.loading = true;
+        this.loadingData = true;
         this.userService.register(this.userForm.value)
             .pipe(first())
             .subscribe(
                 data => {
                     this.loading = false;
+                    this.loadingData = false;
                     if(data.status == '1') {
                         this.info = data.message;
                     } else {
@@ -77,6 +82,7 @@ export class RegisterComponent {
                 error => {
                     this.error = error;
                     this.loading = false;
+                    this.loadingData = false;
                 });
     }
 }

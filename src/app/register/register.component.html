@@ -1,4 +1,12 @@
-﻿<div class="page">
+﻿<div class="gooey align-items-center" *ngIf="loadingData">
+    <span class="dot"></span>
+    <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div> 
+</div>
+<div class="page">
     <!-- Main Navbar-->
     <app-header></app-header>
     <div class="page-content d-flex align-items-stretch">

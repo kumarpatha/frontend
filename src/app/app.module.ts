@@ -28,8 +28,15 @@ import { CustomersComponent } from './customers/customers.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
-import { EditUsersComponent } from './edit-users/edit-users.component';;
+import { EditUsersComponent } from './edit-users/edit-users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { AddProjectComponent } from './add-project/add-project.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProductsComponent } from './products/products.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @NgModule({
     imports: [
@@ -57,7 +64,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         ResetPasswordComponent,
         EditClientComponent,
         EditUsersComponent,
-        UserProfileComponent],
+        UserProfileComponent,
+        AddProjectComponent,
+        ProjectsComponent,
+        AddProductComponent,
+        ProductsComponent,
+        EditCustomerComponent,
+        EditProjectComponent,
+        EditProductComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

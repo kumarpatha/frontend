@@ -15,6 +15,7 @@ declare var $: any;
 export class AddClientComponent implements OnInit {
     clientForm: FormGroup;
     loading = false;
+    loadingData = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -51,11 +52,13 @@ onSubmit() {
     }
 
     this.loading = true;
+    this.loadingData = true;
     this.userService.addClient(this.clientForm.value)
         .pipe(first())
         .subscribe(
             data => {
                 this.loading = false;
+                this.loadingData = false;
                 if(data.status == '1') {
                     this.info = data.message;
                 } else {
@@ -66,6 +69,8 @@ onSubmit() {
             error => {
                 this.error = error;
                 this.loading = false;
+                this.loadingData = false;
+
             });
 }
 

@@ -13,10 +13,18 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { EditUsersComponent } from './edit-users/edit-users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProjectsComponent } from './projects/projects.component'
+;
+import { AddProjectComponent } from './add-project/add-project.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProductsComponent } from './products/products.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'users', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'user-register', component: RegisterComponent, canActivate: [AuthGuard]},
     { path: 'add-client', component: AddClientComponent, canActivate: [AuthGuard]},
@@ -29,13 +37,16 @@ const routes: Routes = [
     { path: 'edit-client/:id', component: EditClientComponent, canActivate: [AuthGuard]},
     { path: 'edit-user/:id', component: EditUsersComponent, canActivate: [AuthGuard]},
     { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
-
-
-  
-
-
+    { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard]},
+    { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard]},
+    { path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard]},
+    { path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
+    { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AuthGuard]},
+    { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard]},
+    { path: 'edit-project/:id', component: EditProjectComponent, canActivate: [AuthGuard]},
+    
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'login' }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);

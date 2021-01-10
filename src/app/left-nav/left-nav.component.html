@@ -16,4 +16,14 @@
     <li><a routerLink="/customers">Customer list</a></li>
     <li><a routerLink="/add-customer">Add Customer</a></li>
   </ul>
+  <span class="heading" *ngIf="currentUser.role == 1">Project</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 1">
+    <li><a routerLink="/projects">Project list</a></li>
+    <li><a routerLink="/add-project">Add Project</a></li>
+  </ul>
+  <span class="heading" *ngIf="currentUser.role == 1">Product</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 1">
+    <li><a routerLink="/products">Product list</a></li>
+    <li><a routerLink="/add-product">Add Product</a></li>
+  </ul>
 </nav>

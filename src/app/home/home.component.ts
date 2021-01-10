@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewEncapsulation } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,15 +9,17 @@ import Swal from 'sweetalert2';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
+    loadingData = false;
     users: any;
 
     constructor(private userService: UserService, private router: Router) { }
 
     ngOnInit() {
         this.loading = true;
+        this.loadingData = true;
         this.userService.getAll().pipe(first()).subscribe(data => {
             this.loading = false;
-            console.log(data);
+            this.loadingData = false;
             this.users = data.users;
         });
     }
@@ -41,8 +43,10 @@ export class HomeComponent {
             reverseButtons: true
           }).then((result) => {
             if (result.isConfirmed) {
+                this.loadingData = true;
                 this.userService.deleteUser(client_id).pipe(first()).subscribe(data => {
                     this.loading = false;
+                    this.loadingData = false;
                     if(data.status == '1') {
                       Swal.fire('', data.message, 'success');
                     }

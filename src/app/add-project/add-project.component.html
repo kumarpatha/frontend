@@ -1,0 +1,340 @@
+<div class="gooey align-items-center" *ngIf="loadingData">
+  <span class="dot"></span>
+  <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div> 
+</div>
+<div class="page">
+  <!-- Main Navbar-->
+  <app-header></app-header>
+  <div class="page-content d-flex align-items-stretch">
+    <!-- Side Navbar -->
+    <app-left-nav></app-left-nav>
+    <div class="content-inner">
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-holder container-fluid">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="">Project list</a></li>
+          <li class="breadcrumb-item active">Add Project</li>
+        </ul>
+      </div>
+      <section class="forms">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                      <div class="col-sm-5" style="margin:auto;">
+                        <!-- <input type="file" name="photo" id="photo" formControlName="photo"> -->
+                        <label for='imgupload'><img src="assets/images/default.jpg" class="img-fluid"
+                            *ngIf="imgURL== ''"></label>
+                        <span style="color:red;" *ngIf="message">{{message}}</span>
+                        <input type="file" id="imgupload" accept='image/*' (change)="preview($event.target.files)"
+                          style="display:none" />
+                        <br /> <br />
+                        <img [src]="imgURL" height="200" *ngIf="imgURL">
+                      </div>
+                      <div class="col-sm-7">
+                        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                        <br />
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="project_name" class="label-material">Project Name :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="project_name" name="project_name" [ngClass]="{ 'is-invalid': submitted && f.project_name.errors }" class="input-material">
+                            <div *ngIf="submitted && f.project_name.errors" class="invalid-feedback">
+                              <div *ngIf="f.project_name.errors.required">Project Name is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="customer" class="label-material">Customer Name :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <select class="form-control" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                                <option value="">Select</option>
+                                <option *ngFor="let customer of customers; index as i" value="{{customer.id}}">{{customer.name}}</option>   
+                            </select>
+                            <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
+                                <div *ngIf="f.customer.errors.required">Customer is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="">
+                          <div class="form-group">
+                            <input type="submit" name="submit" value="Register" class="btn btn-default btn-block">
+                          </div>
+                          <div class="form-group">
+                            <label for='fileupload' class="btn btn-secondary btn-block">Add Files</label>
+                            <input type="file" id="fileupload" name="fileupload" (change)="addfiles($event.target.files)" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple style="display:none" />
+                          </div>
+                          <div class="form-group" *ngFor="let file of filesmulti; index as i">
+                            {{file.name}}
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="description" class="label-material">DESCRIPTION* :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="description" name="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" class="input-material">
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                              <div *ngIf="f.description.errors.required">Description is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="category" class="label-material">CATEGORY :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="category" name="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
+                            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                              <div *ngIf="f.category.errors.required">Category is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="building_part" class="label-material">BUILDING PART :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="building_part" name="building_part" [ngClass]="{ 'is-invalid': submitted && f.building_part.errors }" class="input-material">
+                            <div *ngIf="submitted && f.building_part.errors" class="invalid-feedback">
+                              <div *ngIf="f.building_part.errors.required">Building Part is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="unit" class="label-material">UNIT :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="unit" name="unit" [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                            <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+                              <div *ngIf="f.unit.errors.required">Unit is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="quantity" class="label-material">QUANTITY :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="quantity" name="unit" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" class="input-material">
+                            <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                              <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="dimensions" class="label-material">DIMENSIONS :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="dimensions" name="unit" [ngClass]="{ 'is-invalid': submitted && f.dimensions.errors }" class="input-material">
+                            <div *ngIf="submitted && f.dimensions.errors" class="invalid-feedback">
+                              <div *ngIf="f.dimensions.errors.required">Dimensions is required</div>
+                            </div>
+                          </div>
+                        </div> <br><br> <br>
+
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="production_year" class="label-material">PRODUCTION YEAR :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="production_year" name="production_year" [ngClass]="{ 'is-invalid': submitted && f.production_year.errors }" class="input-material">
+                            <div *ngIf="submitted && f.production_year.errors" class="invalid-feedback">
+                              <div *ngIf="f.production_year.errors.required">Production Year is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="location_building" class="label-material">LOCATION IN BUILDING :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="location_building" name="location_building" [ngClass]="{ 'is-invalid': submitted && f.location_building.errors }" class="input-material">
+                            <div *ngIf="submitted && f.location_building.errors" class="invalid-feedback">
+                              <div *ngIf="f.location_building.errors.required">Location In Building is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="brand_name" class="label-material">BRAND NAME :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="brand_name" name="brand_name" [ngClass]="{ 'is-invalid': submitted && f.brand_name.errors }" class="input-material">
+                            <div *ngIf="submitted && f.brand_name.errors" class="invalid-feedback">
+                              <div *ngIf="f.brand_name.errors.required">Brand Name is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="documentation" class="label-material">DOCUMENTATION :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="documentation" name="documentation" [ngClass]="{ 'is-invalid': submitted && f.documentation.errors }" class="input-material">
+                            <div *ngIf="submitted && f.documentation.errors" class="invalid-feedback">
+                              <div *ngIf="f.documentation.errors.required">Documentation is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="product_info" class="label-material">PRODUCT INFO :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="product_info" name="product_info" [ngClass]="{ 'is-invalid': submitted && f.product_info.errors }" class="input-material">
+                            <div *ngIf="submitted && f.product_info.errors" class="invalid-feedback">
+                              <div *ngIf="f.product_info.errors.required">Product Info is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="color" class="label-material">COLOR :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="color" name="color" [ngClass]="{ 'is-invalid': submitted && f.color.errors }" class="input-material">
+                            <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+                              <div *ngIf="f.color.errors.required">COLOR is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="hazardous" class="label-material">HAZARDOUS CONTENT :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="hazardous" name="hazardous" [ngClass]="{ 'is-invalid': submitted && f.hazardous.errors }" class="input-material">
+                            <div *ngIf="submitted && f.hazardous.errors" class="invalid-feedback">
+                              <div *ngIf="f.hazardous.errors.required">HAZARDOUS CONTENT is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="evaluvation" class="label-material">EVALUATION :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="evaluvation" name="evaluvation" [ngClass]="{ 'is-invalid': submitted && f.evaluvation.errors }" class="input-material">
+                            <div *ngIf="submitted && f.evaluvation.errors" class="invalid-feedback">
+                              <div *ngIf="f.evaluvation.errors.required">EVALUATION is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="precondition" class="label-material">PRECONDITIONS FOR REUSE :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="precondition" name="evaluvation" [ngClass]="{ 'is-invalid': submitted && f.evaluvation.errors }" class="input-material">
+                            <div *ngIf="submitted && f.evaluvation.errors" class="invalid-feedback">
+                              <div *ngIf="f.evaluvation.errors.required">EVALUATION is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="reuse" class="label-material">POTENTIAL FOR REUSE :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="reuse" name="reuse" [ngClass]="{ 'is-invalid': submitted && f.reuse.errors }" class="input-material">
+                            <div *ngIf="submitted && f.reuse.errors" class="invalid-feedback">
+                              <div *ngIf="f.reuse.errors.required">POTENTIAL FOR REUSE is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="recommendation" class="label-material">RECOMMENDATION :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="recommendation" name="recommendation" [ngClass]="{ 'is-invalid': submitted && f.recommendation.errors }" class="input-material">
+                            <div *ngIf="submitted && f.recommendation.errors" class="invalid-feedback">
+                              <div *ngIf="f.recommendation.errors.required">RECOMMENDATION is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="price_new_product" class="label-material">PRICE - NEW PRODUCT :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="price_new_product" name="price_new_product" [ngClass]="{ 'is-invalid': submitted && f.price_new_product.errors }" class="input-material">
+                            <div *ngIf="submitted && f.price_new_product.errors" class="invalid-feedback">
+                              <div *ngIf="f.price_new_product.errors.required">Price - NEW Product is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="status" class="label-material">STATUS :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <label class="md-check">
+                              <input type="radio" [value]="1" [(ngModel)]="status" name="status" formControlName="status" selected>
+                              Active
+                            </label>&nbsp;&nbsp;
+                            <label class="md-check">
+                              <input type="radio" [value]="0" [(ngModel)]="status" name="status" formControlName="status">     
+                              Inactive
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="price_used_product" class="label-material">PRICE - USED PRODUCT :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="price_used_product" name="price_used_product" [ngClass]="{ 'is-invalid': submitted && f.price_used_product.errors }" class="input-material">
+                            <div *ngIf="submitted && f.price_used_product.errors" class="invalid-feedback">
+                              <div *ngIf="f.price_used_product.errors.required">Price - Used Product is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4 p-3">
+                            <label for="price_sold_product" class="label-material">PRICE - SOLD PRODUCT :</label>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" formControlName="price_sold_product" name="price_sold_product" [ngClass]="{ 'is-invalid': submitted && f.price_sold_product.errors }" class="input-material">
+                            <div *ngIf="submitted && f.price_sold_product.errors" class="invalid-feedback">
+                              <div *ngIf="f.price_sold_product.errors.required">Price - Sold Product is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Page Footer-->
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

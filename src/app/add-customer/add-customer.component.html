@@ -1,3 +1,11 @@
+<div class="gooey align-items-center" *ngIf="loadingData">
+  <span class="dot"></span>
+  <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div> 
+</div>
 <div class="page">
   <!-- Main Navbar-->
   <app-header></app-header>
@@ -37,10 +45,7 @@
                                         <label for="registerUsername" class="label-material">Client Name* :</label>
                                       </div>
                                       <div class="col-md-8">
-                                        <input  type="text" formControlName="registerUsername" name="registerUsername"  [ngClass]="{ 'is-invalid': submitted && f.registerUsername.errors }" class="input-material">
-                                        <div *ngIf="submitted && f.registerUsername.errors" class="invalid-feedback">
-                                          <div *ngIf="f.registerUsername.errors.required">Name is required</div>
-                                        </div>
+                                       {{currentUser.client_name}}
                                       </div>
                                     </div>
                                   <div class="form-group row">

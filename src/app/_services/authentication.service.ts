@@ -32,6 +32,7 @@ export class AuthenticationService {
     }
     
     logout() {
+        
             // remove user from local storage to log user out
                 return this.http.get<User[]>(`${environment.apiUrl}/users/logout`).pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes

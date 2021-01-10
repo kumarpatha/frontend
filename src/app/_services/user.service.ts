@@ -80,9 +80,86 @@ export class UserService {
         return this.http.get<any>(`${environment.apiUrl}/deleteUser/`+id);
     }
 
+    addProject(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/add-project`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
     
+    getprojects() {
+        return this.http.get<any>(`${environment.apiUrl}/projects`);
+    }
+     
+    addProduct(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/add-product`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
+    getproducts() {
+        return this.http.get<any>(`${environment.apiUrl}/products`);
+    }
+
+    searchProduct(data) {
+        return this.http.post<any>(`${environment.apiUrl}/search-product`, {'query': data})
+        .pipe(map(user => {
+            return user;
+        }));
+    }
+
+    searchProject(data) {
+        return this.http.post<any>(`${environment.apiUrl}/search-project`, {'query': data})
+        .pipe(map(user => {
+            return user;
+        }));
+    }
+
+    getCustomerinfo(id) {
+        return this.http.get<any>(`${environment.apiUrl}/get-customer-info/`+id);
+    }
+
+    editCustomer(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/edit-customer`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
+    deleteCustomer(id) {
+        return this.http.get<any>(`${environment.apiUrl}/deleteCustomer/`+id);
+    }
+
+    getProductinfo(id){
+        return this.http.get<any>(`${environment.apiUrl}/get-product-info/`+id);
+    }
+
+    deleteProduct(id) {
+        return this.http.get<any>(`${environment.apiUrl}/deleteProduct/`+id);
+    }
+
+    editProduct(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/edit-product`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
+    getProjectinfo(id){
+        return this.http.get<any>(`${environment.apiUrl}/get-project-info/`+id);
+    }
+
+    deleteProject(id) {
+        return this.http.get<any>(`${environment.apiUrl}/deleteProject/`+id);
+    }
+
+    editProject(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/edit-project`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
     
-    
-  
 
 }

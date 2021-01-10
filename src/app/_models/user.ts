@@ -4,5 +4,6 @@
     email: string;
     role: number;
     client_id: number;
+    client_name: string;
     token?: string;
 }

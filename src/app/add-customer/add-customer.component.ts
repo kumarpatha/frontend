@@ -15,6 +15,7 @@ declare var $: any;
 export class AddCustomerComponent implements OnInit {
     customerForm: FormGroup;
     loading = false;
+    loadingData = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -24,6 +25,7 @@ export class AddCustomerComponent implements OnInit {
     public message: string;
     fileToUpload: File = null;
     formData = new FormData();
+    currentUser: User;
  
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +33,9 @@ export class AddCustomerComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) { }
+  ) { 
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
 
   ngOnInit() {
         this.customerForm = this.formBuilder.group({
@@ -81,6 +85,7 @@ onSubmit() {
     }
 
     this.loading = true;
+    this.loadingData = true;
     console.log(this.customerForm.value);
     console.log(JSON.stringify(this.customerForm.value));
     //this.formData.append('data', JSON.stringify(this.customerForm.value));
@@ -105,6 +110,7 @@ onSubmit() {
         .subscribe(
             data => {
                 this.loading = false;
+                this.loadingData = false;
                 if(data.status == '1') {
                     this.info = data.message;
                 } else {
@@ -115,6 +121,7 @@ onSubmit() {
             error => {
                 this.error = error;
                 this.loading = false;
+                this.loadingData = false;
             });
 }
 

@@ -14,14 +14,16 @@ import Swal from 'sweetalert2';
 export class ClientsComponent implements OnInit {
   loading = false;
   clients: any;
+  loadingData = false;
 
   constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
     this.loading = true;
+    this.loadingData = true;
         this.userService.getclients().pipe(first()).subscribe(data => {
             this.loading = false;
-            console.log(data);
+            this.loadingData = false;
             this.clients = data.clients;
         });
   }

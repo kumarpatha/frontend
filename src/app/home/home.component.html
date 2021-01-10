@@ -1,14 +1,11 @@
-﻿<!-- <div class="card mt-4">
-    <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
-    <div class="card-body">
-        <h6>Users from secure api end point</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
-    </div>
-</div> -->
-
+﻿<div class="gooey align-items-center" *ngIf="loadingData">
+    <span class="dot"></span>
+    <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div> 
+</div>
 <div class="page">
     <!-- Main Navbar-->
     <app-header></app-header>
@@ -50,7 +47,7 @@
                                 <!-- <td>{{user.language}}</td> -->
                                 <td>
                                     <a routerLink="/edit-user/{{user.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
-                                    <a (click)="deleteUser(user.id)" class="mr-1 btn btn-sm btn-danger">Delete</a>
+                                    <a (click)="deleteUser(user.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -63,6 +60,6 @@
         </section>
         <!-- Page Footer-->
         <app-footer></app-footer>
-      </div>
+        </div>
     </div>
   </div>

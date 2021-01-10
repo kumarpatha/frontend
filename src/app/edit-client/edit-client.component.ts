@@ -15,8 +15,9 @@ declare var $: any;
 })
 export class EditClientComponent implements OnInit {
 
-  clientForm: FormGroup;
+    clientForm: FormGroup;
     loading = false;
+    loadingData = false;
     submitted = false;
     returnUrl: string;
     error = '';
@@ -40,11 +41,11 @@ export class EditClientComponent implements OnInit {
     });
 
     this.loading = true;
-    console.log(this.route.snapshot.paramMap.get('id'));
+    this.loadingData = true;
     this.editId = this.route.snapshot.paramMap.get('id');
     this.userService.getclientinfo(this.editId).pipe(first()).subscribe(data => {
         this.loading = false;
-        console.log(data);
+        this.loadingData = false;
         this.client = data.client;
         this.clientForm.setValue({
           name: this.client.name,
@@ -66,11 +67,13 @@ onSubmit() {
     }
 
     this.loading = true;
+    this.loadingData = true;
     this.userService.editClient(this.clientForm.value, this.editId)
         .pipe(first())
         .subscribe(
             data => {
                 this.loading = false;
+                this.loadingData = false;
                 if(data.status == '1') {
                   Swal.fire('', data.message, 'success');
                 }
@@ -79,6 +82,7 @@ onSubmit() {
             error => {
                 this.error = error;
                 this.loading = false;
+                this.loadingData = false;
             });
 }
 
