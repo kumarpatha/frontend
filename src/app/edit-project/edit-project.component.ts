@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import Swal from 'sweetalert2';
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
 declare var $: any;
@@ -35,6 +35,13 @@ export class EditProjectComponent implements OnInit {
   editId:any;
   projectInfo:any;
   editimgUrl:any = '';
+  fdv_document:any;
+  env_report:any;
+  title = 'appBootstrap';
+  categories:any;
+  filecat:string  []  =  [];
+  filecattext:string  []  =  [];
+  closeResult: string;
 
 constructor(
   private formBuilder: FormBuilder,
@@ -47,75 +54,118 @@ constructor(
 }
 
 ngOnInit() {
+        $('.only_year').datetimepicker({
+            format: "yyyy",
+            startView: 'decade',
+            minView: 'decade',
+            viewSelect: 'decade',
+            autoclose: true,
+            pickerPosition: "bottom-left"
+        });
+        $('.fulldate').datetimepicker({
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0,
+          pickerPosition: "bottom-left"
+        });
         this.loadingData = true;
         this.status = 1;
         this.userService.getcustomers().pipe(first()).subscribe(data => {
           this.loading = false;
           this.loadingData = false;
           this.customers = data.customers;
-      });
-      this.projectForm = this.formBuilder.group({
-        project_name: ['', Validators.required],
-        customer: ['', Validators.required],
-        description: ['', Validators.required],
-        category: ['', Validators.required],
-        building_part: ['', [Validators.required]],
-        unit: ['', Validators.required],
-        quantity: ['', Validators.required],
-        length: ['', Validators.required],
-        width: ['', Validators.required],
-        height: ['', Validators.required],
-        production_year: ['', [Validators.required]],
-        location_building: ['', Validators.required],
-        brand_name: ['', Validators.required],
-        documentation: ['', Validators.required],
-        product_info: ['', Validators.required],
-        color: ['', Validators.required],
-        hazardous: ['', Validators.required],
-        evaluvation: ['', Validators.required],
-        precondition: ['', Validators.required],
-        reuse: ['', Validators.required],
-        recommendation: ['', Validators.required],
-        price_new_product: ['', Validators.required],
-        status: ['', Validators.required],
-        price_used_product: ['', Validators.required],
-        price_sold_product: ['', Validators.required]
-  });
-  this.loading = true;
+        });
+        this.userService.getProjectCategories().pipe(first()).subscribe(data => {
+          this.loading = false;
+          this.loadingData = false;
+          this.categories = data.categories;
+        });
+        this.projectForm = this.formBuilder.group({
+          project_name: ['', Validators.required],
+          customer: ['', Validators.required],
+          project_address: [''],
+          postal_code: [''],
+          postal_area: [''],
+          project_mang_name: [''],
+          project_mang_mobile: [''],
+          project_mang_email: [''],
+          onsite_name: [''],
+          onsite_mobile: [''],
+          onsite_email: [''],
+          project_type: [''],
+          project_status: [''],
+          property_area: [''],
+          no_of_floors: [''],
+          building_year: [''],
+          last_refurbished: [''],
+          env_report: [''],
+          fdv_document: [''],
+          ambition: [''],
+          project_start_date: [''],
+          project_catalog_date: [''],
+          project_avail_date: [''], 
+          project_avail_end_date: [''],
+          note: [''],
+          billing_project_company: [''],
+          billing_orgno: [''],
+          billing_project_number: [''],
+          billing_customer_ref: [''],
+          billing_address: [''],
+          billing_postal_code: [''],
+          billing_postal_area: [''],
+          credit_period: [''] 
+        });
+      this.loading = true;
       this.loadingData = true;
       this.editId = this.route.snapshot.paramMap.get('id');
       this.userService.getProjectinfo(this.editId).pipe(first()).subscribe(data => {
           this.loading = false;
           this.loadingData = false;
           this.projectInfo = data.project;
+          this.env_report = this.projectInfo.env_report,
+          this.fdv_document = this.projectInfo.fdv_document,
           this.projectForm = this.formBuilder.group({
             project_name: this.projectInfo.project_name,
             customer: this.projectInfo.customer_id,
-            description: this.projectInfo.description,
-            category: this.projectInfo.category,
-            building_part: this.projectInfo.building_part,
-            unit: this.projectInfo.unit,
-            quantity: this.projectInfo.quantity,
-            length: this.projectInfo.length,
-            width: this.projectInfo.width,
-            height: this.projectInfo.height,
-            production_year: this.projectInfo.production_year,
-            location_building: this.projectInfo.location_building,
-            brand_name: this.projectInfo.brand_name,
-            documentation: this.projectInfo.documentation,
-            product_info: this.projectInfo.product_info,
-            color: this.projectInfo.color,
-            hazardous: this.projectInfo.hazardous,
-            evaluvation: this.projectInfo.evaluvation,
-            precondition: this.projectInfo.precondition,
-            reuse: this.projectInfo.reuse,
-            recommendation: this.projectInfo.recommendation,
-            price_new_product: this.projectInfo.price_new_product,
-            status: this.projectInfo.status,
-            price_used_product: this.projectInfo.price_used_product,
-            price_sold_product: this.projectInfo.price_sold_product
+            project_address: this.projectInfo.project_address,
+            postal_code: this.projectInfo.postal_code,
+            postal_area: this.projectInfo.postal_area,
+            project_mang_name: this.projectInfo.project_mang_name,
+            project_mang_mobile: this.projectInfo.project_mang_mobile,
+            project_mang_email: this.projectInfo.project_mang_email,
+            onsite_name: this.projectInfo.onsite_name,
+            onsite_mobile: this.projectInfo.onsite_mobile,
+            onsite_email: this.projectInfo.onsite_email,
+            project_type: this.projectInfo.project_type,
+            project_status: this.projectInfo.project_status,
+            property_area: this.projectInfo.property_area,
+            no_of_floors: this.projectInfo.no_of_floors,
+            building_year: this.projectInfo.building_year,
+            last_refurbished: this.projectInfo.last_refurbished,
+            env_report: this.projectInfo.env_report,
+            fdv_document: this.projectInfo.fdv_document,
+            ambition: this.projectInfo.ambition,
+            project_start_date: this.projectInfo.project_start_date,
+            project_catalog_date: this.projectInfo.project_catalog_date,
+            project_avail_date: this.projectInfo.project_avail_date,
+            project_avail_end_date: this.projectInfo.project_avail_end_date,
+            note: this.projectInfo.note,
+            billing_project_company: this.projectInfo.billing_project_company,
+            billing_project_number: this.projectInfo.billing_project_number,
+            billing_customer_ref: this.projectInfo.billing_customer_ref,
+            billing_address: this.projectInfo.billing_address,
+            billing_orgno: this.projectInfo.billing_orgno,
+            billing_postal_code: this.projectInfo.billing_postal_code,
+            billing_postal_area: this.projectInfo.billing_postal_area,
+            credit_period: this.projectInfo.credit_period
           });
-          this.editimgUrl = data.image_base_path+'/'+this.projectInfo.project_image;
+          if(this.projectInfo.project_image){
+            this.editimgUrl = data.image_base_path+'/'+this.projectInfo.project_image;
+          }
       });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -140,8 +190,8 @@ reader.onload = (_event) => {
 }
 
 }
-
-addfiles(files) {
+addcategory(){
+  var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)
     return;
@@ -149,6 +199,47 @@ addfiles(files) {
   for (let i = 0; i < files.length; i++) {
     this.filesmulti.push(files[i]);
   }
+  this.filecat.push($('#categories option:selected').val());
+  this.filecattext.push($('#categories option:selected').text());
+  $('#categories').val('');
+  $("#fileupload").val(null);
+}
+
+deletedoc(id){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.userService.deleteProjectDoc(id).pipe(first()).subscribe(data => {
+        this.loading = false;
+        if(data.status == '1') {
+          this.projectInfo.pr
+          this.projectInfo.projectdocs.forEach( (item, index) => {
+            if(item.id === id) this.projectInfo.projectdocs.splice(index,1);
+          });
+          Swal.fire('', data.message, 'success');
+        } 
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+    }
+  })
 }
 // convenience getter for easy access to form fields
 get f() { return this.projectForm.controls; }
@@ -168,41 +259,51 @@ onSubmit() {
   //this.formData.append('data', JSON.stringify(this.customerForm.value));
   console.log(this.filemultiUpload);
   var formData = new FormData();
-  if(this.filesmulti.length > 0){
-    for  (var i =  0; i <  this.filesmulti.length; i++)  {
-      formData.append("imagemultiFile[]",  this.filesmulti[i]);
+  if(this.filesmulti){
+    if(this.filesmulti.length > 0){
+      for  (var i =  0; i <  this.filesmulti.length; i++)  {
+        formData.append("imagemultiFile[]",  this.filesmulti[i]);
+        formData.append("filecategory[]",  this.filecat[i]);
+      }
     }
   }
- 
   if(this.fileToUpload){
       formData.set("imageFile", this.fileToUpload, this.fileToUpload.name);
   }
   formData.append("customer", this.projectForm.controls['customer'].value)
   formData.append("id", this.editId)
-  formData.append("description", this.projectForm.controls['description'].value)
+  formData.append("project_address", this.projectForm.controls['project_address'].value)
   formData.append("project_name", this.projectForm.controls['project_name'].value)
-  formData.append("category", this.projectForm.controls['category'].value)
-  formData.append("building_part", this.projectForm.controls['building_part'].value)
-  formData.append("unit", this.projectForm.controls['unit'].value)
-  formData.append("quantity", this.projectForm.controls['quantity'].value)
-  formData.append("height", this.projectForm.controls['height'].value)
-  formData.append("width", this.projectForm.controls['width'].value)
-  formData.append("length", this.projectForm.controls['length'].value)
-  formData.append("production_year", this.projectForm.controls['production_year'].value)
-  formData.append("location_building", this.projectForm.controls['location_building'].value)
-  formData.append("brand_name", this.projectForm.controls['brand_name'].value)
-  formData.append("documentation", this.projectForm.controls['documentation'].value)
-  formData.append("color", this.projectForm.controls['color'].value)
-  formData.append("hazardous", this.projectForm.controls['hazardous'].value)
-  formData.append("product_info", this.projectForm.controls['product_info'].value)
-  formData.append("evaluvation", this.projectForm.controls['evaluvation'].value)
-  formData.append("precondition", this.projectForm.controls['precondition'].value)
-  formData.append("reuse", this.projectForm.controls['reuse'].value)
-  formData.append("recommendation", this.projectForm.controls['recommendation'].value)
-  formData.append("price_new_product", this.projectForm.controls['price_new_product'].value)
-  formData.append("status", this.projectForm.controls['status'].value)
-  formData.append("price_used_product", this.projectForm.controls['price_used_product'].value)
-  formData.append("price_sold_product", this.projectForm.controls['price_sold_product'].value)
+  formData.append("postal_code", this.projectForm.controls['postal_code'].value)
+  formData.append("postal_area", this.projectForm.controls['postal_area'].value)
+  formData.append("project_mang_name", this.projectForm.controls['project_mang_name'].value)
+  formData.append("project_mang_mobile", this.projectForm.controls['project_mang_mobile'].value)
+  formData.append("project_mang_email", this.projectForm.controls['project_mang_email'].value)
+  formData.append("onsite_name", this.projectForm.controls['onsite_name'].value)
+  formData.append("onsite_mobile", this.projectForm.controls['onsite_mobile'].value)
+  formData.append("onsite_email", this.projectForm.controls['onsite_email'].value)
+  formData.append("project_type", this.projectForm.controls['project_type'].value)
+  formData.append("project_status", this.projectForm.controls['project_status'].value)
+  formData.append("property_area", this.projectForm.controls['property_area'].value)
+  formData.append("no_of_floors", this.projectForm.controls['no_of_floors'].value)
+  formData.append("building_year", $('#building_year').val())
+  formData.append("last_refurbished", $('#last_refurbished').val())
+  formData.append("env_report", this.projectForm.controls['env_report'].value)
+  formData.append("fdv_document", this.projectForm.controls['fdv_document'].value)
+  formData.append("ambition", this.projectForm.controls['ambition'].value)
+  formData.append("project_start_date", $('#project_start_date').val())
+  formData.append("project_catalog_date",  $('#project_catalog_date').val())
+  formData.append("project_avail_date", $('#project_avail_date').val())
+  formData.append("project_avail_end_date", $('#project_avail_end_date').val())
+  formData.append("note", this.projectForm.controls['note'].value)
+  formData.append("billing_project_company", this.projectForm.controls['billing_project_company'].value)
+  formData.append("billing_orgno", this.projectForm.controls['billing_orgno'].value)
+  formData.append("billing_project_number", this.projectForm.controls['billing_project_number'].value)
+  formData.append("billing_customer_ref", this.projectForm.controls['billing_customer_ref'].value)
+  formData.append("billing_address", this.projectForm.controls['billing_address'].value)
+  formData.append("billing_postal_code", this.projectForm.controls['billing_postal_code'].value)
+  formData.append("billing_postal_area", this.projectForm.controls['billing_postal_area'].value)
+  formData.append("credit_period", $('#credit_period').val())
 
   console.log(formData);
   

@@ -21,6 +21,11 @@ import { ProductsComponent } from './products/products.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
+import { ViewProductComponent } from './view-product/view-product.component';
+import { ProductCategoryComponent } from './product-category/product-category.component';
+import { ProjectCategoryComponent } from './project-category/project-category.component';
+import { ViewProjectComponent } from './view-project/view-project.component';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
@@ -44,6 +49,11 @@ const routes: Routes = [
     { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AuthGuard]},
     { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard]},
     { path: 'edit-project/:id', component: EditProjectComponent, canActivate: [AuthGuard]},
+    { path: 'view-customer/:id', component: ViewCustomerComponent, canActivate: [AuthGuard]},
+    { path: 'view-product/:id', component: ViewProductComponent, canActivate: [AuthGuard]},
+    { path: 'categories', component: ProductCategoryComponent, canActivate: [AuthGuard]},
+    { path: 'file-categories', component: ProjectCategoryComponent, canActivate: [AuthGuard]},
+    { path: 'view-project/:id', component: ViewProjectComponent, canActivate: [AuthGuard]},
     
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }

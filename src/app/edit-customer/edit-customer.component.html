@@ -16,8 +16,8 @@
       <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item"><a href="">Customer</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/customers">Customer</a></li>
                   <li class="breadcrumb-item active">Edit Customer</li>
               </ul>
           </div>
@@ -31,22 +31,27 @@
                               <div class="row">
                                 <div class="col-sm-5" style="margin:auto;">
                                   <!-- <input type="file" name="photo" id="photo" formControlName="photo"> -->
-                                    <label for='imgupload'><img src="assets/images/default.jpg" class="img-fluid" *ngIf="imgURL== '' && editimgUrl == ''">
-                                    <img src="{{editimgUrl}}" class="img-fluid" *ngIf="imgURL== '' && !editimgUrl == ''"></label>
+                                    <label for='imgupload'><img src="assets/images/default.jpg" class="img-fluid" *ngIf="imgURL== '' && editimgUrl == ''"></label>
+                                    <label for='imgupload'><img src="{{editimgUrl}}" class="img-fluid" *ngIf="imgURL== '' && !editimgUrl == ''" height="200" ></label>
                                     <span style="color:red;" *ngIf="message">{{message}}</span>
                                     <input type="file" id="imgupload" accept='image/*' (change)="preview($event.target.files)" style="display:none" />
                                     <br/> <br/>
-                                    <img [src]="imgURL" height="200" *ngIf="imgURL">
+                                    <img [src]="imgURL"  class="img-fluid" *ngIf="imgURL">
+                                    <br/>
+                                    <b>{{customerInfo?.customer_id}}</b>
                                 </div>
                                 <div class="col-sm-7">
                                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                    <br/>
                                     <div class="form-group row">
                                       <div class="col-md-4 p-3">
-                                        <label for="registerUsername" class="label-material">Client Name* :</label>
+                                        <label for="customerName" class="label-material">Client Name* :</label>
                                       </div>
                                       <div class="col-md-8">
-                                        {{currentUser.client_name}}
+                                        <input type="text" formControlName="customerName" name="customerName" [ngClass]="{ 'is-invalid': submitted && f.customerName.errors }" class="input-material">
+                                        <div *ngIf="submitted && f.customerName.errors" class="invalid-feedback">
+                                          <div *ngIf="f.customerName.errors.required">Customer Name is required</div>
+                                        </div>
                                       </div>
                                     </div>
                                   <div class="form-group row">
@@ -57,6 +62,7 @@
                                       <input type="text" formControlName="orgname" name="orgname" [ngClass]="{ 'is-invalid': submitted && f.orgname.errors }" class="input-material">
                                       <div *ngIf="submitted && f.orgname.errors" class="invalid-feedback">
                                         <div *ngIf="f.orgname.errors.required">Org. Number is required</div>
+                                        <div *ngIf="f.orgname.errors.pattern">Please enter digits only</div>
                                       </div>
                                     </div>
                                   </div>
@@ -92,6 +98,27 @@
                                       <div *ngIf="submitted && f.postal_area.errors" class="invalid-feedback">
                                         <div *ngIf="f.postal_area.errors.required">Postal Code is required</div>
                                       </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <div class="col-md-4 p-3">
+                                      <label for="postal_area" class="label-material">Country :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <select class="form-control" name="country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                                        <option value="">Select</option>
+                                        <option value="1" [selected]="country == '1'">India</option>
+                                        <option value="2" [selected]="country == '2'">Norway</option>
+                                        <option value="3" [selected]="country == '3'">France</option>
+                                        <option value="4" [selected]="country == '4'">Italy</option>
+                                        <option value="5" [selected]="country == '5'">UK</option>
+                                        <option value="6" [selected]="country == '6'">Sweden</option>
+                                        <option value="7" [selected]="country == '7'">Germany</option>
+                                        <option value="8" [selected]="country == '8'">Poland</option>
+                                      </select>
+                                      <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                        <div *ngIf="f.country.errors.required">Country is required</div>
+                                    </div> 
                                     </div>
                                   </div>
                                   <h4>CONTACT PERSON DETAILS</h4>

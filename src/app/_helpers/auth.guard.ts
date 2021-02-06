@@ -14,7 +14,9 @@ export class AuthGuard implements CanActivate {
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser) {
             console.log(state.url);
-            if((state.url.includes("users") || state.url.includes("clients") || state.url.includes("client") || state.url.includes("user")) && currentUser.role == 1){
+            console.log(state.url.includes("-categories"));
+            console.log(state.url.includes("-categories"));
+            if((state.url.includes("users") || state.url.includes("clients") || state.url.includes("client") || state.url.includes("user") || state.url.includes("categories") || state.url.includes("file-categories")) && currentUser.role == 1){
                 localStorage.removeItem('currentUser');
                 location.reload(true);
                 return false;
@@ -25,7 +27,7 @@ export class AuthGuard implements CanActivate {
             } else {
                 // logged in so return true
                 return true;
-            }  
+            }
         }
 
         // not logged in so redirect to login page with the return url

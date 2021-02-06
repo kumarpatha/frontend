@@ -12,6 +12,7 @@ developer url: https://bnextitsolutions.com/
 *     GENERAL STYLES
 * ==========================================================
 */
+
 body {
   overflow-x: hidden;
 }
@@ -3599,6 +3600,9 @@ a > code {
   }
 } */
 
+.margin-left {
+  margin-left: 50px;
+}
 .gooey{
   position: absolute;
   filter: contrast(20);

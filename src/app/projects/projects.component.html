@@ -16,8 +16,8 @@
       <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-                  <li class="breadcrumb-item"><a href="">Projects</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/projects">Projects</a></li>
                   <li class="breadcrumb-item active">Project List</li>
               </ul>
           </div>
@@ -49,24 +49,24 @@
                           <th>#</th>
                           <th>Project Name</th>
                           <th>Customer Name</th>
-                          <th>Category</th>
-                          <th>Project Desc</th>
-                          <th>Size(H x L x W)</th> 
-                          <th>Action</th>
+                          <th>Postal Area</th>
+                          <th>Project Size</th>
+                          <th>Building Year</th>  
+                          <!-- <th>Action</th> -->
                         </tr>
                       </thead>
                       <tbody>
                           <tr *ngFor="let project of projects; index as i">
                           <th scope="row">{{i + 1}}</th>
-                              <td><a href="javascript:void(0);" (click)="viewProject(project)">{{project.project_name}}</a></td>
+                              <td><a routerLink="/view-project/{{project.id}}">{{project.project_name}}</a></td>
                               <td>{{project.customer.customer_name}}</td>
-                              <td>{{project.category}}</td>
-                              <td>{{project.description}}</td>
-                              <td>{{project.height}}X{{project.length}}X{{project.width}}</td>
-                              <td>
+                              <td>{{project.postal_area}}</td>
+                              <td>{{project.property_area}}</td>
+                              <td>{{project.building_year}}</td>
+                              <!-- <td>
                                 <a routerLink="/edit-project/{{project.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
                                 <a (click)="deleteProject(project.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
-                              </td>
+                              </td> -->
                           </tr>
                           <tr *ngIf="projects.length == 0">
                             <td class="text-center" colspan="8">No Projects Found</td>
@@ -82,9 +82,9 @@
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let project of projects; index as i">
                           <div class="card">
-                            <img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto">
+                            <a href="javascript:void();" routerLink="/view-project/{{project.id}}"><img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title" (click)="viewProject(project)">{{project.project_name}}</h5>
+                            <h5 class="card-title" (click)="viewProject(project)"><a href="javascript:void();" routerLink="/view-project/{{project.id}}">{{project.project_name}}</a></h5>
                             </div>
                           </div>
                         </div>

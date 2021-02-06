@@ -16,8 +16,8 @@
       <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-                  <li class="breadcrumb-item"><a href="">Customers</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/customers">Customers</a></li>
                   <li class="breadcrumb-item active">Customers List</li>
               </ul>
           </div>
@@ -47,28 +47,27 @@
                         <thead>
                             <tr>
                             <th>#</th>
-                            <th>Client Name</th>
-                            <th>Customer Name</th>
-                            <th>Customer Email</th>
-                            <th>Customer Mobile Number</th>
-                            <th>Customer Postal Code</th>
-                            <th>Action</th>
+                            <th>Name</th>
+                            <th>No of Project</th>
+                            <th>No. Of Product</th>
+                            <!-- <th>Country</th> -->
+                            <th>Postal Area</th>
+                            <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let customer of customers; index as i">
                                 <th scope="row">{{i + 1}}</th>
-                                <td>{{currentUser.client_name}}</td>
-                                <td><a href="javascript:void(0);" (click)="viewCustomer(customer)">{{customer.name}}</a></td>
-                                <td>{{customer.email}}</td>
-                                <td>{{customer.mobile_number}}</td>
+                                <td><a routerLink="/view-customer/{{customer.id}}">{{customer.customer_name}}</a></td>
+                                <td>{{customer.projects_count}}</td>
+                                <td>{{customer.products_count}}</td>
                                 <td>{{customer.postal_code}}</td>
-                                <td>
+                                <!-- <td>
                                   <a routerLink="/edit-customer/{{customer.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
                                   <a (click)="deleteCustomer(customer.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
-                                </td>
+                                </td> -->
                             </tr>
-                            <tr *ngIf="customers.length == 0">
+                            <tr *ngIf="customers?.length == 0">
                               <td class="text-center" colspan="8">No Customers Found</td>
                             </tr>
                         </tbody>
@@ -82,85 +81,13 @@
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let customer of customers; index as i">
                           <div class="card">
-                            <img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto">
+                            <a routerLink="/view-customer/{{customer.id}}"><img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title">{{customer.name}}</h5>
+                            <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}">{{customer.name}}</a></h5>
                             </div>
                           </div>
                         </div>
                       </div>							
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12" *ngIf="customerInfo">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row d-flex align-items-center">
-                        <div class="col-sm-12">
-                            <table class="table table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Client Name :</b></td>
-                                    <td>{{currentUser.client_name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Customer Name :</b></td>
-                                    <td>{{customerInfo.name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Org Number :</b></td>
-                                    <td>{{customerInfo.org_number}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Address :</b></td>
-                                    <td>{{customerInfo.address}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Postal Code :</b></td>
-                                    <td>{{customerInfo.postal_code}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Postal Area :</b></td>
-                                    <td>{{customerInfo.postal_area}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Name :</b></td>
-                                    <td>{{customerInfo.name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Mobile Number :</b></td>
-                                    <td>{{customerInfo.mobile_number}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Email :</b></td>
-                                    <td>{{customerInfo.email}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Note :</b></td>
-                                    <td>{{customerInfo.note}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Status :</b></td>
-                                    <td>{{customerInfo.status ? 'Active' : 'In Active'}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Image :</b></td>
-                                    <td>
-                                      <img src="{{image_base_path}}/{{customerInfo.image_path}}" />
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                </tbody>
-                            </table>                                          
-                          </div>
-                      </div>
                     </div>
                   </div>
                 </div>

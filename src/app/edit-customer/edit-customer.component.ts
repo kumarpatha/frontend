@@ -44,7 +44,7 @@ constructor(
 
 ngOnInit() {
       this.customerForm = this.formBuilder.group({
-        registerUsername: ['', Validators.required],
+        customerName: ['', Validators.required],
         orgname: ['', Validators.required],
         address: ['', Validators.required],
         postal_code: ['', [Validators.required,  Validators.pattern('[0-9]{6}')]],
@@ -52,7 +52,8 @@ ngOnInit() {
         name: ['', Validators.required],
         mobile: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
         email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-        note: ['', Validators.required]
+        note: ['', Validators.required],
+        country: ['', Validators.required]
       });
 
     this.loading = true;
@@ -63,6 +64,7 @@ ngOnInit() {
         this.loadingData = false;
         this.customerInfo = data.customer;
         this.customerForm = this.formBuilder.group({
+          customerName: this.customerInfo.customer_name,
           orgname: this.customerInfo.org_number,
           address: this.customerInfo.address,
           postal_code: this.customerInfo.postal_code,
@@ -70,9 +72,12 @@ ngOnInit() {
           name: this.customerInfo.name,
           mobile: this.customerInfo.mobile_number,
           email: this.customerInfo.email,
-          note: this.customerInfo.note
+          note: this.customerInfo.note,
+          country: this.customerInfo.country
         });
-        this.editimgUrl = data.image_base_path+'/'+this.customerInfo.image_path;
+        if(this.customerInfo.image_path){
+          this.editimgUrl = data.image_base_path+'/'+this.customerInfo.image_path;
+        }
     });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -108,6 +113,17 @@ onSubmit() {
       return;
   }
 
+  if(this.customerForm.controls['country'].value == '2') {
+    if(this.customerForm.controls['orgname'].value.length != '9'){
+      alert("Org Number should be 9 digit for norway");
+      return;
+    }
+    if(this.customerForm.controls['mobile'].value.length != '8'){
+      alert("Mobile should be 8 digit for norway");
+      return;
+    }
+  }
+
   this.loading = true;
   this.loadingData = true;
   console.log(this.customerForm.value);
@@ -121,9 +137,11 @@ onSubmit() {
   formData.append("orgname", this.customerForm.controls['orgname'].value)
   formData.append("id", this.editId)
   formData.append("address", this.customerForm.controls['address'].value)
+  formData.append("customerName", this.customerForm.controls['customerName'].value)
   formData.append("postal_code", this.customerForm.controls['postal_code'].value)
   formData.append("postal_area", this.customerForm.controls['postal_area'].value)
   formData.append("name", this.customerForm.controls['name'].value)
+  formData.append("country", this.customerForm.controls['country'].value)
   formData.append("email", this.customerForm.controls['email'].value)
   formData.append("mobile", this.customerForm.controls['mobile'].value)
   formData.append("note", this.customerForm.controls['note'].value)

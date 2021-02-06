@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
 // import { fakeBackendProvider } from './_helpers';
-
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routing';
 
@@ -37,13 +36,20 @@ import { ProductsComponent } from './products/products.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
+import { ViewProductComponent } from './view-product/view-product.component';
+import { ProductCategoryComponent } from './product-category/product-category.component';
+import { ProjectCategoryComponent } from './project-category/project-category.component';
+import { ViewProjectComponent } from './view-project/view-project.component';
+
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+      
     ],
     declarations: [
         AppComponent,
@@ -71,7 +77,12 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
         ProductsComponent,
         EditCustomerComponent,
         EditProjectComponent,
-        EditProductComponent],
+        EditProductComponent,
+        ViewCustomerComponent,
+        ViewProductComponent,
+        ProductCategoryComponent,
+        ProjectCategoryComponent,
+        ViewProjectComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

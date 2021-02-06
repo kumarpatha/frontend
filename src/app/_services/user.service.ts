@@ -160,6 +160,32 @@ export class UserService {
                 return user;
         }));
     }
+
+    getProductCategories(){
+        return this.http.get<any>(`${environment.apiUrl}/product-categories`);
+    }
+
+    addProductCatgory(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/add-product-category`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
+    getProjectCategories(){
+        return this.http.get<any>(`${environment.apiUrl}/project-categories`);
+    }
+
+    addProjectCatgory(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/add-project-category`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
+    deleteProjectDoc(id){
+        return this.http.get<any>(`${environment.apiUrl}/delete_project_doc/`+id);
+    }
     
 
 }

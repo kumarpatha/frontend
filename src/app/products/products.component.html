@@ -16,8 +16,8 @@
       <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-                  <li class="breadcrumb-item"><a href="">Products</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
                   <li class="breadcrumb-item active">Product List</li>
               </ul>
           </div>
@@ -49,26 +49,32 @@
                             <th>#</th>
                             <th>Product ID</th>
                             <th>Product Name</th>
-                            <th>Project Name</th>
-                            <th>Project Desc</th>
-                            <th>Size(H x L x W)</th> 
-                            <th>Action</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Qty.</th>
+                            <th>Dimensions</th>
+                            <th>Discription</th>
+                            <th>Status</th> 
+                            <!-- <th>Action</th> -->
                           </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let product of products; index as i">
                             <th scope="row">{{i + 1}}</th>
-                                <td><a href="javascript:void(0);" (click)="viewProduct(product)">{{product.product_id}}</a></td>
-                                <td><a href="javascript:void(0);" (click)="viewProduct(product)">{{product.product_name}}</a></td>
-                                <td>{{product.project.project_name}}</td>
-                                <td>{{product.description}}</td>
-                                <td>{{product.height}}X{{product.length}}X{{product.width}}</td>
-                                <td>
-                                  <a routerLink="/edit-product/{{product.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
-                                  <a (click)="deleteProduct(product.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
-                                </td>
+                                <td><a routerLink="/view-product/{{product?.id}}">{{product.product_id}}</a></td>
+                                <td><a routerLink="/view-product/{{product?.id}}">{{product.product_name}}</a></td>
+                                <td>{{product?.category.category_name}}</td>
+                                <td>{{product?.price_new_product}}</td>
+                                <td>{{product?.quantity}}</td>
+                                <td>{{product?.height}}X{{product?.length}}X{{product?.width}}</td>
+                                <td>{{product?.description}}</td>
+                                <td>{{(product.status) ? 'Available' : 'Not Available'}}</td>
+                                <!-- <td>
+                                  <a routerLink="/edit-product/{{product?.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
+                                  <a (click)="deleteProduct(product?.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
+                                </td> -->
                             </tr>
-                            <tr *ngIf="products.length == 0">
+                            <tr *ngIf="products?.length == 0">
                               <td class="text-center" colspan="8">No Products Found</td>
                             </tr>
                         </tbody>
@@ -82,133 +88,13 @@
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let product of products; index as i">
                           <div class="card">
-                            <img src="{{image_base_path}}/{{product.product_image}}" class="card-img-top" alt="..." height="200px" width="auto">
+                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}"><img src="{{image_base_path}}/{{product.product_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title" (click)="viewProduct(product)">{{product.product_name}}</h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}">{{product.product_name}}</a></h5>
                             </div>
                           </div>
                         </div>
                       </div>							
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12" *ngIf="productInfo">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row d-flex align-items-center">
-                        <div class="col-sm-12">
-                            <table class="table table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Product Name :</b></td>
-                                    <td>{{productInfo.product_name}} </td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Project Name :</b></td>
-                                    <td>{{productInfo.project.project_name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Description :</b></td>
-                                    <td>{{productInfo.description}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Category :</b></td>
-                                    <td>{{productInfo.category}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Building Part :</b></td>
-                                    <td>{{productInfo.building_part}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Unit :</b></td>
-                                    <td>{{productInfo.unit}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Quantity :</b></td>
-                                    <td>{{productInfo.quantity}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Dimensions (HxLxW) :</b></td>
-                                    <td>{{productInfo.height}} X {{productInfo.length}} X {{productInfo.width}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Production Year :</b></td>
-                                    <td>{{productInfo.production_year}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Location in Building :</b></td>
-                                    <td>{{productInfo.location_building}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Brand Name :</b></td>
-                                    <td>{{productInfo.brand_name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Documentation :</b></td>
-                                    <td>{{productInfo.documentation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Product Info :</b></td>
-                                    <td>{{productInfo.product_info}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Color :</b></td>
-                                    <td>{{productInfo.color}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Hazardous Content :</b></td>
-                                    <td>{{productInfo.hazardous}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Evaluvation :</b></td>
-                                    <td>{{productInfo.evaluvation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Preconditions For Reuse :</b></td>
-                                    <td>{{productInfo.precondition}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Potential For Reuse :</b></td>
-                                    <td>{{productInfo.reuse}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Recommendation :</b></td>
-                                    <td>{{productInfo.recommendation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Price - New Product :</b></td>
-                                    <td>{{productInfo.price_new_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Status :</b></td>
-                                    <td>{{productInfo.status ? "Active" : "In active"}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>PRICE - Used Product :</b></td>
-                                    <td>{{productInfo.price_used_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Price - Sold Product :</b></td>
-                                    <td>{{productInfo.price_sold_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Documents :</b></td>
-                                    <td>
-                                      <p *ngFor="let docs of productInfo.productdocs; index as i"><a href="{{image_base_path}}/documents/{{docs.file_name}}" >Document {{i+1}}</a></p>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                </tbody>
-                            </table>                                          
-                          </div>
-                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
@@ -20,6 +20,7 @@ export class CustomersComponent implements OnInit {
   image_base_path:any = '';
   currentUser: User;
   customerInfo:any = '';
+  products_count:any;
   
   constructor(private userService: UserService, private authenticationService: AuthenticationService,) {
     this.currentUser = this.authenticationService.currentUserValue;

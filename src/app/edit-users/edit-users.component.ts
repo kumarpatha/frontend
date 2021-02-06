@@ -52,6 +52,8 @@ export class EditUsersComponent implements OnInit {
           fullname: ['', Validators.required],
           email: ['', Validators.required],
           client: ['', Validators.required],
+          password: [''],
+          confirm_password: [''],
           //language: ['', Validators.required]
         });
         this.editId = this.route.snapshot.paramMap.get('id');
@@ -62,6 +64,8 @@ export class EditUsersComponent implements OnInit {
               fullname: this.user.name,
               email: this.user.email,
               client: this.user.client_id,
+              password: '',
+              confirm_password: '',
               //language: this.user.language,
           });
         });

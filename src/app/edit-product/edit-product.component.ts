@@ -34,6 +34,10 @@ export class EditProductComponent implements OnInit {
   editId:any;
   productInfo:any;
   editimgUrl:any = '';
+  categories:any;
+  projectcategories:any;
+  filecat:string  []  =  [];
+  filecattext:string  []  =  [];
 
 constructor(
   private formBuilder: FormBuilder,
@@ -46,6 +50,14 @@ constructor(
 }
 
 ngOnInit() {
+        $('.only_year').datetimepicker({
+          format: "yyyy",
+          startView: 'decade',
+          minView: 'decade',
+          viewSelect: 'decade',
+          autoclose: true,
+          pickerPosition: "bottom-left"
+        });
         this.loadingData = true;
         this.status = 1;
         this.userService.getprojects().pipe(first()).subscribe(data => {
@@ -53,33 +65,43 @@ ngOnInit() {
           this.loadingData = false;
           this.projects = data.projects;
       });
+      this.userService.getProductCategories().pipe(first()).subscribe(data => {
+        this.loading = false;
+        this.loadingData = false;
+        this.categories = data.categories;
+      });
+      this.userService.getProjectCategories().pipe(first()).subscribe(data => {
+        this.loading = false;
+        this.loadingData = false;
+        this.projectcategories = data.categories;
+      });
       this.productForm = this.formBuilder.group({
         product_name: ['', Validators.required],
         project_id: ['', Validators.required],
         product_id: ['', Validators.required],
         description: ['', Validators.required],
-        category: ['', Validators.required],
-        building_part: ['', [Validators.required]],
-        unit: ['', Validators.required],
-        quantity: ['', Validators.required],
-        length: ['', [Validators.required]],
-        width: ['', [Validators.required]],
-        height: ['', [Validators.required]],
-        production_year: ['', [Validators.required]],
-        location_building: ['', Validators.required],
-        brand_name: ['', Validators.required],
-        documentation: ['', Validators.required],
-        product_info: ['', Validators.required],
-        color: ['', Validators.required],
-        hazardous: ['', Validators.required],
-        evaluvation: ['', Validators.required],
-        precondition: ['', Validators.required],
-        reuse: ['', Validators.required],
-        recommendation: ['', Validators.required],
-        price_new_product: ['', Validators.required],
-        status: ['', Validators.required],
-        price_used_product: ['', Validators.required],
-        price_sold_product: ['', Validators.required]
+        category: [''],
+        building_part: [''],
+        unit: [''],
+        quantity: [''],
+        length: [''],
+        width: [''],
+        height: [''],
+        production_year: [''],
+        location_building: [''],
+        brand_name: [''],
+        documentation: [''],
+        product_info: [''],
+        color: [''],
+        hazardous: [''],
+        evaluvation: [''],
+        precondition: [''],
+        reuse: [''],
+        recommendation: [''],
+        price_new_product: [''],
+        status: [''],
+        price_used_product: [''],
+        price_sold_product: ['']
       });
       this.loading = true;
       this.loadingData = true;
@@ -141,8 +163,8 @@ reader.onload = (_event) => {
 }
 
 }
-
-addfiles(files) {
+addcategory(){
+  var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)
     return;
@@ -150,7 +172,12 @@ addfiles(files) {
   for (let i = 0; i < files.length; i++) {
     this.filesmulti.push(files[i]);
   }
+  this.filecat.push($('#categories option:selected').val());
+  this.filecattext.push($('#categories option:selected').text());
+  $('#categories').val('');
+  $("#fileupload").val(null);
 }
+
 // convenience getter for easy access to form fields
 get f() { return this.productForm.controls; }
 
@@ -170,12 +197,14 @@ onSubmit()
   //this.formData.append('data', JSON.stringify(this.customerForm.value));
   console.log(this.filemultiUpload);
   var formData = new FormData();
-  if(this.filesmulti.length > 0){
-    for  (var i =  0; i <  this.filesmulti.length; i++)  {
-      formData.append("imagemultiFile[]",  this.filesmulti[i]);
+  if(this.fileToUpload){
+    if(this.filesmulti.length > 0){
+      for  (var i =  0; i <  this.filesmulti.length; i++)  {
+        formData.append("imagemultiFile[]",  this.filesmulti[i]);
+        formData.append("filecategory[]",  this.filecat[i]);
+      }
     }
   }
- 
   if(this.fileToUpload){
       formData.set("imageFile", this.fileToUpload, this.fileToUpload.name);
   }
@@ -191,7 +220,7 @@ onSubmit()
   formData.append("height", this.productForm.controls['height'].value)
   formData.append("width", this.productForm.controls['width'].value)
   formData.append("length", this.productForm.controls['length'].value)
-  formData.append("production_year", this.productForm.controls['production_year'].value)
+  formData.append("production_year", $('#production_year').val())
   formData.append("location_building", this.productForm.controls['location_building'].value)
   formData.append("brand_name", this.productForm.controls['brand_name'].value)
   formData.append("documentation", this.productForm.controls['documentation'].value)

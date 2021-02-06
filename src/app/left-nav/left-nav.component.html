@@ -26,4 +26,9 @@
     <li><a routerLink="/products">Product list</a></li>
     <li><a routerLink="/add-product">Add Product</a></li>
   </ul>
+  <span class="heading" *ngIf="currentUser.role == 0">Categories</span>
+  <ul class="list-unstyled" *ngIf="currentUser.role == 0">
+    <li><a routerLink="/categories">Product Category</a></li>
+    <li><a routerLink="/file-categories">Project Category</a></li>
+  </ul>
 </nav>
