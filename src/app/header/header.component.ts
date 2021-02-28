@@ -13,9 +13,13 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
+  currunt_user:any;
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
+    this.currunt_user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currunt_user.rolr);
+   
   }
    
   logout() {

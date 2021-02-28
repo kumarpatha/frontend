@@ -18,7 +18,7 @@
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
             <li class="breadcrumb-item"><a routerLink="/projects">Project list</a></li>
-            <li class="breadcrumb-item active">Edit Project</li>
+            <li class="breadcrumb-item active">View Project</li>
           </ul>
         </div>
         <section class="forms">
@@ -32,18 +32,24 @@
                         <div class="col-sm-5" style="margin:auto;">
                           <!-- <input type="file" name="photo" id="photo" formControlName="photo"> -->
                             <img src="{{editimgUrl}}" class="img-fluid">
+                            <label for='imgupload'><img src="assets/images/default.jpg" class="img-fluid" *ngIf="!editimgUrl"></label>
                         </div>
                         <div class="col-sm-7">
                           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                           <br />
-                          <div class="">
-                            <div class="form-group">
-                              <a routerLink="/edit-project/{{editId}}" class="btn btn-default btn-block">Edit</a>
+                          <div class="form-fbt">
+                            <div class="form-group text-center">
+                              <a routerLink="/edit-project/{{editId}}" class="btn btn-default">Edit</a>
                             </div>
-                            <div class="form-group">
-                              
-                              <label class="btn btn-secondary btn-block"  data-toggle="modal" data-target="#exampleModal">Add Files</label>
+                            <!-- <div class="form-group text-center">
+                              <label class="btn btn-secondary"  data-toggle="modal" data-target="#exampleModal">Add Files</label> -->
                               <!-- <input type="file" id="fileupload" name="fileupload" (change)="addfiles($event.target.files)" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple style="display:none" /> -->
+                            <!-- </div> -->
+                            <div class="form-group text-center">
+                              <a routerLink="/add-product" [queryParams]="{param_id: editId}" class="btn btn-secondary">Add Product</a>
+                            </div>
+                            <div class="form-group text-center">
+                              <a routerLink="/products" [queryParams]="{param_id: editId}" class="btn btn-secondary">Show Product</a>
                             </div>
                             <!-- <div class="form-group" *ngFor="let file of filesmulti; index as i">
                               {{file.name}}
@@ -75,7 +81,7 @@
                             <div class="col-md-8">
                               <select class="form-control" readonly name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
                                   <option value="">Select</option>
-                                  <option *ngFor="let customer of customers; index as i" value="{{customer.id}}" [selected]="true">{{customer.name}}</option>   
+                                  <option *ngFor="let customer of customers; index as i" value="{{customer.id}}" [selected]="true">{{customer.customer_name}}</option>   
                               </select>
                               <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
                                   <div *ngIf="f.customer.errors.required">Customer is required</div>
@@ -401,7 +407,7 @@
                           </div>
                           <div class="form-group row"  *ngFor="let doc of projectInfo?.projectdocs; index as i">
                             <div class="col-md-6 p-3" style="font-size: 12px;">
-                              <label for="billing_postal_area" class="label-material margin-left">{{doc?.file_name}}&nbsp;&nbsp;{{doc?.project_category?.category_name}}</label>&nbsp;&nbsp;&nbsp;
+                              <label for="billing_postal_area" class="label-material margin-left"><a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.file_name}}</a>&nbsp;&nbsp;<a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.project_category?.category_name}}</a></label>&nbsp;&nbsp;&nbsp;
                             </div>
                           </div>
                         </div>

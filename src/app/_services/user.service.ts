@@ -47,7 +47,7 @@ export class UserService {
     }
 
     getcustomers() {
-        return this.http.get<any>(`${environment.apiUrl}/customers`);
+        return this.http.get<any>(`${environment.apiUrl}/customersList`);
     }
 
     getclientinfo(id) {
@@ -88,7 +88,7 @@ export class UserService {
     }
     
     getprojects() {
-        return this.http.get<any>(`${environment.apiUrl}/projects`);
+        return this.http.get<any>(`${environment.apiUrl}/projectList`);
     }
      
     addProduct(data:any): Observable<any> {
@@ -99,7 +99,7 @@ export class UserService {
     }
 
     getproducts() {
-        return this.http.get<any>(`${environment.apiUrl}/products`);
+        return this.http.get<any>(`${environment.apiUrl}/productList`);
     }
 
     searchProduct(data) {
@@ -171,6 +171,13 @@ export class UserService {
                 return user;
         }));
     }
+    
+    editProductCatgory(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/edit-product-category`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
 
     getProjectCategories(){
         return this.http.get<any>(`${environment.apiUrl}/project-categories`);
@@ -183,8 +190,23 @@ export class UserService {
         }));
     }
 
+    editProjectCatgory(data:any): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/edit-project-category`, data)
+            .pipe(map(user => {
+                return user;
+        }));
+    }
+
     deleteProjectDoc(id){
         return this.http.get<any>(`${environment.apiUrl}/delete_project_doc/`+id);
+    }
+
+    getFilterData(){
+        return this.http.get<any>(`${environment.apiUrl}/filter-data`);
+    }
+
+    getpdfData(){
+        return this.http.get<any>(`${environment.apiUrl}/pdf`);
     }
     
 

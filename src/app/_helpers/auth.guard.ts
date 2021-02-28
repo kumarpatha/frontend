@@ -13,9 +13,6 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser) {
-            console.log(state.url);
-            console.log(state.url.includes("-categories"));
-            console.log(state.url.includes("-categories"));
             if((state.url.includes("users") || state.url.includes("clients") || state.url.includes("client") || state.url.includes("user") || state.url.includes("categories") || state.url.includes("file-categories")) && currentUser.role == 1){
                 localStorage.removeItem('currentUser');
                 location.reload(true);

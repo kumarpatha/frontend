@@ -95,14 +95,19 @@ $(document).ready(function () {
     // ------------------------------------------------------ //
 
     var materialInputs = $('input.input-material');
+    var labelmaterial = $('label.label-material');
 
     // activate labels for prefilled values
-    materialInputs.filter(function() {console.log("hello3"); return $(this).val() !== ""; }).siblings('.label-material').addClass('active');
+    materialInputs.filter(function() { return $(this).val() !== ""; }).siblings('.label-material').addClass('active');
 
     // move label on focus
     materialInputs.on('focus', function () {
-        console.log("hello");
         $(this).siblings('.label-material').addClass('active');
+    });
+
+    labelmaterial.on('click', function () {
+        $(this).toggleClass('active');
+        $(this).siblings('input.input-material').focus();
     });
    
     // remove/keep label on blur
@@ -174,20 +179,20 @@ $(document).ready(function () {
         return false;
     });
 
-    $('#clickme').click(function() {
-        var $slider = $('.mydiv');
-        $slider.animate({
-          right: parseInt($slider.css('right'),0) == -250 ?
-           0 : -250
-        });
-      });
+    // $('#clickme').click(function() {
+    //     var $slider = $('.mydiv');
+    //     $slider.animate({
+    //       right: parseInt($slider.css('right'),0) == -250 ?
+    //        0 : -250
+    //     });
+    //   });
      
-        $('#closeme').click(function() {
-        var $slider = $('.mydiv');
-        $slider.animate({
-          right: parseInt($slider.css('right'),0) == 0 ?
-           -250 : 0
-        });
-      });
+    //     $('#closeme').click(function() {
+    //     var $slider = $('.mydiv');
+    //     $slider.animate({
+    //       right: parseInt($slider.css('right'),0) == 0 ?
+    //        -250 : 0
+    //     });
+    //   });
 
 });

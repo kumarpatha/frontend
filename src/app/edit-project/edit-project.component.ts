@@ -42,6 +42,7 @@ export class EditProjectComponent implements OnInit {
   filecat:string  []  =  [];
   filecattext:string  []  =  [];
   closeResult: string;
+  doc_path:any;
 
 constructor(
   private formBuilder: FormBuilder,
@@ -60,7 +61,8 @@ ngOnInit() {
             minView: 'decade',
             viewSelect: 'decade',
             autoclose: true,
-            pickerPosition: "bottom-left"
+            pickerPosition: "bottom-left",
+            fontAwesome : true
         });
         $('.fulldate').datetimepicker({
           weekStart: 1,
@@ -70,7 +72,8 @@ ngOnInit() {
           startView: 2,
           minView: 2,
           forceParse: 0,
-          pickerPosition: "bottom-left"
+          pickerPosition: "bottom-left",
+          fontAwesome : true
         });
         this.loadingData = true;
         this.status = 1;
@@ -166,6 +169,7 @@ ngOnInit() {
           if(this.projectInfo.project_image){
             this.editimgUrl = data.image_base_path+'/'+this.projectInfo.project_image;
           }
+          this.doc_path = data.image_base_path;
       });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

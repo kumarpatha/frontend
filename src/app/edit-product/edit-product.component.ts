@@ -56,10 +56,11 @@ ngOnInit() {
           minView: 'decade',
           viewSelect: 'decade',
           autoclose: true,
-          pickerPosition: "bottom-left"
+          pickerPosition: "bottom-left",
+          fontAwesome : true
         });
         this.loadingData = true;
-        this.status = 1;
+        //this.status = 1;
         this.userService.getprojects().pipe(first()).subscribe(data => {
           this.loading = false;
           this.loadingData = false;
@@ -80,6 +81,7 @@ ngOnInit() {
         project_id: ['', Validators.required],
         product_id: ['', Validators.required],
         description: ['', Validators.required],
+        status: ['', Validators.required],
         category: [''],
         building_part: [''],
         unit: [''],
@@ -99,7 +101,6 @@ ngOnInit() {
         reuse: [''],
         recommendation: [''],
         price_new_product: [''],
-        status: [''],
         price_used_product: [''],
         price_sold_product: ['']
       });
@@ -138,7 +139,9 @@ ngOnInit() {
             price_used_product: this.productInfo.price_used_product,
             price_sold_product: this.productInfo.price_sold_product
           });
-          this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
+          if(this.productInfo.project_image){
+            this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
+          }
       });
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

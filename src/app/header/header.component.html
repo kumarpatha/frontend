@@ -11,7 +11,12 @@
       <div class="navbar-holder d-flex align-items-center justify-content-between">
         <!-- Navbar Header-->
         <div class="navbar-header">
-          <!-- Navbar Brand --><a routerLink="/" class="navbar-brand d-none d-sm-inline-block">
+          <!-- Navbar Brand -->
+          <a routerLink="/" *ngIf="currunt_user.role == 0" class="navbar-brand d-none d-sm-inline-block">
+            <div class="brand-text d-none d-lg-inline-block"><strong>Resourcer</strong></div>
+            <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>RS</strong></div>
+          </a>
+          <a routerLink="/customers" *ngIf="currunt_user.role == 1" class="navbar-brand d-none d-sm-inline-block">
             <div class="brand-text d-none d-lg-inline-block"><strong>Resourcer</strong></div>
             <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>RS</strong></div>
           </a>

@@ -157,12 +157,12 @@
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="form-group">
-                                    <input type="submit" name="submit" value="Register" class="btn btn-default btn-block">
+                                  <div class="form-group text-center">
+                                    <input type="submit" name="submit" value="Update" class="btn btn-default">
                                   </div>
-                                  <div class="form-group">
-                                    <input type="submit" name="submit" value="Register and add new default" class="btn btn-secondary btn-block">
-                                  </div>
+                                  <!-- <div class="form-group">
+                                    <input type="submit" name="submit" value="Register and add new default" class="btn btn-secondary">
+                                  </div> -->
                                 </div>
                               </div>
                               <hr>
@@ -173,10 +173,10 @@
                                         <label for="note" class="label-material">Note :</label>
                                       </div>
                                       <div class="col-md-7">
-                                        <textarea formControlName="note" name="note" [ngClass]="{ 'is-invalid': submitted && f.note.errors }" class="form-control" rows="7"></textarea>
-                                        <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+                                        <textarea formControlName="note" name="note"  class="form-control" rows="7"></textarea>
+                                        <!-- <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
                                           <div *ngIf="f.note.errors.required">Note is required</div>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
                                 </div>

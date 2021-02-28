@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component'
 ;
 import { FooterComponent } from './footer/footer.component'
 ;
+import { DataTablesModule } from "angular-datatables";
 import { LeftNavComponent } from './left-nav/left-nav.component'
 ;
 import { AddClientComponent } from './add-client/add-client.component';;
@@ -41,7 +42,7 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProjectCategoryComponent } from './project-category/project-category.component';
 import { ViewProjectComponent } from './view-project/view-project.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
     imports: [
@@ -49,7 +50,9 @@ import { ViewProjectComponent } from './view-project/view-project.component';
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-      
+        DataTablesModule,
+        Ng2SearchPipeModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,

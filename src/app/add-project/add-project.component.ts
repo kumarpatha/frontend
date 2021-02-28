@@ -66,7 +66,7 @@ ngOnInit() {
       });
       this.projectForm = this.formBuilder.group({
         project_name: ['', Validators.required],
-        customer: ['', Validators.required],
+        customer: (this.route.snapshot.queryParams['param_id']) ? this.route.snapshot.queryParams['param_id'] : ['', Validators.required],
         project_address: [''],
         postal_code: [''],
         postal_area: [''],
@@ -99,26 +99,28 @@ ngOnInit() {
         billing_postal_area: [''],
         credit_period: [''] 
       });
-    $('.only_year').datetimepicker({
-      format: "yyyy",
-      startView: 'decade',
-      minView: 'decade',
-      viewSelect: 'decade',
-      autoclose: true,
-      pickerPosition: "bottom-left"
-  });
-  $('.fulldate').datetimepicker({
-    weekStart: 1,
-    todayBtn:  1,
-    autoclose: 1,
-    todayHighlight: 1,
-    startView: 2,
-    minView: 2,
-    forceParse: 0,
-    pickerPosition: "bottom-left"
-  });
-  // get return url from route parameters or default to '/'
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      $('.only_year').datetimepicker({
+        format: "yyyy",
+        startView: 'decade',
+        minView: 'decade',
+        viewSelect: 'decade',
+        autoclose: true,
+        pickerPosition: "bottom-left",
+        fontAwesome : true
+      });
+      $('.fulldate').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        pickerPosition: "bottom-left",
+        fontAwesome : true
+      });
+      // get return url from route parameters or default to '/'
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 }
 
 preview(files) {

@@ -28,7 +28,7 @@
                 <div class="col-md-12 main">
                   <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text"  name="search" class="form-control" placeholder="Search" (keyup.enter)="search($event.target.value)">
+                    <input type="text"  name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
                   </div>
                 </div>
                 <div class="col-md-12 main" *ngIf="!customerInfo">
@@ -43,7 +43,7 @@
                 <div class="col-md-12" *ngIf="!customerInfo && listView">
                     <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
                         <thead>
                             <tr>
                             <th>#</th>
@@ -55,22 +55,7 @@
                             <!-- <th>Action</th> -->
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let customer of customers; index as i">
-                                <th scope="row">{{i + 1}}</th>
-                                <td><a routerLink="/view-customer/{{customer.id}}">{{customer.customer_name}}</a></td>
-                                <td>{{customer.projects_count}}</td>
-                                <td>{{customer.products_count}}</td>
-                                <td>{{customer.postal_code}}</td>
-                                <!-- <td>
-                                  <a routerLink="/edit-customer/{{customer.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
-                                  <a (click)="deleteCustomer(customer.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
-                                </td> -->
-                            </tr>
-                            <tr *ngIf="customers?.length == 0">
-                              <td class="text-center" colspan="8">No Customers Found</td>
-                            </tr>
-                        </tbody>
+                       
                         </table>
                     </div>
                     </div>
@@ -83,7 +68,7 @@
                           <div class="card">
                             <a routerLink="/view-customer/{{customer.id}}"><img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}">{{customer.name}}</a></h5>
+                            <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}">{{customer.customer_name_raw}}</a></h5>
                             </div>
                           </div>
                         </div>

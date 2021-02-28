@@ -22,28 +22,94 @@
               </ul>
           </div>
       <!-- Forms Section-->
-      <section class="forms">
+      <section class="forms py-3">
           <div class="container-fluid">
               <div class="row">
                 <div class="col-md-12 main">
-                  <div class="form-group has-search">
+                  <div class="form-group has-search" id="searchDiv">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text"  name="search" class="form-control" placeholder="Search" (keyup.enter)="search($event.target.value)">
+                    <input type="text" name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
                   </div>
                 </div>
                 <div class="col-md-12 main" *ngIf="!productInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
-                    <span class="fa fa-list" (click)="viewType('list')"></span>
+                    <a (click)='pdf()' href='javascript:void(0);'><span class="fa fa-file-pdf-o"></span></a>
                     &nbsp;
-                    <span class="fa fa-th" (click)="viewType('grid')"></span>
+                    <a (click)="viewType('list')" href='javascript:void(0);'><span class="fa fa-list"></span></a>
+                    &nbsp;
+                    <span id="myButton" class="h4"><a (click)='filter()' href='javascript:void(0);'> F </a></span>
+                    &nbsp;
+                    <a (click)="viewType('grid')" href='javascript:void(0);'><span class="fa fa-th"></span></a>
                   </span>
                   </div>
                 </div>
+                <div class='mydiv p-3'>
+                  <span class="close"><a (click)="closeFilter()" href="javascript:void(0);"><i class="fa fa-times" aria-hidden="true"></i></a></span>
+                    <div class="panel-body py-4" >
+                      <div class="panel-heading " >
+                        <h6 class="panel-title">
+                          <a data-toggle="collapse" href="#collapse0">
+                            <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Customers ({{customer_count}})
+                          </a>
+                        </h6>
+                      </div>
+                      <div id="collapse0" class="panel-collapse collapse" >
+                        <ul class="list-group">
+                          <li class="list-group-item"  *ngFor="let customer of customers; index as i">
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox" name="customers" [(ngModel)]="customer.isChecked" value="{{customer.id}}" (click)="showProject($event)">
+                                {{customer.customer_name}}
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    
+                      <div class="panel-heading py-2" >
+                        <h6 class="panel-title">
+                          <a data-toggle="collapse" href="#collapse01">
+                            <i class="indicator fa fa-caret-down" aria-hidden="true"></i>Projects ({{project_count}})
+                          </a>
+                        </h6>
+                      </div>
+                      <div id="collapse01" class="panel-collapse collapse" >
+                        <ul class="list-group ">
+                          <li class="list-group-item">
+                            <input type="text" placeholder="Search" [(ngModel)]="term" />
+                          </li>
+                          
+                          <li class="list-group-item" *ngFor="let eachproject of filterProject | filter:term">
+                            <div class="checkbox">
+                             
+                              <label>
+                                <input type="checkbox"  name="projects" value="{{eachproject.id}}" [(ngModel)]="eachproject.isChecked" (click)="addProject($event)">
+                                {{eachproject.project_name}}
+                              </label>
+                            </div>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 px-2">
+                        <div class="form-group">
+                          <input type="button" name="apply" (click)= "applyFilter()" value="Apply Filter" class="btn btn-default btn-block btn-sm">
+                        </div>
+                      </div>
+                      <div class="col-md-6 px-2">
+                        <div class="form-group">
+                          <input type="button" name="reset" (click)="resetFilter()" value="Reset Filter" class="btn btn-default btn-block btn-sm">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 <div class="col-md-12" *ngIf="!productInfo && listView">
                     <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -58,26 +124,6 @@
                             <!-- <th>Action</th> -->
                           </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let product of products; index as i">
-                            <th scope="row">{{i + 1}}</th>
-                                <td><a routerLink="/view-product/{{product?.id}}">{{product.product_id}}</a></td>
-                                <td><a routerLink="/view-product/{{product?.id}}">{{product.product_name}}</a></td>
-                                <td>{{product?.category.category_name}}</td>
-                                <td>{{product?.price_new_product}}</td>
-                                <td>{{product?.quantity}}</td>
-                                <td>{{product?.height}}X{{product?.length}}X{{product?.width}}</td>
-                                <td>{{product?.description}}</td>
-                                <td>{{(product.status) ? 'Available' : 'Not Available'}}</td>
-                                <!-- <td>
-                                  <a routerLink="/edit-product/{{product?.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
-                                  <a (click)="deleteProduct(product?.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
-                                </td> -->
-                            </tr>
-                            <tr *ngIf="products?.length == 0">
-                              <td class="text-center" colspan="8">No Products Found</td>
-                            </tr>
-                        </tbody>
                         </table>
                     </div>
                     </div>
@@ -90,7 +136,7 @@
                           <div class="card">
                             <a href="javascript:void();" routerLink="/view-product/{{product?.id}}"><img src="{{image_base_path}}/{{product.product_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}">{{product.product_name}}</a></h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}">{{product.product_name_raw}}</a></h5>
                             </div>
                           </div>
                         </div>

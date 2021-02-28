@@ -52,7 +52,7 @@ ngOnInit() {
         name: ['', Validators.required],
         mobile: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
         email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-        note: ['', Validators.required],
+        note: [''],
         country: ['', Validators.required]
       });
 

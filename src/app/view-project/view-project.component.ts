@@ -40,6 +40,7 @@ export class ViewProjectComponent implements OnInit {
   filecat:string  []  =  [];
   filecattext:string  []  =  [];
   closeResult: string;
+  doc_path:any;
 
   constructor( 
     private formBuilder: FormBuilder,
@@ -158,6 +159,7 @@ export class ViewProjectComponent implements OnInit {
     if(this.projectInfo.project_image){
       this.editimgUrl = data.image_base_path+'/'+this.projectInfo.project_image;
     }
+    this.doc_path = data.image_base_path;
   });
   }
 

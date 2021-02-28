@@ -43,11 +43,11 @@
                         <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                         <br />
                         <div class="form-fbt">
-                          <div class="form-group">
-                            <input type="submit" name="submit" value="Register" class="btn btn-default btn-block">
+                          <div class="form-group text-center">
+                            <input type="submit" name="submit" value="Register" class="btn btn-default">
                           </div>
-                          <div class="form-group">
-                            <label class="btn btn-secondary btn-block"  data-toggle="modal" data-target="#exampleModal">Add Files</label>
+                          <div class="form-group text-center">
+                            <label class="btn btn-secondary"  data-toggle="modal" data-target="#exampleModal">Add Files</label>
                             <!-- <input type="file" id="fileupload" name="fileupload" (change)="addfiles($event.target.files)" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple style="display:none" /> -->
                           </div>
                          
@@ -73,9 +73,9 @@
                             <label for="customer" class="label-material">Customer Name* :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                            <select class="form-control" name="customer" selected formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
                                 <option value="">Select</option>
-                                <option *ngFor="let customer of customers; index as i" value="{{customer.id}}">{{customer.name}}</option>   
+                                <option *ngFor="let customer of customers; index as i" value="{{customer.id}}">{{customer.customer_name}}</option>   
                             </select>
                             <div *ngIf="submitted && f.customer.errors" class="invalid-feedback">
                                 <div *ngIf="f.customer.errors.required">Customer is required</div>
@@ -207,8 +207,8 @@
                           <div class="col-md-8">
                             <div class="input-group date only_year col-md-5" data-date-format="yyyy" data-link-field="building_year" data-link-format="yyyy">
                               <input class="form-control" size="16" type="text" id="building_year" formControlName="building_year" name="building_year" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <span class="input-group-addon"><span class="fa fa-remove"></span></span>
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>
@@ -219,8 +219,8 @@
                           <div class="col-md-8">
                             <div class="input-group date only_year col-md-5"  data-date-format="yyyy" data-link-field="last_refurbished" data-link-format="yyyy">
                               <input class="form-control" size="16" type="text" id="last_refurbished" formControlName="last_refurbished" name="last_refurbished" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>
@@ -269,8 +269,8 @@
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date="" data-date-format="yyyy-mm-dd" data-link-field="project_start_date" data-link-format="yyyy-mm-dd">
                               <input class="form-control" size="16" type="text"  id="project_start_date" formControlName="project_start_date" name="project_start_date" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>
@@ -281,8 +281,8 @@
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_catalog_date" data-link-format="yyyy-mm-dd">
                               <input class="form-control" size="16" type="text" id="project_catalog_date" formControlName="project_catalog_date" name="project_catalog_date" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>
@@ -293,8 +293,8 @@
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_avail_date" data-link-format="yyyy-mm-dd">
                               <input class="form-control" size="16" type="text" id="project_avail_date"  formControlName="project_avail_date" name="project_avail_date" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>
@@ -305,8 +305,8 @@
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_avail_end_date" data-link-format="yyyy-mm-dd">
                               <input class="form-control" size="16" type="text"  id="project_avail_end_date"   formControlName="project_avail_end_date" name="project_avail_end_date" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
                         </div>

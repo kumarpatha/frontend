@@ -51,10 +51,12 @@ ngOnInit() {
           minView: 'decade',
           viewSelect: 'decade',
           autoclose: true,
-          pickerPosition: "bottom-left"
+          pickerPosition: "bottom-left",
+          fontAwesome : true
       });
+      
         this.loadingData = true;
-        this.status = 1;
+        //this.status = 1;
         this.userService.getprojects().pipe(first()).subscribe(data => {
           this.loading = false;
           this.loadingData = false;
@@ -72,8 +74,9 @@ ngOnInit() {
       });
       this.productForm = this.formBuilder.group({
         product_name: ['', Validators.required],
-        project_id: ['', Validators.required],
+        project_id: (this.route.snapshot.queryParams['param_id']) ? this.route.snapshot.queryParams['param_id'] : ['', Validators.required],
         description: ['', Validators.required],
+        status: ['', Validators.required],
         category: [''],
         building_part: [''],
         unit: [''],
@@ -93,10 +96,10 @@ ngOnInit() {
         reuse: [''],
         recommendation: [''],
         price_new_product: [''],
-        status: [''],
         price_used_product: [''],
         price_sold_product: ['']
-  });
+    });
+     
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 }

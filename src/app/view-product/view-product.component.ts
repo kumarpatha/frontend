@@ -42,7 +42,9 @@ ngOnInit() {
           this.loading = false;
           this.loadingData = false;
           this.productInfo = data.product;
-          this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
+          if(this.productInfo.project_image != undefined){
+            this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
+          }
       });
 
       // get return url from route parameters or default to '/'

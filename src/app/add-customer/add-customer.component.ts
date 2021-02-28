@@ -50,7 +50,7 @@ export class AddCustomerComponent implements OnInit {
           name: ['', Validators.required],
           mobile: ['', [Validators.required, Validators.pattern('[0-9]*')]],
           email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-          note: ['', Validators.required]
+          note: ['']
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

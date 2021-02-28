@@ -31,18 +31,19 @@
                     <div class="row">
                       <div class="col-sm-5" style="margin:auto;">
                         <img src="{{editimgUrl}}" class="img-fluid">
+                        <label for='imgupload'><img src="assets/images/default.jpg" class="img-fluid" *ngIf="!editimgUrl"></label>
                       </div>
                       <div class="col-sm-7">
                         <br/>
-                        <div class="">
-                          <div class="form-group">
-                            <a routerLink="/edit-product/{{productInfo?.id}}" class="mr-1 btn btn-default btn-block">Edit</a>
+                        <div class="form-fbt">
+                          <div class="form-group text-center">
+                            <a routerLink="/edit-product/{{productInfo?.id}}" class="mr-1 btn btn-default">Edit</a>
                           </div>
-                          <div class="form-group">
-                            <a routerLink="/add-customer" class="btn btn-secondary btn-block">Clone</a>
+                          <div class="form-group text-center">
+                            <a routerLink="/add-customer" class="btn btn-secondary">Clone</a>
                           </div>
-                          <div class="form-group">
-                            <a routerLink="/add-product" class="btn btn-secondary btn-block">Add new</a>
+                          <div class="form-group text-center">
+                            <a routerLink="/add-product" class="btn btn-secondary">Add new</a>
                           </div>
                         </div>
                       </div>
@@ -235,7 +236,10 @@
                             <label for="status" class="label-material">STATUS :</label>
                           </div>
                           <div class="col-md-8">
-                            <label class="md-check">{{productInfo.status ? "Active" : "In active"}}</label>
+                            <label class="md-check" *ngIf="productInfo.status == 1">AVAILABLE ONSITE</label>
+                            <label class="md-check" *ngIf="productInfo.status == 2">AVAILABLE FROM STORAGE</label>
+                            <label class="md-check" *ngIf="productInfo.status == 3">SOLD</label>
+                            <label class="md-check" *ngIf="productInfo.status == 4">UNAVAILABLE</label>
                           </div>
                         </div>
                         <div class="form-group row">

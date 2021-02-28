@@ -28,7 +28,7 @@
                 <div class="col-md-12 main">
                   <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text"  name="search" class="form-control" placeholder="Search" (keyup.enter)="search($event.target.value)">
+                    <input type="text"  name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
                   </div>
                 </div>
                 <div class="col-md-12 main" *ngIf="!projectInfo">
@@ -43,7 +43,7 @@
                 <div class="col-md-12" *ngIf="!projectInfo && listView">
                   <div class="card">
                   <div class="card-body">
-                      <table class="table table-hover">
+                      <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -55,23 +55,23 @@
                           <!-- <th>Action</th> -->
                         </tr>
                       </thead>
-                      <tbody>
-                          <tr *ngFor="let project of projects; index as i">
+                      <!-- <tbody> -->
+                          <!-- <tr *ngFor="let project of projects; index as i">
                           <th scope="row">{{i + 1}}</th>
                               <td><a routerLink="/view-project/{{project.id}}">{{project.project_name}}</a></td>
                               <td>{{project.customer.customer_name}}</td>
                               <td>{{project.postal_area}}</td>
                               <td>{{project.property_area}}</td>
-                              <td>{{project.building_year}}</td>
+                              <td>{{project.building_year}}</td> -->
                               <!-- <td>
                                 <a routerLink="/edit-project/{{project.id}}" class="mr-1 btn btn-sm btn-secondary">Edit</a>
                                 <a (click)="deleteProject(project.id)" class="mr-1 btn btn-sm btn-danger text-white">Delete</a>
                               </td> -->
-                          </tr>
+                          <!-- </tr>
                           <tr *ngIf="projects.length == 0">
                             <td class="text-center" colspan="8">No Projects Found</td>
-                          </tr>
-                      </tbody>
+                          </tr> -->
+                      <!-- </tbody> -->
                       </table>
                   </div>
                   </div>
@@ -84,7 +84,7 @@
                           <div class="card">
                             <a href="javascript:void();" routerLink="/view-project/{{project.id}}"><img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title" (click)="viewProject(project)"><a href="javascript:void();" routerLink="/view-project/{{project.id}}">{{project.project_name}}</a></h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}">{{project.project_name_raw}}</a></h5>
                             </div>
                           </div>
                         </div>

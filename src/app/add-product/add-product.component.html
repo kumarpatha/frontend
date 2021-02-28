@@ -43,18 +43,18 @@
                         <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                         <br/>
                         <div class="form-fbt">
-                          <div class="form-group">
-                            <input type="submit" name="submit" value="Register" class="btn btn-default btn-block">
+                          <div class="form-group text-center">
+                            <input type="submit" name="submit" value="Register" class="btn btn-default">
                           </div>
-                          <div class="form-group">
-                            <input type="submit" name="submit" value="Register & Clone" class="btn btn-default btn-block">
+                          <div class="form-group text-center">
+                            <input type="submit" name="submit" value="Register & Clone" class="btn btn-default">
                           </div>
-                          <div class="form-group">
-                            <input type="submit" name="submit" value="Register and add new" class="btn btn-default btn-block">
+                          <div class="form-group text-center">
+                            <input type="submit" name="submit" value="Register and add new" class="btn btn-default">
                           </div>
-                          <div class="form-group">
-                            <!-- <label for='fileupload' class="btn btn-secondary btn-block">Add Files</label> -->
-                            <label class="btn btn-secondary btn-block"  data-toggle="modal" data-target="#exampleModal">Add Files</label>
+                          <div class="form-group text-center">
+                            <!-- <label for='fileupload' class="btn btn-secondary">Add Files</label> -->
+                            <label class="btn btn-secondary"  data-toggle="modal" data-target="#exampleModal">Add Files</label>
                             <!-- <input type="file" id="fileupload" name="fileupload" (change)="addfiles($event.target.files)" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" multiple style="display:none" /> -->
                           </div>
                           
@@ -126,7 +126,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                           <div class="col-md-4 p-3">
                             <label for="unit" class="label-material">UNIT :</label>
                           </div>
@@ -137,13 +137,13 @@
                               <option value="Meters">Meters</option>
                               <option value="Square Meters">Square Meters</option>
                               <option value="Kilos">Kilos</option>
-                            </select>
+                            </select> -->
                             <!-- <input type="text" formControlName="unit" name="unit" [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material"> -->
-                            <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+                            <!-- <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
                               <div *ngIf="f.unit.errors.required">Unit is required</div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
                             <label for="quantity" class="label-material">QUANTITY :</label>
@@ -161,19 +161,28 @@
                           </div>
                           <div class="col-md-8">
                             <div class="row">
-                              <div class="col-md-4">
+                              <div class="col-md-3">
+                                <select class="form-control" name="unit" formControlName="unit" [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                                  <option value="">Select Unit</option>
+                                  <option value="Piece">Piece</option> 
+                                  <option value="Meters">Meters</option>
+                                  <option value="Square Meters">Square Meters</option>
+                                  <option value="Kilos">Kilos</option>
+                                </select>
+                              </div>
+                              <div class="col-md-3">
                                 <input  type="text" formControlName="length" name="length" [ngClass]="{ 'is-invalid': submitted && f.length.errors }" class="input-material" placeholder="Length">
                                 <div *ngIf="submitted && f.length.errors" class="invalid-feedback">
                                   <div *ngIf="f.length.errors.required">Length is required</div>
                                 </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <input  type="text" formControlName="height" name="height" [ngClass]="{ 'is-invalid': submitted && f.height.errors }" class="input-material" placeholder="Height">
                                 <div *ngIf="submitted && f.height.errors" class="invalid-feedback">
                                   <div *ngIf="f.height.errors.required">Height is required</div>
                                 </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <input  type="text" formControlName="width" name="width" [ngClass]="{ 'is-invalid': submitted && f.width.errors }" class="input-material" placeholder="Width">
                                 <div *ngIf="submitted && f.width.errors" class="invalid-feedback">
                                   <div *ngIf="f.width.errors.required">Width is required</div>
@@ -190,8 +199,8 @@
                             <div class="col-md-8">
                               <div class="input-group date only_year col-md-5" data-date-format="yyyy" data-link-field="building_year" data-link-format="yyyy">
                                 <input class="form-control" size="16" type="text" id="production_year" formControlName="production_year" name="production_year" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
+                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                               </div>
                             </div>
                             <!-- <input type="text" formControlName="production_year" name="production_year" [ngClass]="{ 'is-invalid': submitted && f.production_year.errors }" class="input-material">
@@ -326,14 +335,24 @@
                             <label for="status" class="label-material">STATUS :</label>
                           </div>
                           <div class="col-md-8">
-                            <label class="md-check">
+                            <select class="form-control" name="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" class="input-material">
+                              <option value="">Select</option>
+                              <option value="1">AVAILABLE ONSITE</option> 
+                              <option value="2">AVAILABLE FROM STORAGE</option>
+                              <option value="3">SOLD</option>
+                              <option value="4">UNAVAILABLE</option>
+                            </select>
+                            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                              <div *ngIf="f.status.errors.required">Status is required</div>
+                            </div>
+                            <!-- <label class="md-check">
                               <input type="radio" [value]="1" [(ngModel)]="status" name="status" formControlName="status" selected>
                               Active
                             </label>&nbsp;&nbsp;
                             <label class="md-check">
                               <input type="radio" [value]="0" [(ngModel)]="status" name="status" formControlName="status">     
                               Inactive
-                            </label>
+                            </label> -->
                           </div>
                         </div>
                         <div class="form-group row">
