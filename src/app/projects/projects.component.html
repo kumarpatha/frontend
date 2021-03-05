@@ -81,10 +81,10 @@
                     <div class="">
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let project of projects; index as i">
-                          <div class="card">
+                          <div class="card p-2">
                             <a href="javascript:void();" routerLink="/view-project/{{project.id}}"><img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}">{{project.project_name_raw}}</a></h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}" style="word-break: break-all;">{{project.project_name_raw}}</a></h5>
                             </div>
                           </div>
                         </div>

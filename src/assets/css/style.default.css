@@ -3565,3 +3565,11 @@ a > code {
 div.mydiv{
 width:250px; height:500px; top:50px; border:2px solid #e7e7e7; position:fixed; right:-250px; background:#ffff; overflow-y: scroll;  z-index:999;
 }
+
+.form-fbt
+{
+    position: absolute;
+    width: 100%;
+    padding: 25px;
+    bottom: 20px;
+	}

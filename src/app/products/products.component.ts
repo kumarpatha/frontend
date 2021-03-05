@@ -70,6 +70,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
           pageLength: 25,
           serverSide: true,
           processing: true,
+          "scrollX": true,
           "dom": '<"top"lr>rt<"bottom"ip><"clear">',
           // Configure the buttons
         //   buttons: [{

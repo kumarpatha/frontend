@@ -62,7 +62,7 @@
                             <label for="project_name" class="label-material">Project Name* :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="project_name" name="project_name" [ngClass]="{ 'is-invalid': submitted && f.project_name.errors }" class="input-material">
+                            <input type="text" formControlName="project_name" maxlength="50" name="project_name" [ngClass]="{ 'is-invalid': submitted && f.project_name.errors }" class="input-material">
                             <div *ngIf="submitted && f.project_name.errors" class="invalid-feedback">
                               <div *ngIf="f.project_name.errors.required">Project Name is required</div>
                             </div>
@@ -87,7 +87,7 @@
                             <label for="project_address" class="label-material">Project Address :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="project_address" name="project_address"  class="input-material">
+                            <input type="text" formControlName="project_address" maxlength="250" name="project_address"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -95,7 +95,10 @@
                             <label for="project_address" class="label-material">Postal Code :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="postal_code" name="postal_code" class="input-material">
+                            <input type="text" formControlName="postal_code" name="postal_code" [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }"  maxlength="6" class="input-material">
+                            <div *ngIf="submitted && f.postal_code.errors" class="invalid-feedback">
+                              <div *ngIf="f.postal_code.errors.pattern">Please enter valid postal code</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -103,7 +106,7 @@
                             <label for="project_address" class="label-material">Postal Area :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="postal_area" name="postal_area"  class="input-material">
+                            <input type="text" formControlName="postal_area" name="postal_area" maxlength="100" class="input-material">
                           </div>
                         </div>
                         <h3>PROJECT MANAGER DETAILS</h3>
@@ -112,7 +115,7 @@
                             <label for="project_mang_name " class="label-material margin-left">Name :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="project_mang_name" name="project_mang_name"  class="input-material">
+                            <input type="text" formControlName="project_mang_name" maxlength="50" name="project_mang_name"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -120,7 +123,10 @@
                             <label for="project_address" class="label-material margin-left">Mobile No :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="project_mang_mobile" name="project_mang_mobile"  class="input-material">
+                            <input type="text" formControlName="project_mang_mobile" maxlength="12" name="project_mang_mobile"  [ngClass]="{ 'is-invalid': submitted && f.project_mang_mobile.errors }"  class="input-material">
+                            <div *ngIf="submitted && f.project_mang_mobile.errors" class="invalid-feedback">
+                              <div *ngIf="f.project_mang_mobile.errors.pattern">Please enter valid mobile number</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -128,7 +134,10 @@
                             <label for="project_mang_email" class="label-material margin-left">Email :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="project_mang_email" name="project_mang_email"  class="input-material">
+                            <input type="email" formControlName="project_mang_email" name="project_mang_email"  [ngClass]="{ 'is-invalid': submitted && f.project_mang_email.errors }"   class="input-material">
+                            <div *ngIf="submitted && f.project_mang_email.errors" class="invalid-feedback">
+                              <div *ngIf="f.project_mang_email.errors.pattern">Please enter valid email</div>
+                            </div>
                           </div>
                         </div>
                         <h3>ONSITE CONTACT DETAILS</h3>
@@ -137,7 +146,7 @@
                             <label for="onsite_name" class="label-material margin-left">Name :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="onsite_name" name="onsite_name"  class="input-material">
+                            <input type="text" formControlName="onsite_name" maxlength="50" name="onsite_name"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -145,7 +154,10 @@
                             <label for="onsite_mobile" class="label-material margin-left">Mobile No :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="onsite_mobile" name="onsite_mobile"  class="input-material">
+                            <input type="text" formControlName="onsite_mobile" maxlength="12" name="onsite_mobile" [ngClass]="{ 'is-invalid': submitted && f.onsite_mobile.errors }"  class="input-material">
+                            <div *ngIf="submitted && f.onsite_mobile.errors" class="invalid-feedback">
+                              <div *ngIf="f.onsite_mobile.errors.pattern">Please enter valid mobile number</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -153,7 +165,10 @@
                             <label for="onsite_email" class="label-material margin-left">Email :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="onsite_email" name="onsite_email"  class="input-material">
+                            <input type="email" formControlName="onsite_email" name="onsite_email" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.onsite_email.errors }">
+                            <div *ngIf="submitted && f.onsite_email.errors" class="invalid-feedback">
+                              <div *ngIf="f.onsite_email.errors.pattern">Please enter valid email</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -189,7 +204,11 @@
                             <label for="project_type" class="label-material">Area/total (In Square Meters) :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="property_area" name="property_area"  class="input-material">
+                            <input type="number" formControlName="property_area" name="property_area" min="0" max="999999" [ngClass]="{ 'is-invalid': submitted && f.property_area.errors }" oninput="this.value = 
+                            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  class="input-material">
+                            <div *ngIf="submitted && f.property_area.errors" class="invalid-feedback">
+                              <div *ngIf="f.property_area.errors.pattern">Please enter valid Property area</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -197,7 +216,11 @@
                             <label for="project_type" class="label-material">No. of Floors :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="no_of_floors" name="no_of_floors"  class="input-material">
+                            <input type="number" formControlName="no_of_floors" name="no_of_floors"  min="0" max="20" [ngClass]="{ 'is-invalid': submitted && f.no_of_floors.errors }"  oninput="this.value = 
+                            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" class="input-material">
+                            <div *ngIf="submitted && f.no_of_floors.errors" class="invalid-feedback">
+                              <div *ngIf="f.no_of_floors.errors.pattern">Please enter valid No of Floors</div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -207,7 +230,7 @@
                           <div class="col-md-8">
                             <div class="input-group date only_year col-md-5" data-date-format="yyyy" data-link-field="building_year" data-link-format="yyyy">
                               <input class="form-control" size="16" type="text" id="building_year" formControlName="building_year" name="building_year" readonly>
-                              <span class="input-group-addon"><span class="fa fa-remove"></span></span>
+                              <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
                               <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                             </div>
                           </div>
@@ -267,7 +290,7 @@
                             <label for="project_type" class="label-material">Project Start Date :</label>
                           </div>
                           <div class="col-md-8">
-                            <div class="input-group date fulldate col-md-5"  data-date="" data-date-format="yyyy-mm-dd" data-link-field="project_start_date" data-link-format="yyyy-mm-dd">
+                            <div class="input-group date fulldate col-md-5"  data-date="" data-date-format="yyyy.mm.dd" data-link-field="project_start_date" data-link-format="yyyy.mm.dd">
                               <input class="form-control" size="16" type="text"  id="project_start_date" formControlName="project_start_date" name="project_start_date" readonly>
                               <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
                               <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
@@ -279,7 +302,7 @@
                             <label for="project_catalog_date" class="label-material">Project Catalogue Delivery Date :</label>
                           </div>
                           <div class="col-md-8">
-                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_catalog_date" data-link-format="yyyy-mm-dd">
+                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_catalog_date" data-link-format="yyyy.mm.dd">
                               <input class="form-control" size="16" type="text" id="project_catalog_date" formControlName="project_catalog_date" name="project_catalog_date" readonly>
                               <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
                               <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
@@ -291,7 +314,7 @@
                             <label for="project_avail_date" class="label-material">Project Availability Start Date :</label>
                           </div>
                           <div class="col-md-8">
-                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_avail_date" data-link-format="yyyy-mm-dd">
+                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_avail_date" data-link-format="yyyy.mm.dd">
                               <input class="form-control" size="16" type="text" id="project_avail_date"  formControlName="project_avail_date" name="project_avail_date" readonly>
                               <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
                               <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
@@ -303,7 +326,7 @@
                             <label for="project_avail_end_date" class="label-material">Project Availability End Date :</label>
                           </div>
                           <div class="col-md-8">
-                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy-mm-dd" data-link-field="project_avail_end_date" data-link-format="yyyy-mm-dd">
+                            <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_avail_end_date" data-link-format="yyyy.mm.dd">
                               <input class="form-control" size="16" type="text"  id="project_avail_end_date"   formControlName="project_avail_end_date" name="project_avail_end_date" readonly>
                               <!-- <span class="input-group-addon"><span class="fa fa-remove"></span></span> -->
                               <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
@@ -315,7 +338,7 @@
                             <label for="note" class="label-material">Notes :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="note" name="note"  class="input-material">
+                            <input type="text" formControlName="note" maxlength="300" name="note"  class="input-material">
                           </div>
                         </div>
                         <h3>BILLING DETAILS</h3>
@@ -324,7 +347,7 @@
                             <label for="billing_project_company" class="label-material margin-left">Project Company :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_project_company" name="billing_project_company"  class="input-material">
+                            <input type="text" formControlName="billing_project_company" maxlength="60" name="billing_project_company"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -332,7 +355,7 @@
                             <label for="billing_orgno" class="label-material margin-left">ORG No :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_orgno" name="billing_orgno"  class="input-material">
+                            <input type="text" formControlName="billing_orgno" name="billing_orgno" maxlength="10" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -340,7 +363,7 @@
                             <label for="billing_project_number" class="label-material margin-left">Customer Project Number :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_project_number" name="billing_project_number"  class="input-material">
+                            <input type="text" formControlName="billing_project_number" maxlength="15" name="billing_project_number"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -348,7 +371,7 @@
                             <label for="billing_customer_ref" class="label-material margin-left">Customer Reference :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_customer_ref" name="billing_customer_ref"  class="input-material">
+                            <input type="text" formControlName="billing_customer_ref" maxlength="30" name="billing_customer_ref"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -356,7 +379,7 @@
                             <label for="billing_address" class="label-material margin-left">Billing Address :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_address" name="billing_address"  class="input-material">
+                            <input type="text" formControlName="billing_address" name="billing_address" maxlength="200" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -364,15 +387,18 @@
                             <label for="billing_postal_code" class="label-material margin-left">Billing Postal Code :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_postal_code" name="billing_postal_code"  class="input-material">
-                          </div>
+                            <input type="text" formControlName="billing_postal_code" name="billing_postal_code" [ngClass]="{ 'is-invalid': submitted && f.billing_postal_code.errors }" maxlength="10" class="input-material">
+                            <div *ngIf="submitted && f.billing_postal_code.errors" class="invalid-feedback">
+                              <div *ngIf="f.billing_postal_code.errors.pattern">Please enter valid billing postal code</div>
+                            </div>
+                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
                             <label for="billing_postal_area" class="label-material margin-left">Billing Postal Area :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_postal_area" name="billing_postal_area"  class="input-material">
+                            <input type="text" formControlName="billing_postal_area" name="billing_postal_area"  maxlength="50"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -390,11 +416,11 @@
                               </select>
                             </div>
                             <div class="col-md-4">
-                              <input type="text" formControlName="credit_period" id="credit_period" style="display: none;" name="credit_period" readonly >
+                              <input type="text" formControlName="credit_period" id="credit_period" maxlength="20" style="display: none;" name="credit_period" readonly >
                             </div>
                           </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" *ngIf="filesmulti.length > 0">
                           <div class="col-md-6 p-3">
                             <label for="billing_postal_area" class="label-material margin-left">File Name - Category</label>
                           </div>
@@ -447,7 +473,7 @@
           </div>
         </div>
         <div class="form-group" *ngFor="let file of filesmulti; index as i">
-          {{filecattext[i]}} &nbsp;&nbsp;&nbsp;&nbsp;{{file.name}}
+          {{filecattext[i]}} &nbsp;&nbsp;&nbsp;&nbsp;{{file.name}} <span style="float: right;"><a href="javascript:void(0);" (click)="delete_add(i)">Delete</a></span>
           <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
           </div>

@@ -23,6 +23,7 @@ export class ViewProductComponent implements OnInit {
   status:any;
   editId:any;
   editimgUrl:any = '';
+  categories:any;
 
 constructor(
   private route: ActivatedRoute,
@@ -42,9 +43,15 @@ ngOnInit() {
           this.loading = false;
           this.loadingData = false;
           this.productInfo = data.product;
-          if(this.productInfo.project_image != undefined){
+          if(this.productInfo.product_image != undefined){
             this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
           }
+      });
+
+      this.userService.getProductCategories().pipe(first()).subscribe(data => {
+        this.loading = false;
+        this.loadingData = false;
+        this.categories = data.categories;
       });
 
       // get return url from route parameters or default to '/'

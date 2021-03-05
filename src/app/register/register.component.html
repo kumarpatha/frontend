@@ -32,29 +32,29 @@
                                             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                             <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
                                                 <div class="form-group-material">
-                                                    <input type="text" formControlName="fullname" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" class="input-material">
-                                                    <label for="Name" class="label-material">Name</label>
+                                                    <input type="text" formControlName="fullname" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" class="input-material">
+                                                    <!-- <label for="Name" class="label-material">Name</label> -->
                                                     <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
                                                         <div *ngIf="f.fullname.errors.required">Name is required</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group-material">
-                                                    <input type="text" formControlName="email" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                                                    <label for="email" class="label-material">User ID (Email Address)</label>
+                                                    <input type="text" formControlName="email" placeholder="User ID (Email Address)"  class="input-material" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                                    <!-- <label for="email" class="label-material">User ID (Email Address)</label> -->
                                                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group-material"> 
-                                                    <input type="password" formControlName="password" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                                    <label for="password" class="label-material">Password</label>
+                                                    <input type="password" formControlName="password" placeholder="Password" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                                    <!-- <label for="password" class="label-material">Password</label> -->
                                                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                                         <div *ngIf="f.password.errors.required">Password is required</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group-material">
-                                                    <input type="password" formControlName="confirm_password" class="input-material" pattern="{{ f.password.value }}" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
-                                                    <label for="confirm_password" class="label-material">Confirm Password</label>
+                                                    <input type="password" formControlName="confirm_password" placeholder="Confirm Password" class="input-material" pattern="{{ f.password.value }}" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
+                                                    <!-- <label for="confirm_password" class="label-material">Confirm Password</label> -->
                                                     <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
                                                         <div *ngIf="f.confirm_password.errors.required">Password is required</div>
                                                         <div *ngIf="f.confirm_password.errors.pattern">Password & Confirm Password does not match.</div>

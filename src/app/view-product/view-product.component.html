@@ -27,7 +27,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
-                  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                  <form>
                     <div class="row">
                       <div class="col-sm-5" style="margin:auto;">
                         <img src="{{editimgUrl}}" class="img-fluid">
@@ -39,9 +39,9 @@
                           <div class="form-group text-center">
                             <a routerLink="/edit-product/{{productInfo?.id}}" class="mr-1 btn btn-default">Edit</a>
                           </div>
-                          <div class="form-group text-center">
+                          <!-- <div class="form-group text-center">
                             <a routerLink="/add-customer" class="btn btn-secondary">Clone</a>
-                          </div>
+                          </div> -->
                           <div class="form-group text-center">
                             <a routerLink="/add-product" class="btn btn-secondary">Add new</a>
                           </div>
@@ -56,7 +56,7 @@
                             <label for="product_id" class="label-material">PRODUCT ID* :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.product_id}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.product_id}}"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -64,7 +64,7 @@
                             <label for="product_name" class="label-material">PRODUCT NAME* :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.product_name}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.product_name}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -72,8 +72,8 @@
                             <label for="project_id" class="label-material">Project Name* :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control">
-                              <option value="">{{productInfo.project.project_name}}</option>
+                            <select class="form-control" disabled>
+                              <option value="">{{productInfo?.project.project_name}}</option>
                             </select>
                           </div>
                         </div>
@@ -82,7 +82,7 @@
                             <label for="description" class="label-material">DESCRIPTION* :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" class="input-material" value="{{productInfo.description}}">
+                            <input type="text" readonly class="input-material" value="{{productInfo?.description}}">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -90,7 +90,10 @@
                             <label for="category" class="label-material">CATEGORY :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" class="input-material" value="{{productInfo.category}}">
+                            <select class="form-control" name="category" id="category" disabled [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
+                              <option value="">Select</option>
+                              <option *ngFor="let category of categories; index as i" value="{{category.id}}" [selected]="category?.id == productInfo?.category">{{category.category_name}}</option>
+                            </select>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -98,15 +101,7 @@
                             <label for="building_part" class="label-material">BUILDING PART :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text"  value="{{productInfo.building_part}}" class="input-material">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <div class="col-md-4 p-3">
-                            <label for="unit" class="label-material">UNIT :</label>
-                          </div>
-                          <div class="col-md-8">
-                            <input type="text" value="{{productInfo.unit}}" class="input-material">
+                            <input type="text" readonly  value="{{productInfo?.building_part}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -114,7 +109,7 @@
                             <label for="quantity" class="label-material">QUANTITY :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.quantity}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.quantity}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -123,14 +118,24 @@
                           </div>
                           <div class="col-md-8">
                             <div class="row">
-                              <div class="col-md-4">
-                                <input type="text" value="{{productInfo.height}}" class="input-material">
+                              <div class="col-md-3">
+                                <div class="col-md-3 p-3">
+                                  <select class="form-control" name="unit" formControlName="unit" disabled  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                                    <option value="Inch"   [selected]="productInfo?.unit == 'Inch'">Inch</option> 
+                                    <option value="Meters" [selected]="productInfo?.unit == 'Meters'">Meters</option>
+                                    <option value="CM"  [selected]="productInfo?.unit == 'CM'">CM</option>
+                                    <option value="Feet"  [selected]="productInfo?.unit == 'Feet'">Feet</option>
+                                  </select>
+                                </div>
                               </div>
-                              <div class="col-md-4">
-                                <input type="text" value="{{productInfo.length}}" class="input-material">
+                              <div class="col-md-3">
+                                <input type="text" readonly value="{{productInfo?.height}}" class="input-material">
                               </div>
-                              <div class="col-md-4">
-                                <input type="text" value="{{productInfo.width}}" class="input-material">
+                              <div class="col-md-3">
+                                <input type="text" readonly value="{{productInfo?.length}}" class="input-material">
+                              </div>
+                              <div class="col-md-3">
+                                <input type="text" readonly value="{{productInfo?.width}}" class="input-material">
                               </div>
                             </div>											
                           </div>
@@ -140,7 +145,7 @@
                             <label for="production_year" class="label-material">PRODUCTION YEAR :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.production_year}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.production_year}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -148,7 +153,7 @@
                             <label for="location_building" class="label-material">LOCATION IN BUILDING :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.location_building}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.location_building}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -156,7 +161,7 @@
                             <label for="brand_name" class="label-material">BRAND NAME :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.brand_name}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.brand_name}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -164,7 +169,7 @@
                             <label for="documentation" class="label-material">DOCUMENTATION :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.documentation}}" class="input-material">
+                            {{productInfo?.documentation ? 'Yes' : 'No'}}
                           </div>
                         </div>
                         <div class="form-group row">
@@ -172,7 +177,7 @@
                             <label for="product_info" class="label-material">PRODUCT INFO :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.product_info}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.product_info}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -180,7 +185,7 @@
                             <label for="color" class="label-material">COLOR :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.color}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.color}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -188,7 +193,7 @@
                             <label for="hazardous" class="label-material">HAZARDOUS CONTENT :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.hazardous}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.hazardous}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -196,7 +201,7 @@
                             <label for="evaluvation" class="label-material">EVALUATION :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.evaluvation}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.evaluvation}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -204,7 +209,7 @@
                             <label for="precondition" class="label-material">PRECONDITIONS FOR REUSE :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.precondition}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.precondition}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -212,7 +217,7 @@
                             <label for="reuse" class="label-material">POTENTIAL FOR REUSE :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.reuse}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.reuse}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -220,7 +225,7 @@
                             <label for="recommendation" class="label-material">RECOMMENDATION :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.recommendation}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.recommendation}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -228,7 +233,7 @@
                             <label for="price_new_product" class="label-material">PRICE - NEW PRODUCT :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.unit}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.price_new_product}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -236,10 +241,10 @@
                             <label for="status" class="label-material">STATUS :</label>
                           </div>
                           <div class="col-md-8">
-                            <label class="md-check" *ngIf="productInfo.status == 1">AVAILABLE ONSITE</label>
-                            <label class="md-check" *ngIf="productInfo.status == 2">AVAILABLE FROM STORAGE</label>
-                            <label class="md-check" *ngIf="productInfo.status == 3">SOLD</label>
-                            <label class="md-check" *ngIf="productInfo.status == 4">UNAVAILABLE</label>
+                            <label class="md-check" *ngIf="productInfo?.status == 1">AVAILABLE ONSITE</label>
+                            <label class="md-check" *ngIf="productInfo?.status == 2">AVAILABLE FROM STORAGE</label>
+                            <label class="md-check" *ngIf="productInfo?.status == 3">SOLD</label>
+                            <label class="md-check" *ngIf="productInfo?.status == 4">UNAVAILABLE</label>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -247,7 +252,7 @@
                             <label for="price_used_product" class="label-material">PRICE - USED PRODUCT :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.price_used_product}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.price_used_product}}" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -255,7 +260,7 @@
                             <label for="price_sold_product" class="label-material">PRICE - SOLD PRODUCT :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" value="{{productInfo.price_sold_product}}" class="input-material">
+                            <input type="text" readonly value="{{productInfo?.price_sold_product}}" class="input-material">
                           </div>
                         </div>
                       </div>

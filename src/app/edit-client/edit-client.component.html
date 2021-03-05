@@ -32,22 +32,22 @@
                                           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                           <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
                                               <div class="form-group-material">
-                                                  <input type="text" formControlName="name" value="{{client.name}}" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material">
-                                                  <label for="Name" class="label-material active">Client Name</label>
+                                                  <input type="text" formControlName="name" placeholder="Client Name" value="{{client.name}}" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material">
+                                                  <!-- <label for="Name" class="label-material active">Client Name</label> -->
                                                   <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                                                       <div *ngIf="f.name.errors.required">Name is required</div>
                                                   </div>
                                               </div>
                                               <div class="form-group-material">
-                                                  <input type="text" formControlName="email" value="{{client.email}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                                  <input type="text" formControlName="email" placeholder="Client Email" value="{{client.email}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                                                   <label for="email" class="label-material active">Client Email</label>
                                                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                                       <div *ngIf="f.email.errors.required">Email is required</div>
                                                   </div>
                                               </div>
                                               <div class="form-group-material">
-                                                <input type="text" formControlName="description" value="{{client.description}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
-                                                <label for="description" class="label-material active">Client Description</label>
+                                                <input type="text" formControlName="description" placeholder="Client Description" value="{{client.description}}" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                                <!-- <label for="description" class="label-material active">Client Description</label> -->
                                                 <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                                                     <div *ngIf="f.description.errors.required">Description is required</div>
                                                 </div>

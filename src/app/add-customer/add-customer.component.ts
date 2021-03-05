@@ -12,6 +12,7 @@ declare var $: any;
   templateUrl: './add-customer.component.html',
   styleUrls: ['./add-customer.component.less']
 })
+
 export class AddCustomerComponent implements OnInit {
     customerForm: FormGroup;
     loading = false;
@@ -49,7 +50,7 @@ export class AddCustomerComponent implements OnInit {
           country: ['', Validators.required],
           name: ['', Validators.required],
           mobile: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-          email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+          email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],     
           note: ['']
     });
     // get return url from route parameters or default to '/'
@@ -92,11 +93,11 @@ onSubmit() {
       return;
     }
     if(this.customerForm.controls['country'].value == '2') {
-      if(this.customerForm.controls['orgname'].value.length != '9'){
+      if(this.customerForm.controls['orgname'].value.toString().length != '9'){
         alert("Org Number should be 9 digit for norway");
         return;
       }
-      if(this.customerForm.controls['mobile'].value.length != '8'){
+      if(this.customerForm.controls['mobile'].value.toString().length != '8'){
         alert("Mobile should be 8 digit for norway");
         return;
       }

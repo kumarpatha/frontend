@@ -10,16 +10,16 @@
               <div class="content">
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                   <div class="form-group">
-                    <input type="email" formControlName="username" class="input-material"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-                    <label for="username" class="label-material">User Name</label>
+                    <input type="email" formControlName="username" placeholder="User Name" class="input-material"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <!-- <label for="username" class="label-material">User Name</label> -->
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                         <div *ngIf="f.username.errors.required">Username is required</div>
                         <div *ngIf="f.username.errors.pattern">Please enter valid email</div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="password" formControlName="password" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                    <label for="password" class="label-material">Password</label>
+                    <input type="password" formControlName="password" placeholder="Password" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <!-- <label for="password" class="label-material">Password</label> -->
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import Swal from 'sweetalert2';
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
 declare var $: any;
@@ -34,6 +34,10 @@ export class AddProductComponent implements OnInit {
   projectcategories:any;
   filecat:string  []  =  [];
   filecattext:string  []  =  [];
+  register = true; 
+  clone = false; 
+  addnew = false; 
+
 constructor(
   private formBuilder: FormBuilder,
   private route: ActivatedRoute,
@@ -80,10 +84,10 @@ ngOnInit() {
         category: [''],
         building_part: [''],
         unit: [''],
-        quantity: [''],
-        length: [''],
-        width: [''],
-        height: [''],
+        quantity: ['', [Validators.max(999999999), Validators.min(0)]],
+        length: ['', [Validators.max(999999999), Validators.min(0)]],
+        width: ['', [Validators.max(999999999), Validators.min(0)]],
+        height: ['', [Validators.max(999999999), Validators.min(0)]],
         production_year: [''],
         location_building: [''],
         brand_name: [''],
@@ -95,9 +99,9 @@ ngOnInit() {
         precondition: [''],
         reuse: [''],
         recommendation: [''],
-        price_new_product: [''],
-        price_used_product: [''],
-        price_sold_product: ['']
+        price_new_product: ['', [Validators.max(999999999), Validators.min(0)]],
+        price_used_product: ['', [Validators.max(999999999), Validators.min(0)]],
+        price_sold_product: ['', [Validators.max(999999999), Validators.min(0)]]
     });
      
   // get return url from route parameters or default to '/'
@@ -138,6 +142,18 @@ addcategory(){
   $('#categories').val('');
   $("#fileupload").val(null);
 }
+delete_add(key){
+   this.filesmulti.forEach((element,index)=>{
+    if(key==index) this.filesmulti.splice(index,1);
+ });
+  this.filecat.forEach((element,index)=>{
+    if(key==index) this.filecat.splice(index,1);
+ });
+ this.filecattext.forEach((element,index)=>{
+  if(key==index) this.filecattext.splice(index,1);
+});
+
+}
 
 addfiles(files) {
   console.log(files);
@@ -164,6 +180,7 @@ onSubmit()
   this.loading = true;
   this.loadingData = true;
   console.log(this.productForm.value);
+  //return false;
   console.log(JSON.stringify(this.productForm.value));
   //this.formData.append('data', JSON.stringify(this.customerForm.value));
   console.log(this.filemultiUpload);
@@ -212,17 +229,67 @@ onSubmit()
               this.loading = false;
               this.loadingData = false;
               if(data.status == '1') {
+                 Swal.fire(data.project_id, 'Project Added Sucessfully', 'success');
                   this.info = data.message;
               } else {
                   this.error = data.message;
               }
-              this.router.navigate(['/products']);
+              if(this.register) {
+                this.router.navigate(['/products']);
+              } else if(this.addnew) {
+                this.productForm = this.formBuilder.group({
+                  product_name: ['', Validators.required],
+                  //project_id: (this.route.snapshot.queryParams['param_id']) ? this.route.snapshot.queryParams['param_id'] : ['', Validators.required],
+                  description: ['', Validators.required],
+                  status: ['', Validators.required],
+                  category: [''],
+                  building_part: [''],
+                  unit: [''],
+                  quantity: [''],
+                  length: [''],
+                  width: [''],
+                  height: [''],
+                  production_year: [''],
+                  location_building: [''],
+                  brand_name: [''],
+                  documentation: [''],
+                  product_info: [''],
+                  color: [''],
+                  hazardous: [''],
+                  evaluvation: [''],
+                  precondition: [''],
+                  reuse: [''],
+                  recommendation: [''],
+                  price_new_product: [''],
+                  price_used_product: [''],
+                  price_sold_product: ['']
+              });
+              }
+              
           },
           error => {
               this.error = error;
               this.loading = false;
               this.loadingData = false;
           });
+}
+
+registerfun(){
+  this.register = true;
+  this.clone = false; 
+  this.addnew = false; 
+}
+
+clonefun(){
+  this.register = false;
+  this.clone = true; 
+  this.addnew = false; 
+}
+
+addnewfun(){
+  this.register = false;
+  this.clone = false; 
+  this.addnew = true; 
 }
 
 }

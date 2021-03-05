@@ -91,18 +91,18 @@ ngOnInit() {
           project_name: ['', Validators.required],
           customer: ['', Validators.required],
           project_address: [''],
-          postal_code: [''],
+          postal_code: ['', Validators.pattern('[0-9]{4,6}')],
           postal_area: [''],
           project_mang_name: [''],
-          project_mang_mobile: [''],
-          project_mang_email: [''],
+          project_mang_mobile: ['', Validators.pattern('[0-9]{8,12}')],
+          project_mang_email: ['', Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)],
           onsite_name: [''],
-          onsite_mobile: [''],
-          onsite_email: [''],
+          onsite_mobile: ['', Validators.pattern('[0-9]{8,12}')],
+          onsite_email: ['', Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)],
           project_type: [''],
           project_status: [''],
-          property_area: [''],
-          no_of_floors: [''],
+          property_area: ['', Validators.pattern('[0-9]*')],
+          no_of_floors: ['', Validators.pattern('[0-9]{2}')],
           building_year: [''],
           last_refurbished: [''],
           env_report: [''],
@@ -118,9 +118,9 @@ ngOnInit() {
           billing_project_number: [''],
           billing_customer_ref: [''],
           billing_address: [''],
-          billing_postal_code: [''],
+          billing_postal_code: ['', Validators.pattern('[0-9]{4,6}')],
           billing_postal_area: [''],
-          credit_period: [''] 
+          credit_period: ['']
         });
       this.loading = true;
       this.loadingData = true;
@@ -135,18 +135,18 @@ ngOnInit() {
             project_name: this.projectInfo.project_name,
             customer: this.projectInfo.customer_id,
             project_address: this.projectInfo.project_address,
-            postal_code: this.projectInfo.postal_code,
+            postal_code: [this.projectInfo.postal_code, [Validators.pattern('[0-9]{4,6}')]],
             postal_area: this.projectInfo.postal_area,
             project_mang_name: this.projectInfo.project_mang_name,
-            project_mang_mobile: this.projectInfo.project_mang_mobile,
-            project_mang_email: this.projectInfo.project_mang_email,
+            project_mang_mobile: [this.projectInfo.project_mang_mobile, [Validators.pattern('[0-9]{8,12}')]],
+            project_mang_email: [this.projectInfo.project_mang_email, [Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
             onsite_name: this.projectInfo.onsite_name,
-            onsite_mobile: this.projectInfo.onsite_mobile,
-            onsite_email: this.projectInfo.onsite_email,
+            onsite_mobile: [this.projectInfo.onsite_mobile, [Validators.pattern('[0-9]{8,12}')]],
+            onsite_email: [this.projectInfo.onsite_email, [Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
             project_type: this.projectInfo.project_type,
             project_status: this.projectInfo.project_status,
-            property_area: this.projectInfo.property_area,
-            no_of_floors: this.projectInfo.no_of_floors,
+            property_area: [this.projectInfo.property_area, [Validators.pattern('[0-9]*')]],
+            no_of_floors: [this.projectInfo.no_of_floors, [Validators.pattern('[0-9]{2}')]],
             building_year: this.projectInfo.building_year,
             last_refurbished: this.projectInfo.last_refurbished,
             env_report: this.projectInfo.env_report,
@@ -162,7 +162,7 @@ ngOnInit() {
             billing_customer_ref: this.projectInfo.billing_customer_ref,
             billing_address: this.projectInfo.billing_address,
             billing_orgno: this.projectInfo.billing_orgno,
-            billing_postal_code: this.projectInfo.billing_postal_code,
+            billing_postal_code: [this.projectInfo.billing_postal_code, [Validators.pattern('[0-9]{4,6}')]],
             billing_postal_area: this.projectInfo.billing_postal_area,
             credit_period: this.projectInfo.credit_period
           });
@@ -207,6 +207,19 @@ addcategory(){
   this.filecattext.push($('#categories option:selected').text());
   $('#categories').val('');
   $("#fileupload").val(null);
+}
+
+delete_add(key){
+  this.filesmulti.forEach((element,index)=>{
+   if(key==index) this.filesmulti.splice(index,1);
+});
+ this.filecat.forEach((element,index)=>{
+   if(key==index) this.filecat.splice(index,1);
+});
+this.filecattext.forEach((element,index)=>{
+ if(key==index) this.filecattext.splice(index,1);
+});
+
 }
 
 deletedoc(id){

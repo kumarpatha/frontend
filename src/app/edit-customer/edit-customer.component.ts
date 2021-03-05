@@ -43,19 +43,6 @@ constructor(
  }
 
 ngOnInit() {
-      this.customerForm = this.formBuilder.group({
-        customerName: ['', Validators.required],
-        orgname: ['', Validators.required],
-        address: ['', Validators.required],
-        postal_code: ['', [Validators.required,  Validators.pattern('[0-9]{6}')]],
-        postal_area: ['', Validators.required],
-        name: ['', Validators.required],
-        mobile: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-        email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-        note: [''],
-        country: ['', Validators.required]
-      });
-
     this.loading = true;
     this.loadingData = true;
     this.editId = this.route.snapshot.paramMap.get('id');
@@ -78,6 +65,19 @@ ngOnInit() {
         if(this.customerInfo.image_path){
           this.editimgUrl = data.image_base_path+'/'+this.customerInfo.image_path;
         }
+    });
+
+    this.customerForm = this.formBuilder.group({
+      customerName: ['', Validators.required],
+      orgname: ['', Validators.required],
+      address: ['', Validators.required],
+      postal_code: ['', [Validators.required,  Validators.pattern('[0-9]{6}')]],
+      postal_area: ['', Validators.required],
+      name: ['', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+      email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
+      note: [''],
+      country: ['', Validators.required]
     });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -114,11 +114,11 @@ onSubmit() {
   }
 
   if(this.customerForm.controls['country'].value == '2') {
-    if(this.customerForm.controls['orgname'].value.length != '9'){
+    if(this.customerForm.controls['orgname'].value.toString().length != '9'){
       alert("Org Number should be 9 digit for norway");
       return;
     }
-    if(this.customerForm.controls['mobile'].value.length != '8'){
+    if(this.customerForm.controls['mobile'].value.toString().length != '8'){
       alert("Mobile should be 8 digit for norway");
       return;
     }

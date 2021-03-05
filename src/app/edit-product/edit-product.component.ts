@@ -85,10 +85,10 @@ ngOnInit() {
         category: [''],
         building_part: [''],
         unit: [''],
-        quantity: [''],
-        length: [''],
-        width: [''],
-        height: [''],
+        quantity: ['', [Validators.max(999999999), Validators.min(0)]],
+        length: ['', [Validators.max(999999999), Validators.min(0)]],
+        width: ['', [Validators.max(999999999), Validators.min(0)]],
+        height: ['', [Validators.max(999999999), Validators.min(0)]],
         production_year: [''],
         location_building: [''],
         brand_name: [''],
@@ -100,9 +100,9 @@ ngOnInit() {
         precondition: [''],
         reuse: [''],
         recommendation: [''],
-        price_new_product: [''],
-        price_used_product: [''],
-        price_sold_product: ['']
+        price_new_product: ['', [Validators.max(999999999), Validators.min(0)]],
+        price_used_product: ['', [Validators.max(999999999), Validators.min(0)]],
+        price_sold_product: ['', [Validators.max(999999999), Validators.min(0)]]
       });
       this.loading = true;
       this.loadingData = true;
@@ -139,7 +139,7 @@ ngOnInit() {
             price_used_product: this.productInfo.price_used_product,
             price_sold_product: this.productInfo.price_sold_product
           });
-          if(this.productInfo.project_image){
+          if(this.productInfo.product_image){
             this.editimgUrl = data.image_base_path+'/'+this.productInfo.product_image;
           }
       });
@@ -181,11 +181,39 @@ addcategory(){
   $("#fileupload").val(null);
 }
 
+delete_add(key){
+  this.filesmulti.forEach((element,index)=>{
+   if(key==index) this.filesmulti.splice(index,1);
+});
+ this.filecat.forEach((element,index)=>{
+   if(key==index) this.filecat.splice(index,1);
+});
+this.filecattext.forEach((element,index)=>{
+ if(key==index) this.filecattext.splice(index,1);
+});
+
+}
+
+
 // convenience getter for easy access to form fields
 get f() { return this.productForm.controls; }
 
 onSubmit() 
 {
+  // this.productForm = this.formBuilder.group({
+  //   product_name: ['', Validators.required],
+  //   project_id: ['', Validators.required],
+  //   product_id: ['', Validators.required],
+  //   description: ['', Validators.required],
+  //   status: ['', Validators.required],
+  //   quantity: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   length: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   width: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   height: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   price_new_product: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   price_used_product: ['', [Validators.max(999999999), Validators.min(0)]],
+  //   price_sold_product: ['', [Validators.max(999999999), Validators.min(0)]]
+  // });
   this.submitted = true;
 
   // stop here if form is invalid
