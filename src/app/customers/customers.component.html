@@ -31,39 +31,46 @@
       <section class="forms pb-5">
           <div class="container-fluid">
               <div class="row">
-               
-                <div class="col-md-12 main" *ngIf="!customerInfo">
+                <div class="col-md-12 main">
+                  <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="text"  name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
+                  </div>
+                </div>
+                <div class="col-md-12 main">
                   <div class="form-group has-search">
                    <span style="float: right;">
-                    <span class="fa fa-list" (click)="viewType('list')"></span>
+                    <a (click)="viewType('list')" href='javascript:void(0);'><span class="fa fa-list"></span></a>
                     &nbsp;
-                    <span class="fa fa-th" (click)="viewType('grid')"></span>
+                    <a (click)="viewType('grid')" href='javascript:void(0);'><span class="fa fa-th"></span></a>
                   </span>
                   </div>
                 </div>
-                <div class="col-md-12" *ngIf="!customerInfo && listView">
-                        <table class="table" datatable [dtOptions]="dtOptions" width="100%">
-                          <thead>
-                              <tr>
-                              <th>#</th>
-                              <th>Name</th>
-                              <th>No of Project</th>
-                              <th>No. Of Product</th>
-                              <!-- <th>Country</th>--->
-                              <th>Postal Area</th>
-                              <!-- <th>Action</th> -->
-                              </tr>
-                          </thead>
-                       
+                <div class="col-md-12" *ngIf="listView">
+                    <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>No of Project</th>
+                            <th>No. Of Product</th>
+                            <!-- <th>Country</th> -->
+                            <th>Postal Area</th>
+                            <!-- <th>Action</th> -->
+                            </tr>
+                        </thead>
                         </table>
                 </div>
-                <div class="col-md-12 mb-4" *ngIf="!customerInfo && gridView">
+                <div class="col-md-12 mb-4" *ngIf="gridView">
                   <div class="">
                     <div class="">
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let customer of customers; index as i">
                           <div class="card p-2">
                             <a routerLink="/view-customer/{{customer.id}}"><img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
+                            <a href="javascript:void();" routerLink="/view-customer/{{customer.id}}" *ngIf="!customer.image_path"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
                             <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}" style="word-break: break-all;">{{customer.customer_name_raw}}</a></h5>
                             </div>

@@ -208,6 +208,13 @@ export class UserService {
     getpdfData(){
         return this.http.get<any>(`${environment.apiUrl}/pdf`);
     }
+
+    getcustomersgrid(){
+        return this.http.post<any>(`${environment.apiUrl}/customers`, {})
+        .pipe(map(customers => {
+            return customers;
+        }));
+    }
     
 
 }

@@ -76,7 +76,7 @@
                               <label for="customer" class="label-material">Customer Name* :</label>
                             </div>
                             <div class="col-md-8">
-                              <select class="form-control" readonly name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                              <select class="form-control"  name="customer" formControlName="customer" disabled [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
                                   <option value="">Select</option>
                                   <option *ngFor="let customer of customers; index as i" value="{{customer.id}}" [selected]="true">{{customer.customer_name}}</option>   
                               </select>
@@ -164,7 +164,7 @@
                               <label for="project_type" class="label-material">Project Type :</label>
                             </div>
                             <div class="col-md-8">
-                              <select class="input-material" readonly name="project_type" formControlName="project_type">
+                              <select class="input-material" disabled name="project_type" formControlName="project_type">
                                 <option value="">Select</option>
                                 <option value="Demolition">Demolition</option> 
                                 <option value="Refurbish">Refurbish</option>
@@ -177,7 +177,7 @@
                               <label for="project_type" class="label-material">Project Status :</label>
                             </div>
                             <div class="col-md-8">
-                              <select class="input-material" readonly name="project_status" formControlName="project_status">
+                              <select class="input-material" disabled name="project_status" formControlName="project_status">
                                 <option value="">Select</option>
                                 <option value="Idea/Planning">Idea/Planning</option>  
                                 <option value="Concept Development/Sketch Project">Concept Development/Sketch Project</option>
@@ -384,22 +384,22 @@
                             </div>
                             <div class="col-md-8 row">
                               <div class="col-md-6">
-                                <select class="input-material" readonly name="credit_period_select"  (change)="credit_period($event.target.value)">
+                                <select class="input-material" disabled name="credit_period_select"  (change)="credit_period($event.target.value)">
                                   <option value="">Select</option>
                                   <option value="14" [selected]="projectInfo?.credit_period=='14'">14 Days</option> 
                                   <option value="30" [selected]="projectInfo?.credit_period=='30'">30 Days</option>
                                   <option value="45" [selected]="projectInfo?.credit_period=='45'">45 Days</option>
-                                  <option value="1" [selected]="projectInfo?.credit_period=='1'">Others</option>
+                                  <option value="1" [selected]="projectInfo?.credit_period > '45'">Others</option>
                                 </select>
                               </div>
-                              <div class="col-md-6">
-                                <input type="text" readonly formControlName="credit_period" id="credit_period" style="display: none;" name="credit_period" readonly >
+                              <div class="col-md-6" *ngIf="projectInfo?.credit_period > '45'">
+                                <input type="text"  formControlName="credit_period" id="credit_period" name="credit_period" readonly >
                               </div>
                             </div>
                           </div>
-                          <div class="form-group row">                            
-                            <div class="col-md-6">
-                              <label for="billing_postal_area" class="label-material margin-left">File Name - Category</label>
+                          <div class="form-group row" *ngIf="projectInfo?.projectdocs.length > 0">
+                            <div class="col-md-6 p-3">
+                              <label for="billing_postal_area" class="label-material margin-left">File Name with Category</label>
                             </div>
                           </div>
                           <div class="form-group row"  *ngFor="let doc of projectInfo?.projectdocs; index as i">

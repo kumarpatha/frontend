@@ -26,8 +26,8 @@ export class CustomersComponent implements OnDestroy, OnInit {
   loading = false;
   loadingData = false;
   customers: any;
-  listView: boolean = true;
-  gridView: boolean = false;
+  listView: boolean = false;
+  gridView: boolean = true;
   image_base_path:any = '';
   currentUser: User;
   customerInfo:any = '';
@@ -86,12 +86,14 @@ export class CustomersComponent implements OnDestroy, OnInit {
           },
           columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'customer_name', name : 'customer_name' }, { data: 'projects_count', name : 'projects_count', searchable:false}, { name: 'products_count', data: 'products_count',  searchable:false }, { data: 'postal_area' }]
         };
-        // this.userService.getcustomers().pipe(first()).subscribe(data => {
-        //     this.loading = false;
-        //     this.loadingData = false;
-        //     this.customers = data.customers;
-        //     this.image_base_path = data.image_base_path;
-        // });
+        this.userService.getcustomersgrid().pipe(first()).subscribe(resp => {
+            this.loading = false;
+            this.loadingData = false;
+            this.customers = resp.data;
+            if(resp.data.length > 0) {
+              this.image_base_path = resp.data[0].image_base_path;
+            }
+        });
   }
 
   viewType(type){

@@ -416,11 +416,11 @@
                                 <option value="14" [selected]="projectInfo?.credit_period=='14'">14 Days</option> 
                                 <option value="30" [selected]="projectInfo?.credit_period=='30'">30 Days</option>
                                 <option value="45" [selected]="projectInfo?.credit_period=='45'">45 Days</option>
-                                <option value="1" [selected]="projectInfo?.credit_period=='1'">Others</option>
+                                <option value="1" [selected]="projectInfo?.credit_period > '45'">Others</option>
                               </select>
                             </div>
-                            <div class="col-md-4">
-                              <input type="text" formControlName="credit_period" id="credit_period" maxlength="20" style="display: none;" name="credit_period" readonly >
+                            <div class="col-md-4" *ngIf="projectInfo?.credit_period > '45'">
+                              <input type="text" formControlName="credit_period" id="credit_period" maxlength="20" name="credit_period"  >
                             </div>
                           </div>
                         </div>

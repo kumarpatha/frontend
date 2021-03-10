@@ -33,9 +33,9 @@
                 <div class="col-md-12 main" *ngIf="!projectInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
-                    <span class="fa fa-list" (click)="viewType('list')"></span>
+                    <a (click)="viewType('list')" href='javascript:void(0);'><span class="fa fa-list"></span></a>
                     &nbsp;
-                    <span class="fa fa-th" (click)="viewType('grid')"></span>
+                    <a (click)="viewType('grid')" href='javascript:void(0);'><span class="fa fa-th"></span></a>
                   </span>
                   </div>
                 </div>

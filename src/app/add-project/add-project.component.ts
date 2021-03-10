@@ -143,6 +143,11 @@ preview(files) {
 }
 
 addcategory(){
+  let category_name = $('#categories option:selected').val();
+  if(category_name == ''){
+    Swal.fire('Please select Category', '', 'error');
+    return false;
+  }
   var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)

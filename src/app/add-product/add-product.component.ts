@@ -129,6 +129,11 @@ reader.onload = (_event) => {
 }
 
 addcategory(){
+  let category_name = $('#categories option:selected').val();
+  if(category_name == ''){
+    Swal.fire('Please select Category', '', 'error');
+    return false;
+  }
   var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)
@@ -142,6 +147,7 @@ addcategory(){
   $('#categories').val('');
   $("#fileupload").val(null);
 }
+
 delete_add(key){
    this.filesmulti.forEach((element,index)=>{
     if(key==index) this.filesmulti.splice(index,1);

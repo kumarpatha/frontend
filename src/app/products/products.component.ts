@@ -43,7 +43,13 @@ export class ProductsComponent implements OnDestroy , OnInit {
   finalProject = [];
   customer_filter =[];
   project_filter =[];
+  status_filter =[];
+  category_filter =[];
+  product_category:any;
+  product_category_count:any;
+  status_types:any;
   term: string;
+  
 
   @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
@@ -60,6 +66,9 @@ export class ProductsComponent implements OnDestroy , OnInit {
             this.customers = data.customers;
             this.project_count = data.project_count;
             this.projects = data.projects;
+            this.status_types = data.status_type
+            this.product_category_count = data.product_category_count;
+            this.product_category = data.product_category;
             //this.image_base_path = data.image_base_path;
         });
         this.projectobj = this.route.snapshot.queryParams['param_id'];
@@ -94,6 +103,12 @@ export class ProductsComponent implements OnDestroy , OnInit {
             if(this.customer_filter.length > 0){
               dataTablesParameters.customer_filter = this.customer_filter;
             }
+            if(this.category_filter.length > 0){
+              dataTablesParameters.category_filter = this.category_filter;
+            }
+            if(this.status_filter.length > 0){
+              dataTablesParameters.status_filter = this.status_filter;
+            }
             that.http
               .post<DataTablesResponse>(
                 `${environment.apiUrl}/products`,
@@ -112,7 +127,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
                 });
               });
           },
-          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category.category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
+          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
         };
        
   }
@@ -233,6 +248,59 @@ export class ProductsComponent implements OnDestroy , OnInit {
     }
   }
 
+  custmerSelect(event){
+    
+    if(event.target.checked){
+        for(let i =0;i < this.customers.length;i++){
+          this.customers[i].isChecked = 1;
+          this.customer_filter.push(this.customers[i].id);
+          console.log(this.customers[i].id);
+          console.log(this.projects);
+          if(this.projects[this.customers[i].id]){
+            this.projects[this.customers[i].id].forEach(element => {
+              this.filterProject.push(element);
+            });
+        }
+        }
+    } else {
+        console.log('remove');
+        for(let i =0;i < this.customers.length;i++){
+          this.customers[i].isChecked = 0;
+          this.filterProject = [];
+          this.customer_filter = [];
+        }
+       
+    }
+  }
+
+  projectSelect(event){
+    if(event.target.checked){
+      for(let i =0;i < this.filterProject.length;i++){
+        this.filterProject[i].isChecked = 1;
+        this.project_filter.push(this.filterProject[i].id);
+      }
+      
+    } else {
+      for(let i =0;i < this.filterProject.length;i++){
+        this.filterProject[i].isChecked = 0;
+        this.project_filter = [];
+      }
+    }
+  }
+  categorySelect(event){
+    if(event.target.checked){
+      for(let i =0;i < this.product_category.length;i++){
+        this.product_category[i].isChecked = 1;
+        this.category_filter.push(this.product_category.id);
+      }
+      
+    } else {
+      for(let i =0; i < this.product_category.length;i++){
+        this.product_category[i].isChecked = 0;
+      }
+      this.category_filter = [];
+    }
+  }
   addProject(event){
       if(event.target.checked){
         this.project_filter.push(event.target.value);
@@ -242,7 +310,26 @@ export class ProductsComponent implements OnDestroy , OnInit {
           });
       }
   }
+  
 
+  addStatus(event) {
+    if(event.target.checked){
+      this.status_filter.push(event.target.value);
+    } else {
+        this.status_filter = this.status_filter.filter(function(s) {
+          return s !== event.target.value;
+        });
+    }
+  }
+  addCategory(event) {
+    if(event.target.checked){
+      this.category_filter.push(event.target.value);
+    } else {
+        this.category_filter = this.category_filter.filter(function(s) {
+          return s !== event.target.value;
+        });
+    }
+  }
   applyFilter(){
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       //dtInstance.search(value);
@@ -253,12 +340,21 @@ export class ProductsComponent implements OnDestroy , OnInit {
   resetFilter(){
     this.customer_filter = [];
     this.project_filter = [];
+    this.status_filter = [];
+    this.category_filter = [];
     for(let i =0;i < this.customers.length;i++){
       this.customers[i].isChecked = 0;
     }
     for(let i =0;i < this.filterProject.length;i++){
       this.filterProject[i].isChecked = 0;
     }
+    for(let i =0;i < this.product_category.length;i++){
+      this.product_category[i].isChecked = 0;
+    }
+    for(let i =0;i < this.status_types.length;i++){
+      this.status_types[i].isChecked = 0;
+    }
+    
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       //dtInstance.search(value);
       dtInstance.draw();

@@ -195,6 +195,11 @@ reader.onload = (_event) => {
 
 }
 addcategory(){
+  let category_name = $('#categories option:selected').val();
+  if(category_name == ''){
+    Swal.fire('Please select Category', '', 'error');
+    return false;
+  }
   var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)
@@ -342,6 +347,18 @@ onSubmit() {
               this.loading = false;
               this.loadingData = false;
           });
+}
+
+credit_period(obj){
+  if(obj==1){
+    $('#credit_period').val('');
+    $('#credit_period').show();
+    $('#credit_period').removeAttr('readonly');
+  } else{
+    $('#credit_period').attr('readonly', 'true');
+    $('#credit_period').hide();
+    $('#credit_period').val(obj);
+  }
 }
 
 }

@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
+import Swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -167,6 +168,11 @@ reader.onload = (_event) => {
 
 }
 addcategory(){
+  let category_name = $('#categories option:selected').val();
+  if(category_name == ''){
+    Swal.fire('Please select Category', '', 'error');
+    return false;
+  }
   var files = $("#fileupload")[0].files;
   console.log(files);
   if (files.length === 0)
