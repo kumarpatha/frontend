@@ -12,25 +12,26 @@
   <div class="page-content d-flex align-items-stretch">
     <!-- Side Navbar -->
     <app-left-nav></app-left-nav>
-      <div class="content-inner">
-      <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-              <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
-                  <li class="breadcrumb-item"><a routerLink="/customers">Customers</a></li>
-                  <li class="breadcrumb-item active">Customers List</li>
-              </ul>
+    <div class="content-inner">
+      <!---Search -->
+      <section class="forms py-5 bg-white">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 main">
+              <p class="pagecrumb-title">/Customers</p>
+              <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text"  name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
       <!-- Forms Section-->
-      <section class="forms">
+      <section class="forms pb-5">
           <div class="container-fluid">
               <div class="row">
-                <div class="col-md-12 main">
-                  <div class="form-group has-search">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text"  name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
-                  </div>
-                </div>
+               
                 <div class="col-md-12 main" *ngIf="!customerInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
@@ -41,24 +42,20 @@
                   </div>
                 </div>
                 <div class="col-md-12" *ngIf="!customerInfo && listView">
-                    <div class="card">
-                    <div class="card-body">
-                        <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
-                        <thead>
-                            <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>No of Project</th>
-                            <th>No. Of Product</th>
-                            <!-- <th>Country</th> -->
-                            <th>Postal Area</th>
-                            <!-- <th>Action</th> -->
-                            </tr>
-                        </thead>
+                        <table class="table" datatable [dtOptions]="dtOptions" width="100%">
+                          <thead>
+                              <tr>
+                              <th>#</th>
+                              <th>Name</th>
+                              <th>No of Project</th>
+                              <th>No. Of Product</th>
+                              <!-- <th>Country</th>--->
+                              <th>Postal Area</th>
+                              <!-- <th>Action</th> -->
+                              </tr>
+                          </thead>
                        
                         </table>
-                    </div>
-                    </div>
                 </div>
                 <div class="col-md-12 mb-4" *ngIf="!customerInfo && gridView">
                   <div class="">

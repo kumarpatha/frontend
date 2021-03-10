@@ -16,8 +16,7 @@
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder container-fluid">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-          <li class="breadcrumb-item"><a routerLink="/products">Product list</a></li>
+          <li class="breadcrumb-item"><a routerLink="/products">/Product list</a></li>
           <li class="breadcrumb-item active">View Product</li>
         </ul>
       </div>
@@ -25,8 +24,6 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
                   <form>
                     <div class="row">
                       <div class="col-sm-5" style="margin:auto;">
@@ -90,7 +87,7 @@
                             <label for="category" class="label-material">CATEGORY :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="category" id="category" disabled [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
+                            <select class="input-material" name="category" id="category" disabled [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
                               <option value="">Select</option>
                               <option *ngFor="let category of categories; index as i" value="{{category.id}}" [selected]="category?.id == productInfo?.category">{{category.category_name}}</option>
                             </select>
@@ -120,7 +117,7 @@
                             <div class="row">
                               <div class="col-md-3">
                                 <div class="col-md-3 p-3">
-                                  <select class="form-control" name="unit" formControlName="unit" disabled  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                                  <select class="input-material" name="unit" formControlName="unit" readonly  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
                                     <option value="Inch"   [selected]="productInfo?.unit == 'Inch'">Inch</option> 
                                     <option value="Meters" [selected]="productInfo?.unit == 'Meters'">Meters</option>
                                     <option value="CM"  [selected]="productInfo?.unit == 'CM'">CM</option>
@@ -266,8 +263,6 @@
                       </div>
                     </div>
                   </form>
-                </div>
-              </div>
               <hr>
             </div>
           </div>

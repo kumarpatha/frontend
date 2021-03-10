@@ -69,8 +69,8 @@ preview(files) {
     this.message = "Only images are supported.";
     return;
   }
-  if (files[0].size/1024/1024 > 1) {
-    this.message = "file is bigger than 1MB";
+  if (files[0].size/10240/10240 > 10) {
+    this.message = "file is bigger than 10MB";
     return;
    }
 
