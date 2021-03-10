@@ -16,17 +16,15 @@
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder container-fluid">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
           <li class="breadcrumb-item"><a routerLink="/projects">Project list</a></li>
           <li class="breadcrumb-item active">Edit Project</li>
         </ul>
       </div>
-      <section class="forms">
+      <section class="forms pb-5">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
+              
                   <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                       <div class="col-sm-5" style="margin:auto;">
@@ -79,7 +77,7 @@
                             <label for="customer" class="label-material">Customer Name* :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
+                            <select class="input-material" name="customer" formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
                                 <option value="">Select</option>
                                 <option *ngFor="let customer of customers; index as i" value="{{customer.id}}" [selected]="true">{{customer.customer_name}}</option>   
                             </select>
@@ -182,7 +180,7 @@
                             <label for="project_type" class="label-material">Project Type :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="project_type" formControlName="project_type">
+                            <select class="input-material" name="project_type" formControlName="project_type">
                               <option value="">Select</option>
                               <option value="Demolition">Demolition</option> 
                               <option value="Refurbish">Refurbish</option>
@@ -195,7 +193,7 @@
                             <label for="project_type" class="label-material">Project Status :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="project_status" formControlName="project_status">
+                            <select class="input-material" name="project_status" formControlName="project_status">
                               <option value="">Select</option>
                               <option value="Idea/Planning">Idea/Planning</option>  
                               <option value="Concept Development/Sketch Project">Concept Development/Sketch Project</option>
@@ -413,7 +411,7 @@
                           </div>
                           <div class="col-md-8 row">
                             <div class="col-md-4">
-                              <select class="form-control" name="credit_period_select"  (change)="credit_period($event.target.value)">
+                              <select class="input-material" name="credit_period_select"  (change)="credit_period($event.target.value)">
                                 <option value="">Select</option>
                                 <option value="14" [selected]="projectInfo?.credit_period=='14'">14 Days</option> 
                                 <option value="30" [selected]="projectInfo?.credit_period=='30'">30 Days</option>
@@ -445,8 +443,6 @@
                       </div>
                     </div>
                   </form>
-                </div>
-              </div>
               <hr>
             </div>
           </div>

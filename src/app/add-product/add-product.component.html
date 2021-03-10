@@ -16,17 +16,14 @@
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder container-fluid">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-          <li class="breadcrumb-item"><a routerLink="/products">Product list</a></li>
+          <li class="breadcrumb-item"><a routerLink="/products">/Product list</a></li>
           <li class="breadcrumb-item active">Add Product</li>
         </ul>
       </div>
-      <section class="forms">
+      <section class="forms pb-5">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
                   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                       <div class="col-sm-5" style="margin:auto;">
@@ -80,7 +77,7 @@
                             <label for="project_id" class="label-material">Project Name* :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="project_id" formControlName="project_id" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.project_id.errors }">
+                            <select class="input-material" name="project_id" formControlName="project_id" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.project_id.errors }">
                               <option value="">Select</option>
                               <option *ngFor="let project of projects; index as i" value="{{project.id}}">{{project.project_name}}</option>   
                             </select>
@@ -105,7 +102,7 @@
                             <label for="category" class="label-material">CATEGORY :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" formControlName="category" name="category" id="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
+                            <select class="input-material" formControlName="category" name="category" id="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" class="input-material">
                               <option value="">Select</option>
                               <option *ngFor="let category of categories; index as i" value="{{category.id}}">{{category.category_name}}</option>
                             </select>
@@ -163,7 +160,7 @@
                           <div class="col-md-8">
                             <div class="row">
                               <div class="col-md-3 p-3">
-                                <select class="form-control" name="unit" formControlName="unit"  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                                <select class="input-material" name="unit" formControlName="unit"  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
                                   <option value="">Select Unit</option>
                                   <option value="Inch">Inch</option> 
                                   <option value="Meters">Meters</option>
@@ -344,7 +341,7 @@
                             <label for="status" class="label-material">STATUS* :</label>
                           </div>
                           <div class="col-md-8">
-                            <select class="form-control" name="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" class="input-material">
+                            <select class="input-material" name="status" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" class="input-material">
                               <option value="">Select</option>
                               <option value="1">AVAILABLE ONSITE</option> 
                               <option value="2">AVAILABLE FROM STORAGE</option>
@@ -401,9 +398,6 @@
                       </div>
                     </div>
                   </form>
-                </div>
-              </div>
-              <hr>
             </div>
           </div>
         </div>

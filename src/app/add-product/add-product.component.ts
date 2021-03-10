@@ -81,7 +81,7 @@ ngOnInit() {
         project_id: (this.route.snapshot.queryParams['param_id']) ? this.route.snapshot.queryParams['param_id'] : ['', Validators.required],
         description: ['', Validators.required],
         status: ['', Validators.required],
-        category: [''],
+        category: ['', Validators.required],
         building_part: [''],
         unit: [''],
         quantity: ['', [Validators.max(999999999), Validators.min(0)]],

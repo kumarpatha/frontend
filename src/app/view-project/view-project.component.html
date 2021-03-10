@@ -16,8 +16,7 @@
         <!-- Breadcrumb-->
         <div class="breadcrumb-holder container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/projects">Project list</a></li>
+            <li class="breadcrumb-item"><a routerLink="/projects">/Project list</a></li>
             <li class="breadcrumb-item active">View Project</li>
           </ul>
         </div>
@@ -25,8 +24,6 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
-                <div class="card">
-                  <div class="card-body">
                     <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
                       <div class="row">
                         <div class="col-sm-5" style="margin:auto;">
@@ -167,7 +164,7 @@
                               <label for="project_type" class="label-material">Project Type :</label>
                             </div>
                             <div class="col-md-8">
-                              <select class="form-control" readonly name="project_type" formControlName="project_type">
+                              <select class="input-material" readonly name="project_type" formControlName="project_type">
                                 <option value="">Select</option>
                                 <option value="Demolition">Demolition</option> 
                                 <option value="Refurbish">Refurbish</option>
@@ -180,7 +177,7 @@
                               <label for="project_type" class="label-material">Project Status :</label>
                             </div>
                             <div class="col-md-8">
-                              <select class="form-control" readonly name="project_status" formControlName="project_status">
+                              <select class="input-material" readonly name="project_status" formControlName="project_status">
                                 <option value="">Select</option>
                                 <option value="Idea/Planning">Idea/Planning</option>  
                                 <option value="Concept Development/Sketch Project">Concept Development/Sketch Project</option>
@@ -386,8 +383,8 @@
                               <label for="credit_period" class="label-material margin-left">Credit Period:</label>
                             </div>
                             <div class="col-md-8 row">
-                              <div class="col-md-4">
-                                <select class="form-control" readonly name="credit_period_select"  (change)="credit_period($event.target.value)">
+                              <div class="col-md-6">
+                                <select class="input-material" readonly name="credit_period_select"  (change)="credit_period($event.target.value)">
                                   <option value="">Select</option>
                                   <option value="14" [selected]="projectInfo?.credit_period=='14'">14 Days</option> 
                                   <option value="30" [selected]="projectInfo?.credit_period=='30'">30 Days</option>
@@ -395,26 +392,26 @@
                                   <option value="1" [selected]="projectInfo?.credit_period=='1'">Others</option>
                                 </select>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                 <input type="text" readonly formControlName="credit_period" id="credit_period" style="display: none;" name="credit_period" readonly >
                               </div>
                             </div>
                           </div>
-                          <div class="form-group row">
-                            <div class="col-md-6 p-3">
+                          <div class="form-group row">                            
+                            <div class="col-md-6">
                               <label for="billing_postal_area" class="label-material margin-left">File Name - Category</label>
                             </div>
                           </div>
                           <div class="form-group row"  *ngFor="let doc of projectInfo?.projectdocs; index as i">
                             <div class="col-md-6 p-3" style="font-size: 12px;">
-                              <label for="billing_postal_area" class="label-material margin-left"><a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.file_name}}</a>&nbsp;&nbsp;<a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.project_category?.category_name}}</a></label>&nbsp;&nbsp;&nbsp;
+                              <label for="billing_postal_area" class="label-material margin-left"><a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.file_name}}</a>&nbsp;&nbsp;
+                                <a href="{{doc_path+'/documents/'+doc?.file_name}}" target="_blank">{{doc?.project_category?.category_name}}</a></label>&nbsp;&nbsp;&nbsp;
                             </div>
                           </div>
                         </div>
                       </div>
                     </form>
-                  </div>
-                </div>
+                  
                 <hr>
               </div>
             </div>

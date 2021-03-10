@@ -13,24 +13,24 @@
     <!-- Side Navbar -->
     <app-left-nav></app-left-nav>
       <div class="content-inner">
-      <!-- Breadcrumb-->
-          <div class="breadcrumb-holder container-fluid">
-              <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
-                  <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
-                  <li class="breadcrumb-item active">Product List</li>
-              </ul>
-          </div>
+      
       <!-- Forms Section-->
-      <section class="forms py-3">
+      <section class="forms bg-white py-5">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 main">
+              <p class="breadcrumb-heading">/Poduct List</p>
+              <div class="form-group has-search" id="searchDiv">
+                <span class="fa fa-search form-control-feedback"></span>
+                  <input type="text" name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>      
+      <section class="forms pb-5">
           <div class="container-fluid">
               <div class="row">
-                <div class="col-md-12 main">
-                  <div class="form-group has-search" id="searchDiv">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
-                  </div>
-                </div>
                 <div class="col-md-12 main" *ngIf="!productInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
@@ -107,9 +107,8 @@
                     </div>
                   </div>
                 <div class="col-md-12" *ngIf="!productInfo && listView">
-                    <div class="card">
-                    <div class="card-body">
-                        <table class="table table-hover" datatable [dtOptions]="dtOptions" width="100%">
+
+                        <table class="table" datatable [dtOptions]="dtOptions" width="100%">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -125,8 +124,7 @@
                           </tr>
                         </thead>
                         </table>
-                    </div>
-                    </div>
+                    
                 </div>
                 <div class="col-md-12 mb-4" *ngIf="!productInfo && gridView">
                   <div class="">

@@ -84,7 +84,7 @@ export class CustomersComponent implements OnDestroy, OnInit {
                 });
               });
           },
-          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'customer_name', name : 'customer_name' }, { data: 'projects_count', name : 'projects_count', searchable:false}, { name: 'products_count', data: 'products_count',  searchable:false }, { data: 'postal_code' }]
+          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'customer_name', name : 'customer_name' }, { data: 'projects_count', name : 'projects_count', searchable:false}, { name: 'products_count', data: 'products_count',  searchable:false }, { data: 'postal_area' }]
         };
         // this.userService.getcustomers().pipe(first()).subscribe(data => {
         //     this.loading = false;

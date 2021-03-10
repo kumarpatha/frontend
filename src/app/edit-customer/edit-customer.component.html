@@ -16,17 +16,14 @@
       <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
               <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
                   <li class="breadcrumb-item"><a routerLink="/customers">Customer</a></li>
                   <li class="breadcrumb-item active">Edit Customer</li>
               </ul>
           </div>
-          <section class="forms"> 
+          <section class="forms pb-5"> 
               <div class="container-fluid">
                   <div class="row">
                       <div class="col-md-12">
-                        <div class="card">
-                          <div class="card-body">
                             <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
                               <div class="row">
                                 <div class="col-sm-5" style="margin:auto;">
@@ -105,7 +102,7 @@
                                       <label for="postal_area" class="label-material">Country :</label>
                                     </div>
                                     <div class="col-md-8">
-                                      <select class="form-control" name="country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                                      <select class="input-material" name="country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
                                         <option value="">Select</option>
                                         <option value="1" [selected]="country == '1'">India</option>
                                         <option value="2" [selected]="country == '2'">Norway</option>
@@ -181,9 +178,7 @@
                                     </div>
                                 </div>
                               </div>
-                            </form>
-                          </div>
-                        </div>
+                            </form>                          
                       </div> 
                   </div>   
               </div>    
