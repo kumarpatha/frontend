@@ -34,13 +34,13 @@
                 <div class="col-md-12 main" *ngIf="!productInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
-                    <a (click)='pdf()' href='javascript:void(0);'><span class="fa fa-file-pdf-o"></span></a>
+                    <a (click)='pdf()' href='javascript:void(0);'><span class="material-icons">picture_as_pdf</span></a>
                     &nbsp;
-                    <a (click)="viewType('list')" href='javascript:void(0);'><span class="fa fa-list"></span></a>
+                    <a (click)="viewType('list')" href='javascript:void(0);'><span class="material-icons">list</span></a>
                     &nbsp;
-                    <span id="myButton" class="h4"><a (click)='filter()' href='javascript:void(0);'> F </a></span>
+                    <a (click)='filter()' href='javascript:void(0);'><span><strong>F</strong></span></a>
                     &nbsp;
-                    <a (click)="viewType('grid')" href='javascript:void(0);'><span class="fa fa-th"></span></a>
+                    <a (click)="viewType('grid')" href='javascript:void(0);'><span class="material-icons">apps</span></a>
                   </span>
                   </div>
                 </div>
@@ -56,7 +56,8 @@
                       </div>
                       <div id="collapse0" class="panel-collapse collapse" >
                         <ul class="list-group">
-                          <li class="list-group-item px-2"><input type="checkbox" name="customerselectall" value="1" (click)="custmerSelect($event)"> Select All</li>
+                         <!--- <li class="list-group-item px-2">
+                            <input type="checkbox" name="customerselectall" value="1" (click)="custmerSelect($event)"> Select All</li> --->
                           <li class="list-group-item"  *ngFor="let customer of customers; index as i">
                             <div class="checkbox">
                               <label>
@@ -79,7 +80,7 @@
                           <li class="list-group-item">
                             <input type="text" placeholder="Search" [(ngModel)]="term" />
                           </li>
-                          <li class="list-group-item px-2"><input type="checkbox" name="projectselectall" value="1" (click)="projectSelect($event)"> Select All</li>
+                        <!--  <li class="list-group-item px-2"><input type="checkbox" name="projectselectall" value="1" (click)="projectSelect($event)"> Select All</li> -->
                           
                           <li class="list-group-item" *ngFor="let eachproject of filterProject | filter:term">
                             <div class="checkbox">
@@ -102,7 +103,7 @@
                       </div>
                       <div id="collapse02" class="panel-collapse collapse" >
                         <ul class="list-group ">
-                          <li class="list-group-item px-2"><input type="checkbox" name="categoryselectall" value="1"  (click)="categorySelect($event)"> Select All</li>                         
+                   <!--    <li class="list-group-item px-2"><input type="checkbox" name="categoryselectall" value="1"  (click)="categorySelect($event)"> Select All</li>   -->                      
                           <li class="list-group-item" *ngFor="let eachcategory of product_category; index as i">
                             <div class="checkbox">
                               <label>
