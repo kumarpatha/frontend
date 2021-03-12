@@ -33,6 +33,13 @@
               <div class="row">
                 <div class="col-md-12 main" *ngIf="!productInfo">
                   <div class="form-group has-search">
+                   <span style="float: right;" *ngIf="totalrecord">
+                     Total {{filter_record}} of {{totalrecord}}
+                  </span>
+                  </div>
+                </div>
+                <div class="col-md-12 main" *ngIf="!productInfo">
+                  <div class="form-group has-search">
                    <span style="float: right;">
                     <a (click)='pdf()' href='javascript:void(0);'><span class="material-icons">picture_as_pdf</span></a>
                     &nbsp;

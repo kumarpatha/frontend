@@ -49,6 +49,9 @@ export class ProductsComponent implements OnDestroy , OnInit {
   product_category_count:any;
   status_types:any;
   term: string;
+  filter_record;
+  totalrecord;
+
   
 
   @ViewChild(DataTableDirective, {static: false})
@@ -115,9 +118,12 @@ export class ProductsComponent implements OnDestroy , OnInit {
                  dataTablesParameters, {}
               ).subscribe(resp => {
                 that.products = resp.data;
+                
                 this.loading = false;
                 this.loadingData = false;
                 if(resp.data.length > 0) {
+                  this.totalrecord = resp.data[0].total_count;
+                  this.filter_record = resp.recordsFiltered;
                   this.image_base_path = resp.data[0].image_base_path;
                 }
                 callback({
