@@ -29,6 +29,8 @@ export class AddCustomerComponent implements OnInit {
     currentUser: User;
     mobileVal:any ='';
     orgVal:any = '';
+    register = true; 
+    registeraddnew = false; 
  
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +57,7 @@ export class AddCustomerComponent implements OnInit {
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.onSameUrlNavigation ='reload'
 }
 
 preview(files) {
@@ -135,16 +138,31 @@ onSubmit() {
                 this.loadingData = false;
                 if(data.status == '1') {
                     this.info = data.message;
+                    if(this.register) {
+                      this.router.navigate(['/customers']);
+                    } else if(this.registeraddnew) {
+                      this.router.navigate(['/add-project'], { queryParams: { param_id: data.id }});
+                    }
                 } else {
                     this.error = data.message;
                 }
-                this.router.navigate(['/customers']);
+                
             },
             error => {
                 this.error = error;
                 this.loading = false;
                 this.loadingData = false;
             });
+}
+
+submitfun(){
+  this.register = true;
+  this.registeraddnew = false; 
+}
+
+submitaddfun(){
+  this.register = false;
+  this.registeraddnew = true; 
 }
 
 }

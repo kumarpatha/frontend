@@ -84,6 +84,7 @@ ngOnInit() {
         category: ['', Validators.required],
         building_part: [''],
         unit: [''],
+        unitqnt: [''],
         quantity: ['', [Validators.max(999999999), Validators.min(0)]],
         length: ['', [Validators.max(999999999), Validators.min(0)]],
         width: ['', [Validators.max(999999999), Validators.min(0)]],
@@ -206,6 +207,7 @@ onSubmit()
   formData.append("category", this.productForm.controls['category'].value)
   formData.append("building_part", this.productForm.controls['building_part'].value)
   formData.append("unit", this.productForm.controls['unit'].value)
+  formData.append("unitqnt", this.productForm.controls['unitqnt'].value)
   formData.append("quantity", this.productForm.controls['quantity'].value)
   formData.append("height", this.productForm.controls['height'].value)
   formData.append("width", this.productForm.controls['width'].value)
@@ -235,7 +237,7 @@ onSubmit()
               this.loading = false;
               this.loadingData = false;
               if(data.status == '1') {
-                 Swal.fire(data.project_id, 'Project Added Sucessfully', 'success');
+                 Swal.fire(data.project_id, 'Product Added Sucessfully', 'success');
                   this.info = data.message;
               } else {
                   this.error = data.message;

@@ -105,8 +105,18 @@
                           <div class="col-md-4 p-3">
                             <label for="quantity" class="label-material">QUANTITY :</label>
                           </div>
-                          <div class="col-md-8">
-                            <input type="text" readonly value="{{productInfo?.quantity}}" class="input-material">
+                          <div class="col-md-8 row ">
+                            <div class="col-md-3">
+                             <div class="p-3">
+                                <select class="input-material" name="unitqnt" [ngClass]="{ 'is-invalid': submitted && f.unitqnt.errors }" class="input-material">
+                                  <option value="{{productInfo?.unitqnt}}">{{productInfo?.unitqnt}}</option>
+                                </select> 
+                            </div></div>
+                            <div class="col-md-3">
+                              <div class="p-3">
+                                <input type="text" readonly value="{{productInfo?.quantity}}" class="input-material">
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -116,8 +126,8 @@
                           <div class="col-md-8">
                             <div class="row">
                               <div class="col-md-3">
-                                <div class="col-md-3 p-3">
-                                  <select class="input-material" name="unit" formControlName="unit" readonly  [ngClass]="{ 'is-invalid': submitted && f.unit.errors }" class="input-material">
+                                <div class="p-3">
+                                  <select class="form-control" name="unit"  readonly>
                                     <option value="Inch"   [selected]="productInfo?.unit == 'Inch'">Inch</option> 
                                     <option value="Meters" [selected]="productInfo?.unit == 'Meters'">Meters</option>
                                     <option value="CM"  [selected]="productInfo?.unit == 'CM'">CM</option>

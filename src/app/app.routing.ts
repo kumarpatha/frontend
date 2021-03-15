@@ -26,6 +26,7 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProjectCategoryComponent } from './project-category/project-category.component';
 import { ViewProjectComponent } from './view-project/view-project.component';
+import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
@@ -54,9 +55,10 @@ const routes: Routes = [
     { path: 'categories', component: ProductCategoryComponent, canActivate: [AuthGuard]},
     { path: 'file-categories', component: ProjectCategoryComponent, canActivate: [AuthGuard]},
     { path: 'view-project/:id', component: ViewProjectComponent, canActivate: [AuthGuard]},
+    { path: 'download-catalog', component: DownloadPdfComponent, canActivate: [AuthGuard]},
     
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
 ];
 
-export const appRoutingModule = RouterModule.forRoot(routes);
+export const appRoutingModule = RouterModule.forRoot(routes, {onSameUrlNavigation : 'reload'});

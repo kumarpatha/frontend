@@ -19,8 +19,8 @@ import { FooterComponent } from './footer/footer.component'
 import { DataTablesModule } from "angular-datatables";
 import { LeftNavComponent } from './left-nav/left-nav.component'
 ;
-import { AddClientComponent } from './add-client/add-client.component';;
-import { ClientsComponent } from './clients/clients.component';;
+import { AddClientComponent } from './add-client/add-client.component';
+import { ClientsComponent } from './clients/clients.component';
 import { ChangePasswordComponent } from './change-password/change-password.component'
 ;
 import { AddCustomerComponent } from './add-customer/add-customer.component';
@@ -43,6 +43,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { ProjectCategoryComponent } from './project-category/project-category.component';
 import { ViewProjectComponent } from './view-project/view-project.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
 
 @NgModule({
     imports: [
@@ -58,10 +59,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         AppComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
-,
-        HeaderComponent
-,
+        RegisterComponent,
+        HeaderComponent,
         FooterComponent ,
         LeftNavComponent ,
         AddClientComponent ,
@@ -85,7 +84,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ViewProductComponent,
         ProductCategoryComponent,
         ProjectCategoryComponent,
-        ViewProjectComponent],
+        ViewProjectComponent,
+        DownloadPdfComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

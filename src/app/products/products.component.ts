@@ -6,8 +6,12 @@ import { UserService, AuthenticationService } from '@app/_services';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { DataTableDirective } from 'angular-datatables';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CatalogService } from '@app/_services/catalog.service';
 import Swal from 'sweetalert2';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
+declare var $: any;
+
 
 
 class DataTablesResponse {
@@ -49,12 +53,18 @@ export class ProductsComponent implements OnDestroy , OnInit {
   product_category_count:any;
   status_types:any;
   term: string;
-  
+  filter_record;
+  totalrecord;
+  PDFProduct = [];
+  productPDFCategory: FormGroup;
+  PDFProductProject = [];
+  filterFlag = true;
 
+  
   @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
 
-  constructor(private userService: UserService, private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, public router : Router, private catalogService:CatalogService, private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
         this.loading = true;
@@ -115,9 +125,12 @@ export class ProductsComponent implements OnDestroy , OnInit {
                  dataTablesParameters, {}
               ).subscribe(resp => {
                 that.products = resp.data;
+                
                 this.loading = false;
                 this.loadingData = false;
                 if(resp.data.length > 0) {
+                  this.totalrecord = resp.data[0].total_count;
+                  this.filter_record = resp.recordsFiltered;
                   this.image_base_path = resp.data[0].image_base_path;
                 }
                 callback({
@@ -127,7 +140,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
                 });
               });
           },
-          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
+          columns: [{ data: 'checkbox', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
         };
        
   }
@@ -136,9 +149,11 @@ export class ProductsComponent implements OnDestroy , OnInit {
     if(type == 'list'){
       this.listView = true;
       this.gridView= false;
+      this.filterFlag = true;
     } else {
       this.listView = false;
       this.gridView= true;
+      this.filterFlag = false;
     }
   }
 
@@ -361,12 +376,37 @@ export class ProductsComponent implements OnDestroy , OnInit {
     });
   }
 
-
   pdf() {
-    this.userService.getpdfData().pipe(first()).subscribe(data => {
-     
+    // if(this.PDFProduct.length == 0) {
+    //   Swal.fire('', 'Please select Product', 'error');
+    //   return false;
+    // }
+    ($('#PDFModal') as any).modal('show');
+  }
+
+  viewpdf(product_id, event) {
+    
+    console.log(product_id);
+    console.log(event);
+    if(event.target.checked) {
+      this.PDFProduct.push(event.target.value);
+    } else {
+        this.PDFProduct = this.PDFProduct.filter(function(s) {
+          return s !== event.target.value;
+        });
+    }
+  }
+
+  genratePDF() {
+    this.PDFProduct = [1,3,4];
+    this.PDFProductProject = [1,1,13];
+    this.catalogService.getpdfData(this.PDFProduct, this.PDFProductProject).pipe(first()).subscribe(data => {
       //this.image_base_path = data.image_base_path;
-  });
+      console.log(data);
+      localStorage.setItem('pdfData', data.html);
+      //this.router.navigate(['/download-catalog']);
+      window.open("/download-catalog", '_blank');
+    });
   }
 
 }

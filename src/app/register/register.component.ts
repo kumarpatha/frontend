@@ -43,8 +43,9 @@ export class RegisterComponent {
         this.userForm = this.formBuilder.group({
             fullname: ['', Validators.required],
             email: ['', Validators.required],
-            password: ['', Validators.required],
-            confirm_password: ['', Validators.required],
+           
+            password: ['', [Validators.required, Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
+            confirm_password: ['', [Validators.required, Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]],
             client: ['', Validators.required],
             //language: ['', Validators.required]
         });
