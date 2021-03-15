@@ -41,11 +41,11 @@
                 <div class="col-md-12 main" *ngIf="!productInfo">
                   <div class="form-group has-search">
                    <span style="float: right;">
-                    <a (click)='pdf()' href='javascript:void(0);'><span class="material-icons">picture_as_pdf</span></a>
+                    <a (click)='pdf()' href='javascript:void(0);' *ngIf="filterFlag"><span class="material-icons">picture_as_pdf</span></a>
                     &nbsp;
                     <a (click)="viewType('list')" href='javascript:void(0);'><span class="material-icons">list</span></a>
                     &nbsp;
-                    <a (click)='filter()' href='javascript:void(0);'><span><strong>F</strong></span></a>
+                    <a (click)='filter()' href='javascript:void(0);' *ngIf="filterFlag"><span><strong>F</strong></span></a>
                     &nbsp;
                     <a (click)="viewType('grid')" href='javascript:void(0);'><span class="material-icons">apps</span></a>
                   </span>
@@ -61,7 +61,7 @@
                           </a>
                         </h6>
                       </div>
-                      <div id="collapse0" class="panel-collapse collapse" >
+                      <div id="collapse0" class="panel-collapse collapse">
                         <ul class="list-group">
                          <!--- <li class="list-group-item px-2">
                             <input type="checkbox" name="customerselectall" value="1" (click)="custmerSelect($event)"> Select All</li> --->
@@ -159,7 +159,12 @@
                         <table class="table" datatable [dtOptions]="dtOptions" width="100%">
                         <thead>
                           <tr>
-                            <th>#</th>
+                            <th>
+                              <div class="round">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox"></label>
+                              </div>
+                              </th>
                             <th>Product ID</th>
                             <th>Product Name</th>
                             <th>Category</th>
@@ -196,6 +201,53 @@
       </section>
       <!-- Page Footer-->
       <app-footer></app-footer>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="PDFModal" tabindex="-1" role="dialog" aria-labelledby="PDFModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-sm-9">         
+              <!-- <form [formGroup]="productPDFCategory"> -->
+                <div class="form-group row" style="margin-left: 15px;">    
+                  <label for="Name" class="md-check">Format</label>&nbsp;&nbsp;
+                  <label for="Name" class="md-check">PDF</label>
+                </div>
+                <div class="form-group row" style="margin-left: 15px;">
+                  <label class="md-check">
+                    <input type="radio" [value]="1"  [(ngModel)]="pdftype" name="pdftype">
+                    Standard
+                  </label>&nbsp;&nbsp;
+                  <label class="md-check">
+                    <input type="radio" [value]="0" disabled [(ngModel)]="pdftype" name="pdftype">     
+                    Advanced
+                  </label>
+                </div>
+                <div class="form-group row" style="margin-left: 15px;">
+                  <label class="md-check">
+                    <input type="radio" [value]="1" disabled [(ngModel)]="pdfdownloadFormate" name="pdfdownloadFormate">
+                    Email
+                  </label>&nbsp;&nbsp;
+                  <label class="md-check">
+                    <input type="radio" [value]="2" [(ngModel)]="pdfdownloadFormate" name="pdfdownloadFormate">     
+                    Download
+                  </label>
+                </div>
+                <div class="form-group-material">
+                  <input [disabled]="loading" type="button" name="submit" value="Generate" (click)="genratePDF()" class="btn btn-secondary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                </div>
+              <!-- </form> -->
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>

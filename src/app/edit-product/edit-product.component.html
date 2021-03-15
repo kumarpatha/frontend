@@ -154,11 +154,22 @@
                           <div class="col-md-4 p-3">
                             <label for="quantity" class="label-material">QUANTITY :</label>
                           </div>
-                          <div class="col-md-8">
-                            <input type="number" formControlName="quantity" name="unit" min="0" max="999999999" oninput="this.value = 
-                            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" class="input-material">
-                            <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
-                              <div *ngIf="f.quantity.errors.max">Quantity should be in range of 0 - 999999999</div>
+                          <div class="col-md-8 row">
+                            <div class="col-md-3 p-3">
+                              <select class="input-material" name="unitqnt" formControlName="unitqnt"  [ngClass]="{ 'is-invalid': submitted && f.unitqnt.errors }" class="input-material">
+                                <option value="">Select Unit</option>
+                                <option value="Piece">Piece</option> 
+                                <option value="Meters">Meters</option>
+                                <option value="Square Meters">Square Meters</option>
+                                <option value="Kilos">Kilos</option>
+                              </select>
+                            </div>
+                            <div class="col-md-3 p-3">
+                              <input type="number" formControlName="quantity" name="unit" min="0" max="999999999" oninput="this.value = 
+                              !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" class="input-material">
+                              <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                <div *ngIf="f.quantity.errors.max">Quantity should be in range of 0 - 999999999</div>
+                              </div>
                             </div>
                           </div>
                         </div>

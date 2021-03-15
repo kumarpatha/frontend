@@ -86,6 +86,7 @@ ngOnInit() {
         category: [''],
         building_part: [''],
         unit: [''],
+        unitqnt: [''],
         quantity: ['', [Validators.max(999999999), Validators.min(0)]],
         length: ['', [Validators.max(999999999), Validators.min(0)]],
         width: ['', [Validators.max(999999999), Validators.min(0)]],
@@ -120,6 +121,7 @@ ngOnInit() {
             category: this.productInfo.category,
             building_part: this.productInfo.building_part,
             unit: this.productInfo.unit,
+            unitqnt: this.productInfo.unitqnt,
             quantity: this.productInfo.quantity,
             length: this.productInfo.length,
             width: this.productInfo.width,
@@ -253,6 +255,7 @@ onSubmit()
   formData.append("category", this.productForm.controls['category'].value)
   formData.append("building_part", this.productForm.controls['building_part'].value)
   formData.append("unit", this.productForm.controls['unit'].value)
+  formData.append("unitqnt", this.productForm.controls['unitqnt'].value)
   formData.append("quantity", this.productForm.controls['quantity'].value)
   formData.append("height", this.productForm.controls['height'].value)
   formData.append("width", this.productForm.controls['width'].value)

@@ -47,6 +47,7 @@
                                                     <!-- <label for="password" class="label-material">Password</label> -->
                                                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                                         <div *ngIf="f.password.errors.required">Password is required</div>
+                                                        <div *ngIf="f.password.errors.pattern">Please enter minimum 8 length password containg least one uppercase, least one lowercase only, least one digit and least one special character</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group-material">

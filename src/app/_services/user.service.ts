@@ -215,6 +215,4 @@ export class UserService {
             return customers;
         }));
     }
-    
-
 }
