@@ -75,133 +75,18 @@
                   <div class="">
                     <div class="">
                       <div class="row">
-                        <div class="col-md-3 p-2" *ngFor="let project of projects; index as i">
+                        <div class="col-md-3 p-2" *ngFor="let project of projectslist; index as i">
                           <div class="card p-2">
                             <a href="javascript:void();" routerLink="/view-project/{{project.id}}"><img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}" style="word-break: break-all;">{{project.project_name_raw}}</a></h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}" style="word-break: break-all;">{{project.project_name}}</a></h5>
                             </div>
                           </div>
                         </div>
-                      </div>							
+                      </div>
+                      <button (click)="loadMore()" *ngIf="loadmoreflag">Load More</button>							
                     </div>
                   </div>
-                </div>
-                <div class="col-md-12" *ngIf="projectInfo">
-                      <div class="row d-flex align-items-center">
-                        <div class="col-sm-12">
-                            <table class="table table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Project Name :</b></td>
-                                    <td>{{projectInfo.project_name}} </td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Customer Name :</b></td>
-                                    <td>{{projectInfo.customer.customer_name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Description :</b></td>
-                                    <td>{{projectInfo.description}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Category :</b></td>
-                                    <td>{{projectInfo.category}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Building Part :</b></td>
-                                    <td>{{projectInfo.building_part}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Unit :</b></td>
-                                    <td>{{projectInfo.unit}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Quantity :</b></td>
-                                    <td>{{projectInfo.quantity}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Dimensions (HxLxW) :</b></td>
-                                    <td>{{projectInfo.height}} X {{projectInfo.length}} X {{projectInfo.width}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Production Year :</b></td>
-                                    <td>{{projectInfo.production_year}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Location in Building :</b></td>
-                                    <td>{{projectInfo.location_building}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Brand Name :</b></td>
-                                    <td>{{projectInfo.brand_name}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Documentation :</b></td>
-                                    <td>{{projectInfo.documentation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Product Info :</b></td>
-                                    <td>{{projectInfo.product_info}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Color :</b></td>
-                                    <td>{{projectInfo.color}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Hazardous Content :</b></td>
-                                    <td>{{projectInfo.hazardous}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Evaluvation :</b></td>
-                                    <td>{{projectInfo.evaluvation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Preconditions For Reuse :</b></td>
-                                    <td>{{projectInfo.precondition}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Potential For Reuse :</b></td>
-                                    <td>{{projectInfo.reuse}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Recommendation :</b></td>
-                                    <td>{{projectInfo.recommendation}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Price - New Product :</b></td>
-                                    <td>{{projectInfo.price_new_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Status :</b></td>
-                                    <td>{{projectInfo.status ? "Active" : "In active"}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>PRICE - Used Product :</b></td>
-                                    <td>{{projectInfo.price_used_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Price - Sold Product :</b></td>
-                                    <td>{{projectInfo.price_sold_product}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><b>Documents :</b></td>
-                                    <td>
-                                      <p *ngFor="let docs of projectInfo.projectdocs; index as i"><a href="{{image_base_path}}/documents/{{docs.file_name}}" >Document {{i+1}}</a></p>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td></td>
-                                    <td class="text-right"><a href="javascript:void(0);" (click)="back()"><i class="fa fa-arrow-left"></i></a></td>
-                                  </tr>
-                                </tbody>
-                            </table>                                          
-                          </div>
-                      </div>
                 </div>
               </div>
           </div>

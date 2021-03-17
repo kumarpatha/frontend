@@ -33,6 +33,9 @@ export class CustomersComponent implements OnDestroy, OnInit {
   customerInfo:any = '';
   products_count:any;
   dtOptions:any;
+  pagenumber:any = 1;
+  loadmoreflag:boolean = true;
+  customerslists:any;
 
   @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
@@ -48,7 +51,7 @@ export class CustomersComponent implements OnDestroy, OnInit {
         const that = this;
         this.dtOptions = {
           pagingType: 'full_numbers',
-          pageLength: 25,
+          pageLength: 50,
           serverSide: true,
           processing: true,
           "scrollX": true,
@@ -86,14 +89,7 @@ export class CustomersComponent implements OnDestroy, OnInit {
           },
           columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'customer_name', name : 'customer_name' }, { data: 'projects_count', name : 'projects_count', searchable:false}, { name: 'products_count', data: 'products_count',  searchable:false }, { data: 'postal_area' }]
         };
-        this.userService.getcustomersgrid().pipe(first()).subscribe(resp => {
-            this.loading = false;
-            this.loadingData = false;
-            this.customers = resp.data;
-            if(resp.data.length > 0) {
-              this.image_base_path = resp.data[0].image_base_path;
-            }
-        });
+        this.getgridData();
   }
 
   viewType(type){
@@ -167,5 +163,40 @@ export class CustomersComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {}
+
+  loadMore(){
+    this.pagenumber++;
+    this.getgridData();
+  }
+ 
+  getgridData(){
+    this.userService.getcustomerssgrid(this.pagenumber).pipe(first()).subscribe(data => {
+      this.loading = false;
+      this.loadingData = false;
+      if(this.pagenumber=='1') {
+        if(data.customers.length < 12) {
+          this.loadmoreflag = false;
+        }
+        this.customerslists = data.customers;
+        console.log(this.customerslists)
+      } else {
+        if(data.customers.length > 0){
+          data.customers.forEach(element => {
+            //console.log(element);
+            this.customerslists.push(element);
+          });
+          //this.projectslist.push(data.projects);
+          console.log(this.customerslists)
+          if(data.customers.length < 12) {
+            this.loadmoreflag = false;
+          }
+        }else{
+          this.loadmoreflag = false;
+        }
+      }
+     
+      this.image_base_path = data.image_base_path;
+    });
+  }
 
 }

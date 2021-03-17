@@ -215,4 +215,25 @@ export class UserService {
             return customers;
         }));
     }
+
+    getprojectsgrid(pagenumber) {
+        return this.http.get<any>(`${environment.apiUrl}/projectgrid/`+pagenumber)
+        .pipe(map(projects => {
+            return projects;
+        }));
+    }
+
+    getproductsgrid(pagenumber){
+        return this.http.get<any>(`${environment.apiUrl}/productgrid/`+pagenumber)
+        .pipe(map(products => {
+            return products;
+        }));
+    }
+
+    getcustomerssgrid(pagenumber){
+        return this.http.get<any>(`${environment.apiUrl}/customersgrid/`+pagenumber)
+        .pipe(map(customers => {
+            return customers;
+        }));
+    }
 }

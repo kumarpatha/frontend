@@ -60,16 +60,17 @@
                   <div class="">
                     <div class="">
                       <div class="row">
-                        <div class="col-md-3 p-2" *ngFor="let customer of customers; index as i">
+                        <div class="col-md-3 p-2" *ngFor="let customer of customerslists; index as i">
                           <div class="card p-2">
                             <a routerLink="/view-customer/{{customer.id}}"><img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <a href="javascript:void();" routerLink="/view-customer/{{customer.id}}" *ngIf="!customer.image_path"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}" style="word-break: break-all;">{{customer.customer_name_raw}}</a></h5>
+                            <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}" style="word-break: break-all;">{{customer.customer_name}}</a></h5>
                             </div>
                           </div>
                         </div>
-                      </div>							
+                      </div>
+                      <button (click)="loadMore()" *ngIf="loadmoreflag">Load More</button>										
                     </div>
                   </div>
                 </div>

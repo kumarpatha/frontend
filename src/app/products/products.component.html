@@ -183,16 +183,17 @@
                   <div class="">
                     <div class="">
                       <div class="row">
-                        <div class="col-md-3 p-2" *ngFor="let product of products; index as i">
+                        <div class="col-md-3 p-2" *ngFor="let product of productslist; index as i">
                           <div class="card p-2">
                             <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="product.product_image"><img src="{{image_base_path}}/{{product.product_image}}"  class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="!product.product_image"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <div class="card-body">
-                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}" style="word-break: break-all;">{{product.product_name_raw}}</a></h5>
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}" style="word-break: break-all;">{{product.product_name}}</a></h5>
                             </div>
                           </div>
                         </div>
-                      </div>							
+                      </div>	
+                      <button (click)="loadMore()" *ngIf="loadmoreflag">Load More</button>						
                     </div>
                   </div>
                 </div>
