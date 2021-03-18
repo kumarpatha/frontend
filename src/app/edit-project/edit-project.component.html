@@ -286,7 +286,7 @@
                             <label for="project_type" class="label-material">Enviromental Ambition :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="ambition" name="ambition" maxlength="200" class="input-material">
+                            <input type="text" formControlName="ambition" name="ambition" maxlength="30" class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -367,7 +367,7 @@
                             <label for="billing_project_number" class="label-material margin-left">Customer Project Number :</label>
                           </div>
                           <div class="col-md-8">
-                            <input type="text" formControlName="billing_project_number" name="billing_project_number" maxlength="15"  class="input-material">
+                            <input type="number" formControlName="billing_project_number" name="billing_project_number" min="0" max="20"  class="input-material">
                           </div>
                         </div>
                         <div class="form-group row">
