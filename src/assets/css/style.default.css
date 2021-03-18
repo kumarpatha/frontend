@@ -405,7 +405,6 @@ nav.side-navbar {
     height: 100%;
   left: 0px;
   top: 0px;
-
   background: #F7F6F4;
   color: #686a76;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
@@ -549,7 +548,8 @@ nav.side-navbar.shrinked span.heading {
 nav.side-navbar.shrinked ul li a {
   padding: 15px 2px;
   border: none;
-  font-size: 0.8em;
+  font-size: 18px;
+  font-family: Amiko "sarif";
   color: #aaa;
   -webkit-transition: color 0.3s, background 0.3s;
   transition: color 0.3s, background 0.3s;
@@ -573,7 +573,7 @@ nav.side-navbar.shrinked ul li a[data-toggle="collapse"][aria-expanded="true"]::
 }
 
 nav.side-navbar.shrinked ul li a:hover {
-  color: #fff;
+  color: #524F4F;
   border: none;
 }
 
@@ -978,481 +978,9 @@ nav.navbar .dropdown-menu h3 {
   }
 }
 
-/*
-* ==========================================================
-*     DASHBOARD COUNTS SECTION
-* ==========================================================
-*/
-section.dashboard-counts .icon {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  min-width: 40px;
-  max-width: 40px;
-  border-radius: 50%;
-}
-
-section.dashboard-counts .title {
-  font-size: 1.1em;
-  font-weight: 300;
-  color: #777;
-  margin: 0 20px;
-}
-
-section.dashboard-counts .progress {
-  margin-top: 10px;
-  height: 4px;
-}
-
-section.dashboard-counts .number {
-  font-size: 1.8em;
-  font-weight: 300;
-}
-
-section.dashboard-counts .number strong {
-  font-weight: 700;
-}
-
-section.dashboard-counts .row {
-  padding: 30px 15px;
-  margin: 0;
-}
-
-section.dashboard-counts div[class*='col-'] .item {
-  border-right: 1px solid #eee;
-  padding: 15px 0;
-}
-
-section.dashboard-counts div[class*='col-']:last-of-type .item {
-  border-right: none;
-}
-
-/*  DASHBOARD COUNTS MEDIAQUERIES ------------------------ */
-@media (max-width: 1199px) {
-  section.dashboard-counts div[class*='col-']:nth-of-type(2) .item {
-    border-right: none;
-  }
-}
-
-@media (max-width: 575px) {
-  section.dashboard-counts div[class*='col-'] .item {
-    border-right: none;
-  }
-}
-
-/*
-* ==========================================================
-*     DASHBOARD HEADER SECTION
-* ==========================================================
-*/
-.statistic {
-  padding: 20px 15px;
-  margin-bottom: 15px;
-}
-
-.statistic:last-of-type {
-  margin-bottom: 0;
-}
-
-.statistic strong {
-  font-size: 1.5em;
-  color: #333;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.statistic small {
-  color: #aaa;
-  text-transform: uppercase;
-}
-
-.statistic .icon {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  min-width: 40px;
-  max-width: 40px;
-  color: #fff;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.chart .title {
-  padding: 15px 0 0 15px;
-}
-
-.chart .title strong {
-  font-weight: 700;
-  font-size: 1.2em;
-}
-
-.chart .title small {
-  color: #aaa;
-  text-transform: uppercase;
-}
-
-.chart .line-chart {
-  width: 100%;
-  height: 100%;
-  padding: 20px 0;
-}
-
-.chart .line-chart canvas {
-  width: calc(100% - 30px) !important;
-}
-
-.chart .bar-chart {
-  margin-bottom: 15px;
-}
-
-.chart .bar-chart canvas {
-  padding: 15px;
-  width: 100%;
-  margin: 0;
-}
-
-/*  DASHBOARD HEADER  MEDIAQUERIES ------------------------*/
-@media (max-width: 991px) {
-  section.dashboard-header div[class*='col-'] {
-    margin-bottom: 20px;
-  }
-}
-
-/*
-* ==========================================================
-*     PROJECTS SECTION
-* ==========================================================
-*/
-.project .row {
-  margin: 0;
-  padding: 15px 0;
-  margin-bottom: 15px;
-}
-
-.project div[class*='col-'] {
-  border-right: 1px solid #eee;
-}
-
-.project .text h3 {
-  margin-bottom: 0;
-  color: #555;
-}
-
-.project .text small {
-  color: #aaa;
-  font-size: 0.75em;
-}
-
-.project .project-date span {
-  font-size: 0.9em;
-  color: #999;
-}
-
-.project .image {
-  max-width: 50px;
-  min-width: 50px;
-  height: 50px;
-  margin-right: 15px;
-}
-
-.project .time,
-.project .comments,
-.project .project-progress {
-  color: #999;
-  font-size: 0.9em;
-  margin-right: 20px;
-}
-
-.project .time i,
-.project .comments i,
-.project .project-progress i {
-  margin-right: 5px;
-}
-
-.project .project-progress {
-  width: 200px;
-}
-
-.project .project-progress .progress {
-  height: 4px;
-}
-
-.project .card {
-  margin-bottom: 0;
-}
-
-/* PROJECTS SECTION ------------------------------------- */
-@media (max-width: 991px) {
-  .project .right-col {
-    margin-top: 20px;
-    margin-left: 65px;
-  }
-  .project .project-progress {
-    width: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .project .project-progress {
-    display: none;
-  }
-}
-
-/*
-* ==========================================================
-*     CLIENT SECTION
-* ==========================================================
-*/
-/*====== Work Amount Box ======*/
-.work-amount .chart {
-  margin: 40px auto;
-  position: relative;
-}
-
-.work-amount .chart .text {
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.work-amount .chart strong {
-  font-size: 1.5rem;
-}
-
-.work-amount .chart span {
-  color: #999;
-  font-weight: 300;
-}
-
-.work-amount li span {
-  font-size: 0.85em;
-  margin-bottom: 10px;
-  color: #777;
-  display: block;
-}
-
-.work-amount li span::before {
-  content: '';
-  display: inline-block;
-  margin-right: 10px;
-  width: 7px;
-  height: 7px;
-  line-height: 7px;
-  background: #393a3c;
-  border-radius: 50%;
-}
-
-/*====== Client Profile Box ======*/
-.client .client-avatar {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.client .client-avatar .status {
-  content: '';
-  display: block;
-  width: 18px;
-  height: 18px;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  position: absolute;
-  right: 4px;
-  bottom: 4px;
-}
-
-.client .client-title {
-  margin-top: 20px;
-}
-
-.client .client-title h3 {
-  font-weight: 500;
-  color: #555;
-}
-
-.client .client-title span {
-  font-size: 0.9em;
-  color: #aaa;
-  display: block;
-}
-
-.client .client-title a {
-  padding: 2px 30px;
-  border-radius: 40px;
-  background: #54e69d;
-  color: #fff;
-  margin-top: 5px;
-  font-size: 0.9em;
-  text-decoration: none;
-}
-
-.client .client-title a:hover {
-  background: #393a3c;
-}
-
-.client .client-info {
-  margin-top: 20px;
-}
-
-.client .client-info strong {
-  font-weight: 700;
-}
-
-.client .client-social {
-  margin-top: 20px;
-}
-
-.client .client-social a {
-  color: #aaa;
-}
-
-/*====== Total Overdue Box ======*/
-.overdue .chart canvas {
-  width: 100% !important;
-  z-index: 1;
-}
-
-.overdue .card {
-  margin-bottom: 0;
-}
-
-.overdue .card-body {
-  padding: 20px;
-}
-
-.overdue .card-body small {
-  font-weight: 300;
-  color: #aaa;
-}
-
-.overdue .card-body h3 {
-  margin-bottom: 5px;
-}
-
-.overdue .number {
-  font-size: 1.8em;
-  font-weight: 400;
-  color: #555;
-  margin: 35px 0;
-}
-
-/*
-* ==========================================================
-*     FEEDS SECTION
-* ==========================================================
-*/
-/*====== Checklist Box ======*/
-.checklist label {
-  font-size: 0.8em;
-  color: #999;
-  line-height: 1.8em;
-  margin-bottom: 0;
-}
-
-.checklist .item {
-  padding: 20px;
-}
-
-.checklist .item:nth-of-type(even) {
-  background: #fafafa;
-}
-
-/*====== Trending Articles Box ======*/
-.articles a {
-  text-decoration: none !important;
-  display: block;
-  margin-bottom: 0;
-  color: #555;
-}
-
-.articles .badge {
-  font-size: 0.7em;
-  padding: 5px 10px;
-  line-height: 1;
-  margin-left: 10px;
-}
-
-.articles .item {
-  padding: 20px;
-}
-
-.articles .item:nth-of-type(even) {
-  background: #fafafa;
-}
-
-.articles .item .image {
-  min-width: 50px;
-  max-width: 50px;
-  height: 50px;
-  margin-right: 15px;
-}
-
-.articles .item img {
-  padding: 3px;
-  border: 1px solid #28a745;
-}
-
-.articles .item h3 {
-  color: #555;
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
-.articles .item small {
-  color: #aaa;
-  font-size: 0.75em;
-}
-
-/*
-* ==========================================================
-*     UPDATES SECTION
-* ==========================================================
-*/
-/*====== Recent Updates Box ======*/
-.recent-updates .item {
-  padding: 20px;
-}
-
-.recent-updates .item:nth-of-type(even) {
-  background: #fafafa;
-}
-
-.recent-updates .icon {
-  margin-right: 10px;
-}
-
-.recent-updates h5 {
-  margin-bottom: 5px;
-  color: #333;
-  font-weight: 400;
-}
-
-.recent-updates p {
-  font-size: 0.8em;
-  color: #aaa;
-  margin-bottom: 0;
-}
-
-.recent-updates .date {
-  font-size: 0.9em;
-  color: #adadad;
-}
-
-.recent-updates .date strong {
-  font-size: 1.4em;
-  line-height: 0.8em;
-  display: block;
-}
-
-.recent-updates .date span {
-  font-size: 0.9em;
-  font-weight: 300;
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 
 
@@ -1476,6 +1004,7 @@ footer.main-footer {
 
 footer.main-footer a {
   color: inherit;
+
 }
 
 footer.main-footer p {
@@ -1496,6 +1025,12 @@ footer.main-footer p {
 *     FORMS
 * ==========================================================
 */
+
+button, input, optgroup, select, textarea{
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Amiko", sans-serif;
+}
 .form-control {
   height: calc(2.25rem + 2px);
   border: 1px solid #dee2e6;
@@ -1504,21 +1039,21 @@ footer.main-footer p {
 }
 
 .form-control::-moz-placeholder {
-  font-size: 0.9em;
+  font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
   color: #aaa;
 }
 
 .form-control::-webkit-input-placeholder {
-  font-size: 0.9em;
+  font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
   color: #aaa;
 }
 
 .form-control:-ms-input-placeholder {
-  font-size: 0.9em;
+  font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
   color: #aaa;
@@ -1753,6 +1288,10 @@ input.input-material-login {
   padding: 10px 0;
   background: #727272;
   color: #fff;
+  font-family: Amiko;
+  font-weight:400;
+  font-style:normal;
+  font-size:18px
 }
 
 .login input::placeholder{
@@ -1779,6 +1318,23 @@ input.input-material-login.is-invalid {
 
 input.input-material-login:focus {
   border-color: #2f333e;
+}
+
+.btn-login{
+  border: 1px solid #C4C4C4 !important;
+  font-family: Amiko;
+  font-weight: 400;
+  font-style:normal;
+  font-size:  18px;
+  line-height: 24.01px;
+  background-color: transparent;
+  color: #fff;
+  width:100%;
+  cursor: pointer;
+}
+
+.btn-login:hover{
+  color: #c4c4c4;
 }
 
 /*
@@ -1846,11 +1402,12 @@ input.input-material-login:focus {
 .login-page .form-holder .info h1 {
   font-size: 2.5em;
   font-weight: 600;
-  font-family: Amiko;
+  font-family: "Amiko", sans-serif;
 }
 
 .login-page .form-holder .info p {
   font-weight: 400;
+  font-family: "Amiko", sans-serif;
 }
 
 .login-page .form-holder .form .form-group {
@@ -1875,6 +1432,7 @@ input.input-material-login:focus {
 .login-page .form-holder .form a.forgot-pass, .login-page .form-holder .form a.signup {
   font-size: 0.9em;
   color: #e7e7e7;
+  font-family: Amiko;
 }
 
 .login-page .form-holder .form small {
@@ -1890,7 +1448,6 @@ input.input-material-login:focus {
 .login-page .copyrights {
   width: 100%;
   z-index: 9999;
-  position: absolute;
   bottom: 0;
   left: 0;
   color: #e7e7e7;
@@ -1900,14 +1457,15 @@ input.input-material-login:focus {
 .copyrights {
   width: 100%;
   z-index: 9999;
-  position: absolute;
   bottom: 0;
   left: 0;
   color: #e7e7e7;
   background:#524F4F;
+  font-family: Amiko;;
 }
 .copyrights a{
   color:#e7e7e7;
+  font-family: Amiko;;
 }
 
 @media (max-width: 991px) {
@@ -1921,34 +1479,6 @@ input.input-material-login:focus {
 }
 
 /*
-
-=====================
-STYLE SWITCHER FOR DEMO
-=====================
-
-*/
-#style-switch-button {
-  position: fixed;
-  top: 120px;
-  right: 0px;
-  border-radius: 0;
-  z-index: 12;
-}
-
-#style-switch {
-  width: 300px;
-  padding: 20px;
-  position: fixed;
-  top: 160px;
-  right: 0;
-  background: #fff;
-  border: solid 1px #ced4da;
-  z-index: 12;
-}
-
-#style-switch h4 {
-  color: #495057;
-}
 
 /* ========================================= 
    THEMING OF BOOTSTRAP COMPONENTS           
@@ -2727,6 +2257,7 @@ body {
 a {
   color: #2f333e;
   text-decoration: none;
+  font-family: "Amiko", sans-serif;
 }
 
 a:focus, a:hover {
@@ -2747,7 +2278,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: Amiko;
+  font-family: "Amiko", sans-serif;
   font-weight: 700;
   line-height: 1.1;
   color: inherit;
@@ -2820,6 +2351,7 @@ small,
 .small {
   font-size: 80%;
   font-weight: 400;
+  font-family: "Amiko", sans-serif;
 }
 
 mark,
@@ -2833,6 +2365,7 @@ mark,
   margin-bottom: 2rem;
   font-size: 1.25rem;
   border-left: 5px solid #2f333e;
+  font-family: "Amiko", sans-serif;
 }
 
 .blockquote-footer {
@@ -3183,22 +2716,7 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #1d2124;
 }
 
-/*
-* 6.CODE
-*/
-code {
-  padding: 0.2rem 0.4rem;
-  font-size: 90%;
-  color: #bd4147;
-  background-color: #f8f9fa;
-  border-radius: 0.25rem;
-}
 
-a > code {
-  padding: 0;
-  color: inherit;
-  background-color: inherit;
-}
 
 /*
 * 7. NAV
@@ -3474,6 +2992,20 @@ a > code {
 
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+
+label{
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
+}
+
+input{
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
 }
 
 /*----- Filter PrductBox Checkbox---- */

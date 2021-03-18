@@ -19,7 +19,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 main">
-              <p class="breadcrumb-heading">/Poduct List</p>
+              <p class="breadcrumb-heading">/Product List</p>
               <div class="form-group has-search" id="searchDiv">
                 <span class="fa fa-search form-control-feedback"></span>
                   <input type="text" name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
@@ -45,7 +45,7 @@
                     &nbsp;
                     <a (click)="viewType('list')" href='javascript:void(0);'><span class="material-icons">list</span></a>
                     &nbsp;
-                    <a (click)='filter()' href='javascript:void(0);' *ngIf="filterFlag"><span><strong>F</strong></span></a>
+                    <a (click)='filter()' href='javascript:void(0);' *ngIf="filterFlag"><strong>F</strong></a>
                     &nbsp;
                     <a (click)="viewType('grid')" href='javascript:void(0);'><span class="material-icons">apps</span></a>
                   </span>
@@ -144,7 +144,7 @@
                     <div class="row">
                       <div class="col-md-6 px-2">
                         <div class="form-group">
-                          <input type="button" name="apply" (click)= "applyFilter()" value="Apply Filter" class="btn btn-default btn-block btn-sm">
+                          <a (click)="closeFilter()" href="javascript:void(0);"><input type="button" name="apply" (click)= "applyFilter()" value="Apply Filter" class="btn btn-default btn-block btn-sm"></a>
                         </div>
                       </div>
                       <div class="col-md-6 px-2">
