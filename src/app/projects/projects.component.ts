@@ -26,11 +26,14 @@ export class ProjectsComponent implements OnDestroy, OnInit {
   loading = false;
   loadingData = false;
   projects: any;
+  projectslist: any;
   projectInfo:any;
-  listView: boolean = true;
-  gridView: boolean = false;
+  listView: boolean = false;
+  gridView: boolean = true;
   image_base_path:any = '';
   dtOptions:any;
+  pagenumber:any = 1;
+  loadmoreflag:boolean = true;
 
   @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
@@ -40,54 +43,53 @@ export class ProjectsComponent implements OnDestroy, OnInit {
   ngOnInit() {
         this.loading = true;
         this.loadingData = true;
-        $('.dataTables_filter').hide();
-        const that = this;
-        this.dtOptions = {
-          pagingType: 'full_numbers',
-          pageLength: 25,
-          serverSide: true,
-          processing: true,
-          "scrollX": true,
-          "dom": '<"top"lr>rt<"bottom"ip><"clear">',
-          // Configure the buttons
-        //   buttons: [{
-        //     extend: 'pdfHtml5',
-        //     text: 'PDF',
-        //     exportOptions: {
-        //         modifier: {
-        //             page: 'current'
-        //         }
-        //     }
-        // }, 'print'],
-          ajax: (dataTablesParameters: any, callback) => {
-            //console.log(this.projectobj);
-            //dataTablesParameters.search.value = this.projectobj;
-            that.http
-              .post<DataTablesResponse>(
-                `${environment.apiUrl}/projects`,
-                 dataTablesParameters, {}
-              ).subscribe(resp => {
-                that.projects = resp.data;
-                this.loading = false;
-                this.loadingData = false;
-                if(resp.data.length > 0) {
-                  this.image_base_path = resp.data[0].image_base_path;
-                }
-                callback({
-                  recordsTotal: resp.recordsTotal,
-                  recordsFiltered: resp.recordsFiltered,
-                  data: resp.data
+        //if(this.listView) {
+          $('.dataTables_filter').hide();
+          const that = this;
+          this.dtOptions = {
+            pagingType: 'full_numbers',
+            pageLength: 50,
+            serverSide: true,
+            processing: true,
+            "scrollX": true,
+            "dom": '<"top"lr>rt<"bottom"ip><"clear">',
+            // Configure the buttons
+          //   buttons: [{
+          //     extend: 'pdfHtml5',
+          //     text: 'PDF',
+          //     exportOptions: {
+          //         modifier: {
+          //             page: 'current'
+          //         }
+          //     }
+          // }, 'print'],
+            ajax: (dataTablesParameters: any, callback) => {
+              //console.log(this.projectobj);
+              //dataTablesParameters.search.value = this.projectobj;
+              that.http
+                .post<DataTablesResponse>(
+                  `${environment.apiUrl}/projects`,
+                  dataTablesParameters, {}
+                ).subscribe(resp => {
+                  that.projects = resp.data;
+                  this.loading = false;
+                  this.loadingData = false;
+                  if(resp.data.length > 0) {
+                    this.image_base_path = resp.data[0].image_base_path;
+                  }
+                  callback({
+                    recordsTotal: resp.recordsTotal,
+                    recordsFiltered: resp.recordsFiltered,
+                    data: resp.data
+                  });
                 });
-              });
-          },
-          columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'project_name', name : 'project_name' }, { data: 'customer.customer_name', name : 'customer.customer_name'}, { name: 'postal_area', data: 'postal_area'}, { data: 'property_area' }, { data: 'building_year' }]
-        };
-        // this.userService.getprojects().pipe(first()).subscribe(data => {
-        //     this.loading = false;
-        //     this.loadingData = false;
-        //     this.projects = data.projects;
-        //     this.image_base_path = data.image_base_path;
-        // });
+            },
+            columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'project_name', name : 'project_name' }, { data: 'customer.customer_name', name : 'customer.customer_name'}, { name: 'postal_area', data: 'postal_area'}, { data: 'property_area' }, { data: 'building_year' }]
+          };
+        //} else {
+          this.getgridData();
+        //}
+       
   }
 
   viewType(type){
@@ -159,4 +161,39 @@ export class ProjectsComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {}
+
+  loadMore(){
+    this.pagenumber++;
+    this.getgridData();
+  }
+ 
+  getgridData(){
+    this.userService.getprojectsgrid(this.pagenumber).pipe(first()).subscribe(data => {
+      this.loading = false;
+      this.loadingData = false;
+      if(this.pagenumber=='1') {
+        if(data.projects.length < 12) {
+          this.loadmoreflag = false;
+        }
+        this.projectslist = data.projects;
+        console.log(this.projectslist)
+      } else {
+        if(data.projects.length > 0){
+          data.projects.forEach(element => {
+            //console.log(element);
+            this.projectslist.push(element);
+          });
+          if(data.projects.length < 12) {
+            this.loadmoreflag = false;
+          }
+          //this.projectslist.push(data.projects);
+          console.log(this.projectslist)
+        }else{
+          this.loadmoreflag = false;
+        }
+      }
+     
+      this.image_base_path = data.image_base_path;
+    });
+  }
 }

@@ -32,8 +32,9 @@ export class ProductsComponent implements OnDestroy , OnInit {
   loading = false;
   loadingData = false;
   products: any;
-  listView: boolean = true;
-  gridView: boolean = false;
+  productslist: any;
+  listView: boolean = false;
+  gridView: boolean = true;
   image_base_path:any = '';
   productInfo:any  = '';
   dtOptions:any;
@@ -59,6 +60,8 @@ export class ProductsComponent implements OnDestroy , OnInit {
   productPDFCategory: FormGroup;
   PDFProductProject = [];
   filterFlag = true;
+  pagenumber:any = 1;
+  loadmoreflag:boolean = true;
 
   
   @ViewChild(DataTableDirective, {static: false})
@@ -86,7 +89,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
         const that = this;
         this.dtOptions = {
           pagingType: 'full_numbers',
-          pageLength: 25,
+          pageLength: 50,
           serverSide: true,
           processing: true,
           "scrollX": true,
@@ -142,6 +145,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
           },
           columns: [{ data: 'checkbox', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
         };
+        this.getgridData();
        
   }
 
@@ -406,6 +410,41 @@ export class ProductsComponent implements OnDestroy , OnInit {
       localStorage.setItem('pdfData', data.html);
       //this.router.navigate(['/download-catalog']);
       window.open("/download-catalog", '_blank');
+    });
+  }
+
+  loadMore(){
+    this.pagenumber++;
+    this.getgridData();
+  }
+ 
+  getgridData(){
+    this.userService.getproductsgrid(this.pagenumber).pipe(first()).subscribe(data => {
+      this.loading = false;
+      this.loadingData = false;
+      if(this.pagenumber=='1') {
+        if(data.products.length < 12) {
+          this.loadmoreflag = false;
+        }
+        this.productslist = data.products;
+        console.log(this.productslist)
+      } else {
+        if(data.products.length > 0){
+          data.products.forEach(element => {
+            //console.log(element);
+            this.productslist.push(element);
+          });
+          if(data.products.length < 12) {
+            this.loadmoreflag = false;
+          }
+          //this.projectslist.push(data.projects);
+          console.log(this.productslist)
+        }else{
+          this.loadmoreflag = false;
+        }
+      }
+     
+      this.image_base_path = data.image_base_path;
     });
   }
 
