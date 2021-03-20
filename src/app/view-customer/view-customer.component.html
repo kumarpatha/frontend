@@ -9,7 +9,7 @@
       <div class="breadcrumb-holder container-fluid">
         <ul class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/customers">Customer</a></li>
-          <li class="breadcrumb-item active">Customer Info</li>
+          <li class="breadcrumb-item active">{{customerDetails?.customer_id}}</li>
         </ul>
       </div>
       <section class="forms pb-5">
@@ -28,7 +28,7 @@
                       <br />
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="registerUsername" class="label-material">Client Name* :</label>
+                          <label for="registerUsername" class="label-material">CLIENT NAME* :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{currentUser?.client_name}}"/>
@@ -36,7 +36,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="registerUsername" class="label-material">Customer Name* :</label>
+                          <label for="registerUsername" class="label-material">CUSTOMER NAME* :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.customer_name}}"/>
@@ -44,7 +44,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="orgname" class="label-material">Org. Number* :</label>
+                          <label for="orgname" class="label-material">ORG. NO.* :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.org_number}}"/>
@@ -52,7 +52,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="address" class="label-material">Address :</label>
+                          <label for="address" class="label-material">ADDRESS:</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.address}}"/>
@@ -60,7 +60,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="postal_code" class="label-material">Postal Code :</label>
+                          <label for="postal_code" class="label-material">POSTAL CODE :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.postal_code}}"/>
@@ -68,7 +68,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="postal_area" class="label-material">Postal Area :</label>
+                          <label for="postal_area" class="label-material">POSTAL AREA :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.postal_area}}"/>
@@ -77,7 +77,7 @@
                       <h4>CONTACT PERSON DETAILS</h4>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="name" class="label-material">Name :</label>
+                          <label for="name" class="label-material">NAME :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.name}}"/>
@@ -85,7 +85,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="mobile" class="label-material">Mobile Number :</label>
+                          <label for="mobile" class="label-material">MOBILE NO. :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.mobile_number}}" />
@@ -93,7 +93,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="email" class="label-material">Email ID :</label>
+                          <label for="email" class="label-material">EMAIL ID :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.email}}" />
@@ -112,7 +112,7 @@
                     <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-5 p-3">
-                          <label for="note" class="label-material">Note :</label>
+                          <label for="note" class="label-material">NOTES :</label>
                         </div>
                         <div class="col-md-7">
                           <textarea class="form-control" rows="7" readonly>{{customerDetails?.note}}</textarea>

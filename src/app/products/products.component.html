@@ -7,19 +7,19 @@
   </div> 
 </div>
 <div class="page">
-  <!-- Main Navbar-->
-  <app-header></app-header>
+
   <div class="page-content d-flex align-items-stretch">
     <!-- Side Navbar -->
     <app-left-nav></app-left-nav>
       <div class="content-inner">
-      
+  <!-- Main Navbar-->
+  <app-header></app-header>      
       <!-- Forms Section-->
       <section class="forms bg-white py-5">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 main">
-              <p class="breadcrumb-heading">/Product List</p>
+              <p class="breadcrumb-heading">/Products</p>
               <div class="form-group has-search" id="searchDiv">
                 <span class="fa fa-search form-control-feedback"></span>
                   <input type="text" name="search" class="form-control" placeholder="Search" (input)="search($event.target.value)">
@@ -184,16 +184,19 @@
                     <div class="">
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let product of productslist; index as i">
-                          <div class="card p-2">
-                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="product.product_image"><img src="{{image_base_path}}/{{product.product_image}}"  class="card-img-top" alt="..." height="200px" width="auto"></a>
-                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="!product.product_image"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="200px" width="auto"></a>
-                            <div class="card-body">
+                          <div class="card p-2 text-center" style="border-radius: 10px;">
+                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="product.product_image"><img src="{{image_base_path}}/{{product.product_image}}"  class="card-img-top" alt="..." height="227px" width="283px" style="border-radius: 10px;"></a>
+                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="!product.product_image"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="227px" width="283px" style="border-radius: 10px;"></a>
+                          </div> 
+                          <div class="p-2">
                             <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}" style="word-break: break-all;">{{product.product_name}}</a></h5>
-                            </div>
+                          
                           </div>
                         </div>
-                      </div>	
-                      <button (click)="loadMore()" *ngIf="loadmoreflag">Load More</button>						
+                      </div>
+                      <div class="text-center">	
+                      <button (click)="loadMore()" *ngIf="loadmoreflag" class="btn btn-load">Show More</button>		
+                      </div>				
                     </div>
                   </div>
                 </div>

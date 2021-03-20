@@ -7,17 +7,18 @@
   </div> 
 </div>
 <div class="page">
-  <!-- Main Navbar-->
-  <app-header></app-header>
+
   <div class="page-content d-flex align-items-stretch">
     <!-- Side Navbar -->
     <app-left-nav></app-left-nav>
     <div class="content-inner">
+        <!-- Main Navbar-->
+     <app-header></app-header>
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder container-fluid">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a routerLink="/projects">/Project list</a></li>
-          <li class="breadcrumb-item active">Add Project</li>
+          <li class="breadcrumb-item"><a routerLink="/projects">/Project</a></li>
+          <li class="breadcrumb-item active">Add  New</li>
         </ul>
       </div>
       <section class="forms pb-5">
@@ -56,7 +57,7 @@
                       <div class="col-md-12">
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_name" class="label-material">Project Name* :</label>
+                            <label for="project_name" class="label-material">PROJECT NAME* :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="project_name" maxlength="50" name="project_name" [ngClass]="{ 'is-invalid': submitted && f.project_name.errors }" class="input-material">
@@ -67,7 +68,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="customer" class="label-material">Customer Name* :</label>
+                            <label for="customer" class="label-material">CUSTOMER NAME* :</label>
                           </div>
                           <div class="col-md-8">
                             <select class="input-material" name="customer" selected formControlName="customer" [ngClass]="{ 'is-invalid': submitted && f.customer.errors }">
@@ -81,7 +82,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_address" class="label-material">Project Address :</label>
+                            <label for="project_address" class="label-material">PROJECT ADDRESS :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="project_address" maxlength="250" name="project_address"  class="input-material">
@@ -89,7 +90,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_address" class="label-material">Postal Code :</label>
+                            <label for="project_address" class="label-material">POSTAL CODE :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="postal_code" name="postal_code" [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }"  maxlength="6" class="input-material">
@@ -100,7 +101,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_address" class="label-material">Postal Area :</label>
+                            <label for="project_address" class="label-material">POSTAL AREA :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="postal_area" name="postal_area" maxlength="100" class="input-material">
@@ -109,7 +110,7 @@
                         <h3>PROJECT MANAGER DETAILS</h3>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_mang_name " class="label-material margin-left">Name :</label>
+                            <label for="project_mang_name " class="label-material margin-left">NAME :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="project_mang_name" maxlength="50" name="project_mang_name"  class="input-material">
@@ -117,7 +118,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_address" class="label-material margin-left">Mobile No :</label>
+                            <label for="project_address" class="label-material margin-left">MOBILE NO. :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="project_mang_mobile" maxlength="12" name="project_mang_mobile"  [ngClass]="{ 'is-invalid': submitted && f.project_mang_mobile.errors }"  class="input-material">
@@ -128,7 +129,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_mang_email" class="label-material margin-left">Email :</label>
+                            <label for="project_mang_email" class="label-material margin-left">EMAIL ID :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="email" formControlName="project_mang_email" name="project_mang_email"  [ngClass]="{ 'is-invalid': submitted && f.project_mang_email.errors }"   class="input-material">
@@ -140,7 +141,7 @@
                         <h3>ONSITE CONTACT DETAILS</h3>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="onsite_name" class="label-material margin-left">Name :</label>
+                            <label for="onsite_name" class="label-material margin-left">NAME :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="onsite_name" maxlength="50" name="onsite_name"  class="input-material">
@@ -148,7 +149,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="onsite_mobile" class="label-material margin-left">Mobile No :</label>
+                            <label for="onsite_mobile" class="label-material margin-left">MOBILE NO. :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="onsite_mobile" maxlength="12" name="onsite_mobile" [ngClass]="{ 'is-invalid': submitted && f.onsite_mobile.errors }"  class="input-material">
@@ -159,7 +160,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="onsite_email" class="label-material margin-left">Email :</label>
+                            <label for="onsite_email" class="label-material margin-left">EMAIL :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="email" formControlName="onsite_email" name="onsite_email" class="input-material" [ngClass]="{ 'is-invalid': submitted && f.onsite_email.errors }">
@@ -170,7 +171,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Project Type :</label>
+                            <label for="project_type" class="label-material">PROJECT TYPE :</label>
                           </div>
                           <div class="col-md-8">
                             <select class="input-material" name="project_type" formControlName="project_type">
@@ -183,7 +184,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Project Status :</label>
+                            <label for="project_type" class="label-material">PROJECT STATUS :</label>
                           </div>
                           <div class="col-md-8">
                             <select class="input-material" name="project_status" formControlName="project_status">
@@ -198,7 +199,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Area/total (In Square Meters) :</label>
+                            <label for="project_type" class="label-material">AREA/TOTAL (In Square Meters) :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="number" formControlName="property_area" name="property_area" min="0" max="999999" [ngClass]="{ 'is-invalid': submitted && f.property_area.errors }" oninput="this.value = 
@@ -210,7 +211,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">No. of Floors :</label>
+                            <label for="project_type" class="label-material">NO. OF FLOORS :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="number" formControlName="no_of_floors" name="no_of_floors"  min="0" max="20" [ngClass]="{ 'is-invalid': submitted && f.no_of_floors.errors }"  oninput="this.value = 
@@ -222,7 +223,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Building Year :</label>
+                            <label for="project_type" class="label-material">BUILDING YEAR :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date only_year col-md-5" data-date-format="yyyy" data-link-field="building_year" data-link-format="yyyy">
@@ -234,7 +235,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Last Refurbished :</label>
+                            <label for="project_type" class="label-material">LAST REFURBISHED :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date only_year col-md-5"  data-date-format="yyyy" data-link-field="last_refurbished" data-link-format="yyyy">
@@ -246,7 +247,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Enviornmental Report :</label>
+                            <label for="project_type" class="label-material">ENVIORMENTAL REPORT :</label>
                           </div>
                           <div class="col-md-8">
                             <label class="md-check">
@@ -261,7 +262,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">FDV Documentation Available :</label>
+                            <label for="project_type" class="label-material">FDV DOCUMENTATION AVAILABLE :</label>
                           </div>
                           <div class="col-md-8">
                             <label class="md-check">
@@ -276,7 +277,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Enviromental Ambition :</label>
+                            <label for="project_type" class="label-material">ENVIORNMENTAL AMBITION :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="ambition" name="ambition" maxlength="30" class="input-material">
@@ -284,7 +285,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_type" class="label-material">Project Start Date :</label>
+                            <label for="project_type" class="label-material">PROJECT START DATE :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date="" data-date-format="yyyy.mm.dd" data-link-field="project_start_date" data-link-format="yyyy.mm.dd">
@@ -296,7 +297,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_catalog_date" class="label-material">Project Catalogue Delivery Date :</label>
+                            <label for="project_catalog_date" class="label-material">PROJECT CATALOGUE DELIVERY DATE :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_catalog_date" data-link-format="yyyy.mm.dd">
@@ -308,7 +309,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_avail_date" class="label-material">Project Availability Start Date :</label>
+                            <label for="project_avail_date" class="label-material">PROJECT AVAILABILITY START DATE :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_avail_date" data-link-format="yyyy.mm.dd">
@@ -320,7 +321,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="project_avail_end_date" class="label-material">Project Availability End Date :</label>
+                            <label for="project_avail_end_date" class="label-material">PROJECT AVAILABILITY END DATE :</label>
                           </div>
                           <div class="col-md-8">
                             <div class="input-group date fulldate col-md-5"  data-date-format="yyyy.mm.dd" data-link-field="project_avail_end_date" data-link-format="yyyy.mm.dd">
@@ -332,7 +333,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="note" class="label-material">Notes :</label>
+                            <label for="note" class="label-material">NOTES :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="note" maxlength="300" name="note"  class="input-material">
@@ -341,7 +342,7 @@
                         <h3>BILLING DETAILS</h3>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_project_company" class="label-material margin-left">Project Company :</label>
+                            <label for="billing_project_company" class="label-material margin-left">PROJECT COMPANY :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="billing_project_company" maxlength="60" name="billing_project_company"  class="input-material">
@@ -357,7 +358,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_project_number" class="label-material margin-left">Customer Project Number :</label>
+                            <label for="billing_project_number" class="label-material margin-left">CUSTOMER PROJECT NUMBER :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="number" formControlName="billing_project_number" min="0" max="20" name="billing_project_number"  class="input-material">
@@ -365,7 +366,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_customer_ref" class="label-material margin-left">Customer Reference :</label>
+                            <label for="billing_customer_ref" class="label-material margin-left">CUSTOMER REFERENCE :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="billing_customer_ref" maxlength="30" name="billing_customer_ref"  class="input-material">
@@ -373,7 +374,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_address" class="label-material margin-left">Billing Address :</label>
+                            <label for="billing_address" class="label-material margin-left">BILLING ADDRESS :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="billing_address" name="billing_address" maxlength="200" class="input-material">
@@ -381,7 +382,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_postal_code" class="label-material margin-left">Billing Postal Code :</label>
+                            <label for="billing_postal_code" class="label-material margin-left">BILLING POSTAL CODE :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="billing_postal_code" name="billing_postal_code" [ngClass]="{ 'is-invalid': submitted && f.billing_postal_code.errors }" maxlength="10" class="input-material">
@@ -392,7 +393,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="billing_postal_area" class="label-material margin-left">Billing Postal Area :</label>
+                            <label for="billing_postal_area" class="label-material margin-left">BILLING POSTAL AREA :</label>
                           </div>
                           <div class="col-md-8">
                             <input type="text" formControlName="billing_postal_area" name="billing_postal_area"  maxlength="50"  class="input-material">
@@ -400,7 +401,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="col-md-4 p-3">
-                            <label for="credit_period" class="label-material margin-left">Credit Period:</label>
+                            <label for="credit_period" class="label-material margin-left">CREDIT PERIOD :</label>
                           </div>
                           <div class="col-md-8 row">
                             <div class="col-md-6">
@@ -419,7 +420,7 @@
                         </div>
                         <div class="form-group row" *ngIf="filesmulti.length > 0">
                           <div class="col-md-6 p-3">
-                            <label for="billing_postal_area" class="label-material margin-left">File Name - Category</label>
+                            <label for="billing_postal_area" class="label-material margin-left">FILE NAME - CATEGORY</label>
                           </div>
                         </div>
                         <div class="form-group row"   *ngFor="let file of filesmulti; index as i">
