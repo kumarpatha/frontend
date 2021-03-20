@@ -67,12 +67,16 @@ onSubmit() {
               this.loadingData = false;
               if(data.status == '1') {
                 Swal.fire('', data.message, 'success');
+              } else {
+                Swal.fire('', data.message, 'error');
               }
           },
           error => {
+            this.loading = false;
+            this.loadingData = false;
+              Swal.fire('', 'Invalid Email', 'error');
               this.error = error;
-              this.loading = false;
-              this.loadingData = false;
+              
           });
 }
 

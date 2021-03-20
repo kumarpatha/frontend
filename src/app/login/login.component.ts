@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
                     if(this.authenticationService.currentUserValue.role == 0){
                         this.router.navigate(['/users']);
                     } else {
-                        this.router.navigate(['/customers']);
+                        this.router.navigate(['/products']);
                     }
                 },
                 error => {

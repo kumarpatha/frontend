@@ -12,14 +12,14 @@ declare var $: any;
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-
+  currentUser: User; 
   currunt_user:any;
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.currunt_user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currunt_user.rolr);
-   
+    //this.currunt_user = JSON.parse(localStorage.getItem('currentUser'));
+    //console.log(this.currunt_user.rolr);
+    this.currentUser = this.authenticationService.currentUserValue;
   }
    
   logout() {

@@ -2,4 +2,4 @@
 <div id="pdfTable" #pdfTable [innerHtml]="pdfData">
 </div>
 
-<div> <button  (click)="downloadAsPDF()">Export To PDF</button></div>
+<div> <button id="printPageButton" onclick="window.print();return false;">Export To PDF</button></div>

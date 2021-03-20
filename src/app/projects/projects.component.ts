@@ -84,7 +84,7 @@ export class ProjectsComponent implements OnDestroy, OnInit {
                   });
                 });
             },
-            columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'project_name', name : 'project_name' }, { data: 'customer.customer_name', name : 'customer.customer_name'}, { name: 'postal_area', data: 'postal_area'}, { data: 'property_area' }, { data: 'building_year' }]
+            columns: [{ data: 'DT_RowIndex', orderable:false, searchable:false }, { data: 'project_name', name : 'project_name' }, { data: 'customer.customer_name', name : 'customer.name'}, { name: 'postal_area', data: 'postal_area'}, { data: 'property_area' }, { data: 'building_year' }]
           };
         //} else {
           this.getgridData();

@@ -58,14 +58,15 @@ onSubmit() {
                 this.loadingData = false;
                 if(data.status == '1') {
                   Swal.fire('', data.message, 'success');
+                  this.router.navigate(['/login']);
                 }
             },
             error => {
+                Swal.fire('', "Invalid Email Address", 'error');
                 this.error = error;
                 this.loading = false;
+                this.loadingData = false;
             });
 }
-
- 
 
 }

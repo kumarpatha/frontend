@@ -8,6 +8,7 @@ import { environment } from '@environments/environment';
 import { DataTableDirective } from 'angular-datatables';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatalogService } from '@app/_services/catalog.service';
+
 import Swal from 'sweetalert2';
 // import * as $ from 'jquery';
 declare var $: any;
@@ -143,7 +144,37 @@ export class ProductsComponent implements OnDestroy , OnInit {
                 });
               });
           },
-          columns: [{ data: 'checkbox', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_used_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
+          columns: [{ data: 'checkbox', name: 'checkbox', orderable:false, searchable:false, 
+                        render: function (data: any, type: any, full: any) {
+                          //console.log(full);
+                          var link = "<div class='round'><input type='checkbox' id='checkbox"+full.id+"' name='prod_id' class='redirect' data-project-id= "+full.project_id+" view-attribute-id="+full.id+"><label for='checkbox"+full.id+"'></label></div>";
+                          return link;
+                      }
+              }
+          , { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { name : 'product_categories.category_name', data: 'category_name'}, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}],
+          rowCallback: (row: Node, data: any[] | Object, index: number) => {
+              $('.redirect', row).unbind('click');
+              $('.redirect', row).bind('click', (event) => {
+                if(event.target.checked) {
+                  let project_id = $(event.target).attr('data-project-id');
+                  let product_id = $(event.target).attr('view-attribute-id'); 
+                  this.PDFProduct.push(product_id);
+                  this.PDFProductProject.push(project_id);
+                } else {
+                  let project_id = $(event.target).attr('data-project-id');
+                  let product_id = $(event.target).attr('view-attribute-id');
+                  this.PDFProduct = this.PDFProduct.filter(function(s) {
+                    return s !== product_id;
+                  });
+                  this.PDFProductProject = this.PDFProductProject.filter(function(s) {
+                    return s !== project_id;
+                  });
+                }
+                 console.log(this.PDFProduct);
+                 console.log(this.PDFProductProject);
+              });
+            return row;
+        }
         };
         this.getgridData();
        
@@ -402,8 +433,8 @@ export class ProductsComponent implements OnDestroy , OnInit {
   }
 
   genratePDF() {
-    this.PDFProduct = [1,3,4];
-    this.PDFProductProject = [1,1,13];
+    //this.PDFProduct = [28,23];
+    //this.PDFProductProject = [17];
     this.catalogService.getpdfData(this.PDFProduct, this.PDFProductProject).pipe(first()).subscribe(data => {
       //this.image_base_path = data.image_base_path;
       console.log(data);

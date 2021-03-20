@@ -11,7 +11,8 @@
              
         </div>
         <div class="mx-auto">
-          <a href="#" class="navbar-brand"><b>Resourcer</b></a>
+          <a routerLink="/users" class="navbar-brand" *ngIf="currentUser.role == 0"><b>Resourcer</b></a>
+          <a routerLink="/products" class="navbar-brand" *ngIf="currentUser.role == 1"><b>Resourcer</b></a>
       </div> 
         <!-- Navbar Menu -->
         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">

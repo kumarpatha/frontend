@@ -90,3 +90,9 @@
   .listing-ul li span{    font-size: 13px;
       font-weight: 400;
       color: #5d5b5b;}
+
+      @media print {
+        #printPageButton {
+          display: none;
+        }
+      }

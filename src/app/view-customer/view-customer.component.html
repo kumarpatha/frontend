@@ -62,7 +62,25 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4 p-3">
-                          <label for="postal_code" class="label-material">POSTAL CODE :</label>
+                          <label for="postal_area" class="label-material">Country :</label>
+                        </div>
+                        <div class="col-md-8">
+                          <select class="input-material" name="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                            <option value="">Select</option>
+                            <option value="1" [selected]="customerDetails?.country == '1'">India</option>
+                            <option value="2" [selected]="customerDetails?.country == '2'">Norway</option>
+                            <option value="3" [selected]="customerDetails?.country == '3'">France</option>
+                            <option value="4" [selected]="customerDetails?.country == '4'">Italy</option>
+                            <option value="5" [selected]="customerDetails?.country == '5'">UK</option>
+                            <option value="6" [selected]="customerDetails?.country == '6'">Sweden</option>
+                            <option value="7" [selected]="customerDetails?.country == '7'">Germany</option>
+                            <option value="8" [selected]="customerDetails?.country == '8'">Poland</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-4 p-3">
+                          <label for="postal_code" class="label-material">Postal Code :</label>
                         </div>
                         <div class="col-md-8">
                           <input type="text" class="input-material" readonly value="{{customerDetails?.postal_code}}"/>
