@@ -143,7 +143,7 @@ export class ProductsComponent implements OnDestroy , OnInit {
                 });
               });
           },
-          columns: [{ data: 'checkbox', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_new_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
+          columns: [{ data: 'checkbox', orderable:false, searchable:false }, { data: 'product_id', name : 'product_id' }, { data: 'product_name', name : 'product_name'}, { data: 'category_name' }, { data: 'price_used_product' }, { data: 'quantity' }, { data: 'dimention'}, { data: 'description'}, { data: 'status'}]
         };
         this.getgridData();
        

@@ -7,12 +7,12 @@
   </div> 
 </div>
 <div class="page">
-  <!-- Main Navbar-->
-  <app-header></app-header>
   <div class="page-content d-flex align-items-stretch">
     <!-- Side Navbar -->
     <app-left-nav></app-left-nav>
     <div class="content-inner">
+  <!-- Main Navbar-->
+  <app-header></app-header>
       <!---Search -->
       <section class="forms py-5 bg-white">
         <div class="container-fluid">
@@ -70,7 +70,9 @@
                           </div>
                         </div>
                       </div>
-                      <button (click)="loadMore()" *ngIf="loadmoreflag">Load More</button>										
+                      <div class="text-center">	
+                        <button (click)="loadMore()" *ngIf="loadmoreflag" class="btn btn-load">Show More</button>		
+                        </div>										
                     </div>
                   </div>
                 </div>

@@ -1,29 +1,29 @@
  <!-- Side Navbar -->
- <nav class="side-navbar py-2">
+ <nav class="side-navbar py-5">
   
   <ul class="list-unstyled" *ngIf="currentUser.role == 0">
-    <li><a routerLink="/users">Userlist</a></li>
-    <li><a routerLink="/user-register">Add user</a></li>
+    <li><a routerLink="/users">USERLIST</a></li>
+    <li><a routerLink="/user-register">ADD USERS</a></li>
   </ul>
   <ul class="list-unstyled" *ngIf="currentUser.role == 0">
-    <li><a routerLink="/clients">Clientlist</a></li>
-    <li><a routerLink="/add-client">Add Client</a></li>
+    <li><a routerLink="/clients">CLIENT LIST</a></li>
+    <li><a routerLink="/add-client">ADD CLIENTS</a></li>
   </ul>
 
   <ul class="list-unstyled" *ngIf="currentUser.role == 1">
-    <li><a routerLink="/customers">Customer list</a></li>
-    <li><a routerLink="/add-customer">Add Customer</a></li>
+    <li><a routerLink="/customers">CUSTOMER LIST</a></li>
+    <li><a routerLink="/add-customer">ADD CUSTOMERS</a></li>
   </ul>
   <ul class="list-unstyled" *ngIf="currentUser.role == 1">
-    <li><a routerLink="/projects">Project list</a></li>
-    <li><a routerLink="/add-project">Add Project</a></li>
+    <li><a routerLink="/projects">PROJECT LIST</a></li>
+    <li><a routerLink="/add-project">ADD PROJECTS</a></li>
   </ul>
   <ul class="list-unstyled" *ngIf="currentUser.role == 1">
-    <li><a routerLink="/products">Product list</a></li>
-    <li><a routerLink="/add-product">Add Product</a></li>
+    <li><a routerLink="/products">PRODUCT LIST</a></li>
+    <li><a routerLink="/add-product">ADD PRODUCTS</a></li>
   </ul>
   <ul class="list-unstyled" *ngIf="currentUser.role == 0">
-    <li><a routerLink="/categories">Product Category</a></li>
-    <li><a routerLink="/file-categories">Project Category</a></li>
+    <li><a routerLink="/categories">PRODUCT CATEGORY</a></li>
+    <li><a routerLink="/file-categories">PROJECT CATEGORY</a></li>
   </ul>
 </nav>
