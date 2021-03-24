@@ -39,10 +39,10 @@
                                    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                    <br/>
                                     <div class="form-group row">
-                                      <div class="col-md-4 p-3">
-                                        <label for="customerName" class="label-material">CUSTOMER NAME* :</label>
+                                      <div class="col-md-5 p-3">
+                                        <label for="customerName" class="label-material">CUSTOMER NAME*:</label>
                                       </div>
-                                      <div class="col-md-8">
+                                      <div class="col-md-7">
                                         <input type="text" formControlName="customerName" name="customerName" [ngClass]="{ 'is-invalid': submitted && f.customerName.errors }" class="input-material">
                                         <div *ngIf="submitted && f.customerName.errors" class="invalid-feedback">
                                           <div *ngIf="f.customerName.errors.required">Customer Name is required</div>
@@ -50,10 +50,10 @@
                                       </div>
                                     </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="orgname" class="label-material">ORG. NUMBER* :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="orgname" class="label-material">ORG. NUMBER*:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input type="number" formControlName="orgname" name="orgname" [ngClass]="{ 'is-invalid': submitted && f.orgname.errors }" maxlength="9" class="input-material">
                                       <div *ngIf="submitted && f.orgname.errors" class="invalid-feedback">
                                         <div *ngIf="f.orgname.errors.required">Org. Number is required</div>
@@ -62,10 +62,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="address" class="label-material">ADRESS :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="address" class="label-material">ADRESS:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="address" type="text" name="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" class="input-material" maxlength="64">
                                       <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
                                         <div *ngIf="f.address.errors.required">Address is required</div>
@@ -73,10 +73,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="postal_code" class="label-material">POSTAL CODE :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="postal_code" class="label-material">POSTAL CODE:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="postal_code" type="number" name="postal_code" [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }" class="input-material" maxlength="4">
                                       <div *ngIf="submitted && f.postal_code.errors" class="invalid-feedback">
                                         <div *ngIf="f.postal_code.errors.required">Postal Code is required</div>
@@ -85,10 +85,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="postal_area" class="label-material">POSTAL  AREA :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="postal_area" class="label-material">POSTAL  AREA:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="postal_area" type="text" name="postal_area" [ngClass]="{ 'is-invalid': submitted && f.postal_area.errors }" class="input-material" maxlength="20">
                                       <div *ngIf="submitted && f.postal_area.errors" class="invalid-feedback">
                                         <div *ngIf="f.postal_area.errors.required">Postal Area is required</div>
@@ -96,10 +96,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="postal_area" class="label-material">COUNTRY :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="postal_area" class="label-material">COUNTRY:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <select class="input-material" name="country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
                                         <option value="">Select</option>
                                         <option value="1">India</option>
@@ -118,10 +118,10 @@
                                   </div>
                                   <h4>CONTACT PERSON DETAILS</h4>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="name" class="label-material">NAME :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="name" class="label-material">NAME:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="name" type="text" name="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material" maxlength="64">
                                       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                                         <div *ngIf="f.name.errors.required">Name is required</div>
@@ -129,10 +129,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="mobile" class="label-material">MOBILE NO :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="mobile" class="label-material">MOBILE NO:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="mobile" type="text" name="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" maxlength="15" class="input-material">
                                       <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
                                         <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
@@ -142,10 +142,10 @@
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <div class="col-md-4 p-3">
-                                      <label for="email" class="label-material">EMAIL ID :</label>
+                                    <div class="col-md-5 p-3">
+                                      <label for="email" class="label-material">EMAIL ID:</label>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                       <input formControlName="email" type="email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="input-material">
                                       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                         <div *ngIf="f.email.errors.required">Email is required</div>
@@ -166,7 +166,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group row">
                                       <div class="col-md-5 p-3">
-                                        <label for="note" class="label-material">NOTES :</label>
+                                        <label for="note" class="label-material">NOTES:</label>
                                       </div>
                                       <div class="col-md-7">
                                         <textarea formControlName="note" name="note" class="form-control" rows="7" maxlength="1000"></textarea>
