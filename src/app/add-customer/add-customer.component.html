@@ -54,7 +54,7 @@
                                       <label for="orgname" class="label-material">ORG. NUMBER* :</label>
                                     </div>
                                     <div class="col-md-8">
-                                      <input type="text" formControlName="orgname" name="orgname" [ngClass]="{ 'is-invalid': submitted && f.orgname.errors }" maxlength="15" class="input-material">
+                                      <input type="number" formControlName="orgname" name="orgname" [ngClass]="{ 'is-invalid': submitted && f.orgname.errors }" maxlength="9" class="input-material">
                                       <div *ngIf="submitted && f.orgname.errors" class="invalid-feedback">
                                         <div *ngIf="f.orgname.errors.required">Org. Number is required</div>
                                         <div *ngIf="f.orgname.errors.pattern">Please enter digits only</div>
@@ -77,7 +77,7 @@
                                       <label for="postal_code" class="label-material">POSTAL CODE :</label>
                                     </div>
                                     <div class="col-md-8">
-                                      <input formControlName="postal_code" type="text" name="postal_code" [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }" class="input-material">
+                                      <input formControlName="postal_code" type="number" name="postal_code" [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }" class="input-material" maxlength="4">
                                       <div *ngIf="submitted && f.postal_code.errors" class="invalid-feedback">
                                         <div *ngIf="f.postal_code.errors.required">Postal Code is required</div>
                                         <div *ngIf="f.postal_code.errors.pattern">Please enter valid postal code</div>
@@ -122,7 +122,7 @@
                                       <label for="name" class="label-material">NAME :</label>
                                     </div>
                                     <div class="col-md-8">
-                                      <input formControlName="name" type="text" name="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material" maxlength="60">
+                                      <input formControlName="name" type="text" name="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="input-material" maxlength="64">
                                       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                                         <div *ngIf="f.name.errors.required">Name is required</div>
                                       </div>
@@ -146,7 +146,7 @@
                                       <label for="email" class="label-material">EMAIL ID :</label>
                                     </div>
                                     <div class="col-md-8">
-                                      <input formControlName="email" type="text" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="input-material">
+                                      <input formControlName="email" type="email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="input-material">
                                       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                         <div *ngIf="f.email.errors.pattern">Please enter valid email</div>

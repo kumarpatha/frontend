@@ -69,15 +69,15 @@ ngOnInit() {
 
     this.customerForm = this.formBuilder.group({
       customerName: ['', Validators.required],
-      orgname: ['', Validators.required],
-      address: ['', Validators.required],
-      postal_code: ['', [Validators.required,  Validators.pattern('[0-9]{6}')]],
-      postal_area: ['', Validators.required],
-      name: ['', Validators.required],
-      mobile: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
+      orgname: ['', [Validators.required,  Validators.pattern('[0-9]*')]],
+      address: [''],
+      postal_code: ['', [Validators.pattern('[0-9]{4}')]],
+      postal_area: [''],
+      name: [''],
+      mobile: ['', [Validators.pattern('[0-9]{10}')]],
+      email: ['', [Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       note: [''],
-      country: ['', Validators.required]
+      country: ['']
     });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
