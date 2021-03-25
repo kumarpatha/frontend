@@ -84,7 +84,7 @@
                     (click)="filter()"
                     href="javascript:void(0);"
                     *ngIf="filterFlag"
-                    ><strong>F</strong></a
+                    ><span class="material-icons">filter_alt</span></a
                   >
                   &nbsp;
                   <a (click)="viewType('grid')" href="javascript:void(0);"
@@ -291,7 +291,7 @@
                     <th>Price</th>
                     <th>Qty.</th>
                     <th>Dimensions</th>
-                    <th>Discription</th>
+                    <th>Description</th>
                     <th>Status</th>
                     <!-- <th>Action</th> -->
                   </tr>
@@ -349,6 +349,7 @@
                       </div>
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div class="text-center">
                     <button
                       (click)="loadMore()"
@@ -357,6 +358,52 @@
                     >
                       Show More
                     </button>
+=======
+                <div class="col-md-12" *ngIf="!productInfo && listView">
+
+                        <table class="table" datatable [dtOptions]="dtOptions" width="100%">
+                        <thead>
+                          <tr>
+                            <th>
+                              <div class="round">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox"></label>
+                              </div>
+                              </th>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Qty.</th>
+                            <th>Dimensions</th>
+                            <th>Description</th>
+                            <th>Status</th> 
+                            <!-- <th>Action</th> -->
+                          </tr>
+                        </thead>
+                        </table>
+                    
+                </div>
+                <div class="col-md-12 mb-4" *ngIf="!productInfo && gridView">
+                  <div class="">
+                    <div class="">
+                      <div class="row">
+                        <div class="col-md-3 p-2" *ngFor="let product of productslist; index as i">
+                          <div class="card p-2 text-center" style="border-radius: 10px;">
+                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="product.product_image"><img src="{{image_base_path}}/{{product.product_image}}"  class="card-img-top" alt="..." height="227px" width="283px" style="border-radius: 10px;"></a>
+                            <a href="javascript:void();" routerLink="/view-product/{{product?.id}}" *ngIf="!product.product_image"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="227px" width="283px" style="border-radius: 10px;"></a>
+                          </div> 
+                          <div class="p-2">
+                            <h5 class="card-title"><a href="javascript:void();" routerLink="/view-product/{{product?.id}}" style="word-break: break-all;">{{product.product_name}}</a></h5>
+                          
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center">	
+                      <button (click)="loadMore()" *ngIf="loadmoreflag" class="btn btn-load">Show More</button>		
+                      </div>				
+                    </div>
+>>>>>>> cb8ee987661de14ec0290cc5e0aca92a21f84321
                   </div>
                 </div>
               </div>

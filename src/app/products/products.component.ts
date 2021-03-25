@@ -183,7 +183,7 @@ export class ProductsComponent implements OnDestroy, OnInit {
         { data: "product_id", name: "product_id" },
         { data: "product_name", name: "product_name" },
         { name: "product_categories.category_name", data: "category_name" },
-        { data: "price_new_product" },
+        { data: "price_used_product" },
         { data: "quantity" },
         { data: "dimention" },
         { data: "description" },
