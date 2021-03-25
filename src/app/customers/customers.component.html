@@ -49,24 +49,24 @@
                             <th>Name</th>
                             <th>No of Project</th>
                             <th>No. Of Product</th>
-                            <!-- <th>Country</th> -->
+                            <th>Country</th>
                             <th>Postal Area</th>
                             <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         </table>
-                    </div>
+                </div>
                 <div class="col-md-12 mb-4" *ngIf="gridView">
                   <div class="">
                     <div class="">
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let customer of customerslists; index as i">
-                          <div class="card p-2">
+                          <div class="card p-2 text-center" style="border-radius: 10px;">
                             <a routerLink="/view-customer/{{customer.id}}"><img src="{{image_base_path}}/{{customer.image_path}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
                             <a href="javascript:void();" routerLink="/view-customer/{{customer.id}}" *ngIf="!customer.image_path"><img src="assets/images/default.jpg" class="card-img-top" alt="..." height="200px" width="auto"></a>
-                            <div class="card-body">
+                          </div> 
+                          <div class="p-2">
                             <h5 class="card-title"><a routerLink="/view-customer/{{customer.id}}" style="word-break: break-all;">{{customer.customer_name}}</a></h5>
-                            </div>
                           </div>
                         </div>
                       </div>

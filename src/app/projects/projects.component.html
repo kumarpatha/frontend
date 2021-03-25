@@ -77,12 +77,13 @@
                     <div class="">
                       <div class="row">
                         <div class="col-md-3 p-2" *ngFor="let project of projectslist; index as i">
-                          <div class="card p-2">
+                          <div class="card p-2 text-center" style="border-radius: 10px;">
                             <a href="javascript:void();" routerLink="/view-project/{{project.id}}"><img src="{{image_base_path}}/{{project.project_image}}" class="card-img-top" alt="..." height="200px" width="auto"></a>
-                            <div class="card-body">
+                          </div>  
+                          <div class="p-2">
                             <h5 class="card-title"><a href="javascript:void();" routerLink="/view-project/{{project.id}}" style="word-break: break-all;">{{project.project_name}}</a></h5>
-                            </div>
                           </div>
+                          
                         </div>
                       </div>
                       <div class="text-center">	
