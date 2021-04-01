@@ -107,7 +107,15 @@ export class AddProjectComponent implements OnInit {
       env_report: [""],
       fdv_document: [""],
       ambition: [""],
-      project_start_date: [""],
+      project_start_date: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            "^(19|20)[0-9]{2}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-3]{1}[0-9]{1}$"
+          ),
+        ]),
+      ],
       project_catalog_date: [""],
       project_avail_date: [""],
       project_avail_end_date: [""],

@@ -670,6 +670,15 @@
                           <span class="input-group-addon"
                             ><span class="fa fa-calendar"></span
                           ></span>
+                          <div
+                            *ngIf="submitted && f.project_start_date.errors"
+                            class="invalid-feedback"
+                            style="display: block"
+                          >
+                            <div>
+                              Valid date is required in YYYY.MM.DD format.
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
