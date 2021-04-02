@@ -116,9 +116,24 @@ export class AddProjectComponent implements OnInit {
           ),
         ]),
       ],
-      project_catalog_date: [""],
-      project_avail_date: [""],
-      project_avail_end_date: [""],
+      project_catalog_date: ["",Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            "^(19|20)[0-9]{2}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-3]{1}[0-9]{1}$"
+          ),
+        ])],
+      project_avail_date: ["",Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            "^(19|20)[0-9]{2}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-3]{1}[0-9]{1}$"
+          ),
+        ])],
+      project_avail_end_date: ["",Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            "^(19|20)[0-9]{2}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-3]{1}[0-9]{1}$"
+          ),
+        ])],
       note: [""],
       billing_project_company: [""],
       billing_orgno: [""],
