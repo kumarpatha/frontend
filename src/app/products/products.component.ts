@@ -63,7 +63,7 @@ export class ProductsComponent implements OnDestroy, OnInit {
   PDFProduct = [];
   productPDFCategory: FormGroup;
   PDFProductProject = [];
-  filterFlag = true;
+  filterFlag = false;
   pagenumber: any = 1;
   loadmoreflag: boolean = true;
   selectAll: boolean = false;
@@ -561,7 +561,7 @@ export class ProductsComponent implements OnDestroy, OnInit {
 
   getgridData() {
     this.userService
-      .getproductsgrid(this.pagenumber)
+      .getproductsgrid(this.pagenumber, this.projectobj)
       .pipe(first())
       .subscribe((data) => {
         this.loading = false;

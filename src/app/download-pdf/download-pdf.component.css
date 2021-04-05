@@ -79,8 +79,8 @@
   .listing-ul{width:100%; float:left}
   .listing-ul li{width:100%; float:left;padding: 6px 0px;}
   .listing-ul li div:nth-of-type(1){width:25%; float:left}
-  .listing-ul li div:nth-of-type(2){width:55%; float:left}
-  .listing-ul li div:nth-of-type(3){width:20%; float:left}
+  .listing-ul li div:nth-of-type(2){width:50%; float:left}
+  .listing-ul li div:nth-of-type(3){width:25%; float:left}
   .listing-ul li h5{    font-size: 12px;
       border-bottom: 1px solid #a0a0a0;
       padding-bottom: 7px;

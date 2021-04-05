@@ -223,8 +223,14 @@ export class UserService {
         }));
     }
 
-    getproductsgrid(pagenumber){
-        return this.http.get<any>(`${environment.apiUrl}/productgrid/`+pagenumber)
+    getproductsgrid(pagenumber, project_id){
+        if(project_id) {
+            var url= `${environment.apiUrl}/productgrid/`+pagenumber+'/'+project_id;
+        } else {
+            var url= `${environment.apiUrl}/productgrid/`+pagenumber;
+        }
+        
+        return this.http.get<any>(url)
         .pipe(map(products => {
             return products;
         }));
