@@ -987,7 +987,7 @@
             <select class="form-control" name="categories" id="categories">
               <option value="">Select</option>
               <option
-                *ngFor="let category of projectcategories; index as i"
+                *ngFor="let category of categories; index as i"
                 value="{{ category.id }}"
               >
                 {{ category.category_name }}

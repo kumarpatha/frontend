@@ -29,4 +29,6 @@ export class LeftNavComponent implements OnInit {
     console.log(nextUrl);
     if (location.pathname === nextUrl) location.reload();
   }
+
+
 }

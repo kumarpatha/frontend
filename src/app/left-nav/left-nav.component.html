@@ -1,5 +1,8 @@
 <!-- Side Navbar -->
-<nav class="side-navbar py-5">
+<nav class="side-navbar">
+  
+ <!-- <div class="text-right closesidebar p-4"><a><span class="material-icons">keyboard_backspace</span></a></div>
+  -->
   <ul class="list-unstyled" *ngIf="currentUser.role == 0">
     <li><a routerLink="/users">USERLIST</a></li>
     <li><a routerLink="/user-register">ADD USERS</a></li>
@@ -50,3 +53,4 @@
     <li><a routerLink="/file-categories">PROJECT CATEGORY</a></li>
   </ul>
 </nav>
+

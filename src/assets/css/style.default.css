@@ -111,8 +111,16 @@ table, .table {;
   padding-bottom: 60px;
 }
 
-.content-inner.active {
-  width: calc(100% - 90px);
+@media screen and (max-width: 600px) {
+  .content-inner.active {
+    width: calc(100% - 90px);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .content-inner.active {
+    width: calc(100% - 0px);
+  }
 }
 
 .page-header {
@@ -534,12 +542,22 @@ nav.side-navbar ul li li.active > a {
 nav.side-navbar ul li ul {
   padding: 0;
 }
-
-nav.side-navbar.shrinked {
-  min-width: 90px;
-  max-width: 90px;
-  text-align: center;
+@media screen and (max-width: 600px) {
+  nav.side-navbar.shrinked {
+    min-width: 90px;
+    max-width: 90px;
+    text-align: center;
+  }
 }
+
+@media screen and (min-width: 600px) {
+  nav.side-navbar.shrinked {
+    min-width: 0px;
+    max-width: 0px;
+    text-align: center;
+  }
+}
+
 
 nav.side-navbar.shrinked span.heading {
   margin: 0;
@@ -667,9 +685,12 @@ nav.side-navbar.shrinked .sidebar-header .title {
   .content-inner {
     width: 100%;
   }
-  .content-inner.active {
-    width: calc(100% - 90px);
+/*  .content-inner.active {
+    width: calc(100% - 0px);
   }
+
+  */
+
 }
 
 /*
@@ -1042,21 +1063,21 @@ button, input, optgroup, select, textarea{
   font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
-  color: #aaa;
+  color: #212529;
 }
 
 .form-control::-webkit-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
-  color: #aaa;
+  color: #212529;
 }
 
 .form-control:-ms-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: "Amiko", sans-serif;
-  color: #aaa;
+  color: #212529;
 }
 
 .form-control:focus {
@@ -1263,6 +1284,28 @@ input.input-material.is-invalid ~ label {
 .form-group-material {
   position: relative;
   margin-bottom: 30px;
+}
+
+
+.input-material::-moz-placeholder {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
+}
+
+.input-material::-webkit-input-placeholder {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
+}
+
+.input-material:-ms-input-placeholder {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
 }
 
 .modal-content {
